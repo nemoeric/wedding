@@ -1,13 +1,30 @@
 import Image from "next/image";
 import Animation from "@/components/Animation";
-export default function Home() {
+import Link from "next/link";
+import { cookies } from 'next/headers'
+import {
+  findUserById,
+} from '@/prisma/user'
+export default async function Home() {
+  
+  
+  const cookieStore = cookies()
+  const userIdCookie = cookieStore.get('uuid')
+  let user;
+  if(userIdCookie) {
+    console.log('userId', userIdCookie)
+    user = await findUserById(userIdCookie.value)
+  }
+
+
+
   return (
     <div className="bg-white pb-16">
-      <div className="bg-secondary text-primary text-center h-screen flex justify-center items-center">
+      <div className="bg-secondary text-primary text-center h-[70vh] flex justify-center items-center">
         <div className="text-accent grid gap-6">
           <Animation>
-            <div className="text-xl mb-10">
-                ELIZABETH AND ERIC
+            <div className="text-3xl mb-10 font-adora">
+                Elizabeth & Eric
               </div>
             <h1 className='font-serif text-7xl tracking-tight'>
               RENDEZ-VOUS À SINTRA
@@ -15,6 +32,24 @@ export default function Home() {
             <div className="animate-pulse">
               31-08 | 02-09
             </div>
+            <Link href="/login">
+              <button className="bg-primary text-white font-bold py-2 px-4 rounded-full">
+                RSVP
+              </button>
+            </Link>
+            {
+              user && (
+                <div className="text-xs">
+                  <div>
+                    {user.name}
+                  </div>
+                  <div>
+                    {user.email}
+                  </div>
+                </div>
+              )
+            }
+            
           </Animation>
 
 
@@ -34,12 +69,12 @@ export default function Home() {
 
 
           {/* JEUDI */}
-          <div className="grid grid-cols-2 gap-8 items-center">
+          <div className="grid sm:grid-cols-2 gap-8 items-center">
             <Animation>
               <Image 
                 src="/qbv_palm.jpeg" 
                 alt="Picture of the author"
-                className="object-cover aspect-square	"
+                className="object-cover aspect-square mask mask-hexagon-2	"
                 width={1920}
                 height={1080}
                 />
@@ -85,10 +120,10 @@ export default function Home() {
           </div>
 
           {/* VENDREDI */}
-          <div className="grid grid-cols-2 gap-8 items-center">
+          <div className="grid sm:grid-cols-2 gap-8 items-center">
             <div className="text-primary text-right">
 
-              <h1 className="font-serif text-5xl mb-6  tracking-tight">
+              <h1 className="font-serif text-5xl mb-6 tracking-tight">
                 Vendredi 1 Septembre
               </h1>
               <div className="grid gap-4">
@@ -142,10 +177,11 @@ export default function Home() {
               </div>
             </div>
             <Animation>
+              {/* center image to left */}
               <Image 
-                src="/qbv_palace_in_sm.jpg" 
+                src="/qbv_palace_banner.jpg" 
                 alt="Picture of the author"
-                className="object-cover aspect-square	"
+                className="object-cover aspect-square mask mask-hexagon	"
                 width={1920}
                 height={1080}
                 />
@@ -153,12 +189,12 @@ export default function Home() {
           </div>
         
           {/* SAMEDI */}
-          <div className="grid grid-cols-2 gap-8 items-center">
+          <div className="grid sm:grid-cols-2 gap-8 items-center">
             <Animation>
               <Image 
                 src="/lizandro.jpeg" 
                 alt="lizandro of the author"
-                className="object-cover aspect-square	"
+                className="object-cover aspect-square	mask mask-hexagon-2"
                 width={1920}
                 height={1080}
                 />
@@ -224,10 +260,12 @@ export default function Home() {
 
             </div>
           </div>
+
         </div>
 
 
       </div>
+
     </div>
 
   )
