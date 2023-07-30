@@ -13,10 +13,23 @@ const Rsvp = ({user}:{
 }) => {
  
   const [formData, setFormData] = useState(user)
+  const [showToast, setShowToast] = useState(false)
+
+  const toastMarkup = showToast && (
+    <div className="toast toast-top toast-right z-30">
+      <div className="alert alert-success">
+        <span>Vos réponses ont été prises en compte.</span>
+      </div>
+    </div>
+  )
 
   const handleFormSubmit = async (e:any) => {
     e.preventDefault()
     console.log('formData', formData);
+    
+    // remove key canEdit from formData
+    delete formData.canEdit
+
     let response = await fetch(`/api/users/${formData.id}`, {
       method: "PUT",
       headers: {
@@ -26,6 +39,12 @@ const Rsvp = ({user}:{
     })
     let data = await response.json()
     console.log("data", data)
+
+    setShowToast(true)
+    // wait 1 second and hide toast
+    setTimeout(()=>{
+      setShowToast(false)
+    }, 3000)
 
   }
   return (
@@ -183,7 +202,7 @@ const Rsvp = ({user}:{
         </form>
 
       </div>
-      
+      {toastMarkup}
     </div>
   )
 }

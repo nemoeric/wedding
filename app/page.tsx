@@ -26,7 +26,7 @@ export default async function Home() {
     <div className="bg-white pb-16">
 
       {/* BANNER */}
-      <div className="text-primary bg-slate-200 text-center h-[70vh] flex justify-center items-center">
+      <div className="text-primary bg-slate-200 text-center h-[500px] md:h-[600px] flex justify-center items-center">
         <div className="grid gap-6">
           <Animation>
             <div className="text-3xl mb-10 font-adora">
@@ -57,30 +57,35 @@ export default async function Home() {
       }
       
       {/* PROGRAMME */}
-      <div className="px-10 py-10 max-w-screen-xl mx-auto ">
-        <div className="rounded-lg shadow-xl grid gap-12 p-6 border border-grey">
+      <div className="md:py-10 max-w-screen-lg mx-auto ">
+        <div className="flex flex-col gap-12 p-6 ">
+
+          {/* TITRE */}
           <div className="text-primary text-center">
             <Animation>
-              <h1 className="font-serif text-8xl  tracking-tight">
+              <h1 className="font-serif text-3xl md:text-6xl  tracking-tight">
                 Programme
               </h1>
             </Animation>
           </div>
-          {/* JEUDI */}
-          <div className="grid sm:grid-cols-2 gap-8 items-center">
-            <Animation>
-              <Image 
-                src="/qbv_palm.jpeg" 
-                alt="Picture of the author"
-                className="object-cover aspect-square mask mask-hexagon-2	"
-                width={1920}
-                height={1080}
-                />
-            </Animation>
 
-            <div className="text-primary">
+          {/* JEUDI */}
+          <div className="rounded-lg shadow-xl border border-grey py-4 md:py-10 px-6 flex flex-col md:flex-row gap-8 items-center">
+            
+            <div className="md:w-2/5">
+              <Animation>
+                <Image 
+                  src="/qbv_palm.jpeg" 
+                  alt="Picture of the author"
+                  className="object-cover aspect-square mask mask-hexagon	w-full"
+                  width={1920}
+                  height={1080}
+                  />
+              </Animation>
+            </div>
+            <div className="text-primary w-full md:w-3/5">
               
-              <h1 className="font-serif text-5xl mb-6  tracking-tight">
+              <h1 className="font-serif text-2xl md:text-5xl mb-6  tracking-tight">
                 Jeudi 31 Août
               </h1>
 
@@ -107,7 +112,7 @@ export default async function Home() {
                   </div>
                   <div className="">
                     <div>
-                      20h-20h45 : Navettes retour
+                      20h-20h30 : Navettes retour
                     </div>
                     <div className="italic text-xs">
                       Départ : Devant {`l'entrée du bâtiment principal`}<br/>
@@ -117,14 +122,36 @@ export default async function Home() {
                 </Animation>
               </div>
 
+              <div tabIndex={0} className="collapse rounded-none mt-4">
+                <div className="collapse-title font-medium p-0 underline text-sm">
+                  En savoir plus
+                </div>
+                <div className="collapse-content"> 
+                  <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                </div>
+              </div>
+
             </div>
+
+
           </div>
 
           {/* VENDREDI */}
-          <div className="grid sm:grid-cols-2 gap-8 items-center">
-            <div className="text-primary text-right">
-
-              <h1 className="font-serif text-5xl mb-6 tracking-tight">
+          <div className="rounded-lg shadow-xl border border-grey py-4 md:py-10 px-6 flex flex-col md:flex-row-reverse gap-8 items-center">
+            <div className="md:w-2/5">
+              <Animation>
+                {/* center image to left */}
+                <Image 
+                  src="/qbv_palace_banner.jpg" 
+                  alt="Picture of the author"
+                  className="object-cover aspect-square mask mask-squircle	w-full"
+                  width={1920}
+                  height={1080}
+                  />
+              </Animation>
+            </div>
+            <div className="text-primary w-full md:w-3/5 md:text-right">
+              <h1 className="font-serif text-3xl md:text-5xl mb-6 tracking-tight">
                 Vendredi 1 Septembre
               </h1>
               <div className="grid gap-4">
@@ -175,33 +202,35 @@ export default async function Home() {
                   </div>
                 </Animation>
 
+                <div tabIndex={0} className="collapse rounded-none mt-4">
+                  <div className="collapse-title font-medium p-0 underline text-sm">
+                    En savoir plus
+                  </div>
+                  <div className="collapse-content"> 
+                    <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <Animation>
-              {/* center image to left */}
-              <Image 
-                src="/qbv_palace_banner.jpg" 
-                alt="Picture of the author"
-                className="object-cover aspect-square mask mask-hexagon	"
-                width={1920}
-                height={1080}
-                />
-            </Animation>
           </div>
+
           {/* SAMEDI */}
-          <div className="grid sm:grid-cols-2 gap-8 items-center">
-            <Animation>
-              <Image 
-                src="/lizandro.jpeg" 
-                alt="lizandro of the author"
-                className="object-cover aspect-square	mask mask-hexagon-2"
-                width={1920}
-                height={1080}
-                />
-            </Animation>
-            <div className="text-primary">
+          <div className="rounded-lg shadow-xl border border-grey py-4 md:py-10 px-6 flex flex-col md:flex-row gap-8 items-center">
+            <div className="md:w-2/5">
               <Animation>
-                <h1 className="font-serif text-5xl mb-6  tracking-tight">
+                <Image 
+                  src="/lizandro.jpeg" 
+                  alt="lizandro of the author"
+                  className="object-cover aspect-square mask mask-heart	w-full"
+                  width={1920}
+                  height={1080}
+                  />
+              </Animation>
+            </div>
+            <div className="text-primary w-full md:w-3/5">
+              <Animation>
+                <h1 className="font-serif text-2xl md:text-5xl mb-6  tracking-tight">
                   Samedi 2 Septembre
                 </h1>
 
@@ -253,6 +282,15 @@ export default async function Home() {
                       </div>
                     </div>
                   </Animation>
+
+                  <div tabIndex={0} className="collapse rounded-none mt-4">
+                    <div className="collapse-title font-medium p-0 underline text-sm">
+                      En savoir plus
+                    </div>
+                    <div className="collapse-content"> 
+                      <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                    </div>
+                  </div>
                 </div>
    
                
