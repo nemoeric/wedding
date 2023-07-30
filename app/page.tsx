@@ -57,8 +57,7 @@ export default async function Home() {
       }
       
       {/* PROGRAMME */}
-      <div className="md:py-10 max-w-screen-lg mx-auto ">
-        <div className="flex flex-col gap-12 p-6 ">
+      <div className="md:py-10 max-w-screen-lg mx-auto flex flex-col gap-12 p-4">
 
           {/* TITRE */}
           <div className="text-primary text-center">
@@ -299,7 +298,6 @@ export default async function Home() {
 
             </div>
           </div>
-        </div>
       </div>
 
     </div>

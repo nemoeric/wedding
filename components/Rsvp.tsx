@@ -48,7 +48,7 @@ const Rsvp = ({user}:{
 
   }
   return (
-    <div className="px-10 py-8 max-w-screen-xl mx-auto">
+    <div className="px-4 md:px-10 py-8 max-w-screen-xl mx-auto">
       <div className="rounded-lg shadow-xl grid gap-6 p-6 border border-grey text-primary">
         <form onSubmit={handleFormSubmit}>
           <div className="grid gap-4 md:grid-cols-6">
