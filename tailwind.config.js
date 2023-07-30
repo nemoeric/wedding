@@ -12,12 +12,29 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        primary: "#1d583f",
+        secondary: "#f4f0ec"
+      }
     },
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-      mono: ['JetBrains Mono', 'monospace'],
-      serif: ['Baskerville', 'serif'],
+      sans:   [
+        'var(--font-openSans)',
+        'sans-serif'
+      ],
+      mono:   [
+        'JetBrains Mono', 
+        'monospace'
+      ],
+      serif:  [
+        'var(--font-silk-medium)', 
+        'serif'
+      ],
+      italic:  [
+        'var(--font-cambria-italic)', 
+      ],
     }
   },
-  plugins: [],
+  plugins: [
+  ],
 }

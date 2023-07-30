@@ -1,8 +1,41 @@
 import './globals.css'
+import './theme.scss'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Open_Sans } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+
+const openSans = Open_Sans({
+  subsets: [
+    'latin'
+  ],
+  display: 'swap',
+  variable: '--font-openSans',
+
+})
+
+const silk_medium = localFont({
+  variable:     '--font-silk-medium',
+  src:          './fonts/silk/silk-medium.otf',
+  display:      'swap',
+})
+const ropa_bold = localFont({
+  variable:     '--font-ropa-bold',
+  src:          './fonts/ropa/ropa-bold.woff',
+  display:      'swap',
+})
+const calibri_bold = localFont({
+  variable:     '--font-calibri-bold',
+  src:          './fonts/calibri/calibri-bold.woff2',
+  display:      'swap',
+})
+const cambria_italic = localFont({
+  variable:     '--font-cambria-italic',
+  src:          './fonts/cambria/italic.ttf',
+  display:      'swap',
+})
+ 
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +49,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`
+      ${silk_medium.variable} 
+      ${ropa_bold.variable} 
+      ${openSans.className} 
+      ${cambria_italic.variable}
+      `}>
+        {children}
+      </body>
     </html>
   )
 }

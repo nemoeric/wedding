@@ -1,0 +1,8 @@
+.typing_effect {
+  width: 40ch;
+  overflow: hidden;
+  animation : typing 1s steps(40, end) infinite alternate-reverse;
+}
+@keyframes typing{
+  from { width: 0ch }
+}
