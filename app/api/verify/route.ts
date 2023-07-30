@@ -4,6 +4,7 @@ import {
 } from '@/prisma/user'
 var jwt = require('jsonwebtoken');
 import { cookies } from 'next/headers'
+import { revalidatePath } from 'next/cache'
 
 export async function GET(request: Request) {
 
@@ -32,6 +33,7 @@ export async function GET(request: Request) {
         httpOnly: true,
         path: '/',
       })
+      revalidatePath('/')
 
       // Send user to dashboard
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/`)

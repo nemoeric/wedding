@@ -13,6 +13,17 @@ export const findUserById = async (id) => {
   return await prisma.user.findUnique({
     where: {
       id
+    },
+    include: {
+      canEdit: true
     }
+  })
+}
+export const updateUser = async (id, data) => {
+  return await prisma.user.update({
+    where: {
+      id
+    },
+    data
   })
 }

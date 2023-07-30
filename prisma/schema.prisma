@@ -1,7 +1,6 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider          = "postgresql"
   url               = env("POSTGRES_PRISMA_URL")
@@ -10,9 +9,49 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  image     String
-  createdAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  email         String   @unique
+  image         String
+  firstName     String
+  lastName      String
+  slug          String      
+  createdAt     DateTime @default(now())
+
+  isAdmin       Boolean  @default(false)
+  gender        Gender      @default(Female)
+
+  // Relationships
+  canEdit          User[]  @relation("UserEditionRelation")
+  canBeEditedBy    User[]  @relation("UserEditionRelation")
+
+  // PROFIL
+  hasCar                          Boolean @default(false)
+  // Do you have food restrictions ?
+  hasFoodRestrictions             Boolean @default(false)
+  foodRestrictions                String?
+
+  // PRESENCE LE JEUDI
+  thursdayWillAttend              Boolean @default(false)
+  thursdayWillNeedShuttleGoing    Boolean @default(false)
+  thursdayWillNeedShuttleBack     Boolean @default(false)
+
+  // PRESENCE LE VENDREDI
+  fridayWillAttend                Boolean @default(false)
+  fridayWillNeedShuttleGoing      Boolean @default(false)
+  fridayWillNeedShuttleBack       Boolean @default(false)
+
+
+  // PRESENCE LE SAMEDI
+  saturdayWillAttendLunch         Boolean @default(false)
+  saturdayWillAttendBeach         Boolean @default(false)
+  saturdayWillAttendDinner        Boolean @default(false)
+
+  saturdayWillNeedShuttleGoing    Boolean @default(false)
+  saturdayWillNeedShuttleBack     Boolean @default(false)
+
+}
+
+enum Gender {
+  Male
+  Female
 }

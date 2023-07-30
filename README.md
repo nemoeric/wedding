@@ -35,3 +35,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Todo
 - Menu (planning, liste de mariage, photos, nous écrire, RSVP)
+- La cérémonie aura lieu dans le jardin, tallon déconseillé
+- Préciser les outfit

@@ -5,6 +5,10 @@ import { cookies } from 'next/headers'
 import {
   findUserById,
 } from '@/prisma/user'
+
+import Login from "@/components/Login";
+import Rsvp from "@/components/Rsvp";
+
 export default async function Home() {
   
   
@@ -20,8 +24,10 @@ export default async function Home() {
 
   return (
     <div className="bg-white pb-16">
-      <div className="bg-secondary text-primary text-center h-[70vh] flex justify-center items-center">
-        <div className="text-accent grid gap-6">
+
+      {/* BANNER */}
+      <div className="text-primary bg-slate-200 text-center h-[70vh] flex justify-center items-center">
+        <div className="grid gap-6">
           <Animation>
             <div className="text-3xl mb-10 font-adora">
                 Elizabeth & Eric
@@ -32,23 +38,6 @@ export default async function Home() {
             <div className="animate-pulse">
               31-08 | 02-09
             </div>
-            <Link href="/login">
-              <button className="bg-primary text-white font-bold py-2 px-4 rounded-full">
-                RSVP
-              </button>
-            </Link>
-            {
-              user && (
-                <div className="text-xs">
-                  <div>
-                    {user.name}
-                  </div>
-                  <div>
-                    {user.email}
-                  </div>
-                </div>
-              )
-            }
             
           </Animation>
 
@@ -57,6 +46,17 @@ export default async function Home() {
         </div>
       </div>
 
+      {/* ATTENDING CLIENT COMPONENT */}
+      {user ?
+       <>
+        <Rsvp user={user}/>
+        {user.canEdit.map((user:any) => (<Rsvp key={user.id} user={user}/>))}
+       </>      
+      :
+      <Login />
+      }
+      
+      {/* PROGRAMME */}
       <div className="px-10 py-10 max-w-screen-xl mx-auto ">
         <div className="rounded-lg shadow-xl grid gap-12 p-6 border border-grey">
           <div className="text-primary text-center">
@@ -66,8 +66,6 @@ export default async function Home() {
               </h1>
             </Animation>
           </div>
-
-
           {/* JEUDI */}
           <div className="grid sm:grid-cols-2 gap-8 items-center">
             <Animation>
@@ -99,6 +97,9 @@ export default async function Home() {
                   <div className="">
                     <div>
                       17h - 20h : Cocktail by the pool
+                    </div>
+                    <div className="italic text-xs">
+                      Dresscode : Casual chic
                     </div>
                     <div className="italic text-xs">
                       Lieu : Quinta da Bella Vista
@@ -169,7 +170,7 @@ export default async function Home() {
                       Arrivée : NH Hotel, Sintra<br/>
                     </div>
                     <div className="italic text-xs my-1">
-                      Toutes les heures
+                      Navettes toutes les heures
                     </div>
                   </div>
                 </Animation>
@@ -187,7 +188,6 @@ export default async function Home() {
                 />
             </Animation>
           </div>
-        
           {/* SAMEDI */}
           <div className="grid sm:grid-cols-2 gap-8 items-center">
             <Animation>
@@ -209,10 +209,10 @@ export default async function Home() {
                   <Animation>
                     <div className="">
                       <div>
-                        12h30 : Navettes aller
+                        12h15 : Navettes aller
                       </div>
                       <div className="italic text-xs">
-                        Départ : Devant le NH Hotel, Sintra
+                        Départ : Devant le NH Hotel, Sintra. 45min de trajet.
                       </div>
                     </div>
                     <div className="">
@@ -225,10 +225,11 @@ export default async function Home() {
                     </div>
                     <div className="">
                       <div>
-                        15h - 19h : Plage privée 
+                        15h - 20h : Plage privée 
                       </div>
                       <div className="italic text-xs">
-                        Foz do Lizandro
+                        Foz do Lizandro<br/>
+                        Volley ball
                       </div>
                     </div>
                     <div className="">
@@ -260,10 +261,7 @@ export default async function Home() {
 
             </div>
           </div>
-
         </div>
-
-
       </div>
 
     </div>

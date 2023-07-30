@@ -12,10 +12,6 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      // colors: {
-      //   primary:    "#1d583f",
-      //   secondary:  "#f4f0ec"
-      // }
     },
     fontFamily: {
       sans:   [
@@ -47,18 +43,24 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        kercambre: {
-          primary:    "#1d583f",
-          secondary:  "#f4f0ec",
-          // "accent": "#f966c6",
-          // "neutral": "#222630",
-          // "base-100": "#294351",
-          // "info": "#46a1e2",
-          // "success": "#1a9385",
-          // "warning": "#a86610",
-          // "error": "#f6553c",
+        cupcake: {
+          ...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
+          "primary":    "#1d583f",
         },
-      }
+      },// first one will be the default theme
+      // {
+      //   kercambre: {
+      //     "primary":    "#1d583f",
+      //     "secondary":  "#f4f0ec",
+      //     "accent":     "#d2a581",
+      //     "neutral":    "#222630",
+      //     "base-100":   "#294351",
+      //     "info":       "#46a1e2",
+      //     "success":    "#1a9385",
+      //     "warning":    "#a86610",
+      //     "error":      "#f6553c",
+      //   },
+      // }
     ],
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
