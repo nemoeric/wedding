@@ -4,18 +4,17 @@ import { cookies } from 'next/headers'
 import {
   findUserById,
 } from '@/prisma/user'
+
+import Login from "@/components/Login";
+import Rsvp from "@/components/Rsvp";
+
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-
-import Login from "@/components/Login";
-import Rsvp from "@/components/Rsvp";
-
-
-
 
 
 
