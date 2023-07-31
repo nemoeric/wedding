@@ -21,7 +21,10 @@ export async function PUT(request: Request, {params}:{
   params: { id: string }
 }) {
   const payload   = await request.json();
-  const user      = await updateUser(params.id, payload)
+  const user      = await updateUser(params.id, {
+    ...payload,
+    hasResponded: true
+  })
 
   const data = await resend.emails.send({
       from: 'no-reply@nemo-stanton.fr',
