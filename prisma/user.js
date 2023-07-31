@@ -4,7 +4,7 @@ export const findUserByEmail = async (email) => {
   console.log('findUserByEmail', email);
   return await prisma.user.findUnique({
     where: {
-      email
+      email : email.toLowerCase()
     }
   })
 }

@@ -18,9 +18,14 @@ prisma.$use(async (params, next) => {
     ['User'].includes(params.model)
   ) {
     console.log("Server middleware prisma.js", params);
-    let {args:{data}} = params;
+    let {
+      args:{
+        data
+      }
+    } = params;
     // Check if slug exists by `findUnique` (did not test)
     data.slug = slugify(`${data.lastName} ${data.firstName}`, {lower: true, strict: true, remove: /[*+~.()'"!:@]/g});
+    data.email = data.email.toLowerCase();
   }
   const result = await next(params)
   return result

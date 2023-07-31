@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Animation from "@/components/Animation";
-import Link from "next/link";
 import { cookies } from 'next/headers'
 import {
   findUserById,
@@ -48,12 +47,12 @@ export default async function Home() {
 
       {/* ATTENDING CLIENT COMPONENT */}
       {user ?
-       <>
-        <Rsvp user={user}/>
-        {user.canEdit.map((user:any) => (<Rsvp key={user.id} user={user}/>))}
-       </>      
+        <>
+          <Rsvp user={user}/>
+          {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
+        </>      
       :
-      <Login />
+        <Login />
       }
       
       {/* PROGRAMME */}
@@ -84,7 +83,7 @@ export default async function Home() {
             </div>
             <div className="text-primary w-full md:w-3/5">
               
-              <h1 className="font-serif text-2xl md:text-5xl mb-6  tracking-tight">
+              <h1 className="font-serif text-3xl md:text-5xl mb-6  tracking-tight">
                 Jeudi 31 Août
               </h1>
 
@@ -229,7 +228,7 @@ export default async function Home() {
             </div>
             <div className="text-primary w-full md:w-3/5">
               <Animation>
-                <h1 className="font-serif text-2xl md:text-5xl mb-6  tracking-tight">
+                <h1 className="font-serif text-3xl md:text-5xl mb-6  tracking-tight">
                   Samedi 2 Septembre
                 </h1>
 
