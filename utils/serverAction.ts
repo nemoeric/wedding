@@ -2,6 +2,9 @@
 
 import {findUserByEmail, updateUser} from '@/prisma/user'
 import resend from '@/utils/resend';
+import {
+  MagicLink
+} from '@/emails/magikLink';
 
 import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
@@ -27,38 +30,38 @@ export const handleFormLogin = async (formData: FormData) => {
           expiresIn: '1h'
         }
       );
-      // const data = await resend.emails.send({
-      //   from: 'no-reply@nemo-stanton.fr',
-      //   to: [
-      //     user.email
-      //   ],
-      //   subject: 'Connexion à Nemo Stanton',
-      //   react: EmailTemplate({ 
-      //     firstName: user.firstName,
-      //     url: process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
-      //   }),
-      // });
 
-      cookies().set({
-        name: 'uuid',
-        value: user.id,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-        httpOnly: true,
-        path: '/',
-      })
-      revalidatePath('/')
+      const data = await resend.emails.send({
+        from: 'no-reply@nemo-stanton.fr',
+        to: [
+          user.email
+        ],
+        subject: 'Connexion à Nemo Stanton',
+        react: MagicLink({ 
+          firstName: user.firstName,
+          url: process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
+        }),
+      });
+
+      // cookies().set({
+      //   name: 'uuid',
+      //   value: user.id,
+      //   expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+      //   httpOnly: true,
+      //   path: '/',
+      // })
+      // revalidatePath('/')
 
       // Update user
-      updateUser(
-        user.id,
-        {
-          hasConnected: true
-        }
-      )
+      // updateUser(
+      //   user.id,
+      //   {
+      //     hasConnected: true
+      //   }
+      // )
 
       return {
         error: false,
-        // data
       }      
   
 

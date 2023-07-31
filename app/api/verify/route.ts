@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import {
   findUserById,
+  updateUser
 } from '@/prisma/user'
 var jwt = require('jsonwebtoken');
 import { cookies } from 'next/headers'
@@ -34,6 +35,13 @@ export async function GET(request: Request) {
         path: '/',
       })
       revalidatePath('/')
+
+      updateUser(
+        user.id,
+        {
+          hasConnected: true
+        }
+      )
 
       // Send user to dashboard
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/`)

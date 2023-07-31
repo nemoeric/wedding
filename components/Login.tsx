@@ -5,11 +5,19 @@ import {useState} from "react"
 const Login = () => {
 
   const [showError, setShowError] = useState(false)
-  
   const toastMarkup = showError && (
     <div className="toast toast-center toast-middle z-30">
       <div className="alert alert-error">
         <span>{`L'email n'existe pas. Demandez à Eric votre email.`}</span>
+      </div>
+    </div>
+  );
+
+  const [showSuccess, setShowSuccess] = useState(false)
+  const successToast = showSuccess && (
+    <div className="toast toast-center toast-middle z-30">
+      <div className="alert alert-success">
+        <span>{`Veuillez consulter votre boite email pour vous connecter.`}</span>
       </div>
     </div>
   )
@@ -30,7 +38,16 @@ const Login = () => {
             setTimeout(()=>{
               setShowError(false)
             }, 3000)
+            return
           }
+          else{
+            setShowSuccess(true)
+            setTimeout(()=>{
+              setShowSuccess(false)
+            }, 5000)
+            return
+          }
+
           
         }} className="grid gap-2 md:grid-cols-5">
           <div className="form-control col-span-3">
@@ -46,6 +63,7 @@ const Login = () => {
           </button>
         </form>
         {toastMarkup}
+        {successToast}
 
       </div>
       
