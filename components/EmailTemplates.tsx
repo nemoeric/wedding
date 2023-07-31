@@ -20,3 +20,16 @@ export const EmailTemplate = ({
 
   </div>
 );
+
+export const ConfirmUpdate = ({
+  user
+}: {
+  user: any;
+}) => (
+  <div>
+    <h1>Hello, {user.firstName}!</h1>
+    <p>
+      Nous avons bien en compte votre réponse!
+    </p>
+  </div>
+);

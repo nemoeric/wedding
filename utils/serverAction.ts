@@ -1,6 +1,6 @@
 "use server";
 
-import {EmailTemplate} from '@/components/emails/login';
+import {EmailTemplate} from '@/components/EmailTemplates';
 import {findUserByEmail} from '@/prisma/user'
 import resend from '@/utils/resend';
 

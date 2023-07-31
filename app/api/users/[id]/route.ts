@@ -3,7 +3,9 @@ import {
   updateUser,
 } from '@/prisma/user'
 
-import { revalidatePath } from 'next/cache'
+import resend from '@/utils/resend';
+import {ConfirmUpdate} from '@/components/EmailTemplates';
+
 
 export async function GET(request: Request, { params }: {
   params: { slug: string }
@@ -13,14 +15,25 @@ export async function GET(request: Request, { params }: {
   // return NextResponse.json({ member })
 }
 
-export async function PUT(request: Request, { params }: {
+export async function PUT(request: Request, {params}:{
   params: { id: string }
 }) {
-  console.log("PUT REQUEST RECEIVED FOR", params.id );
-  const payload = await request.json();
+  const payload   = await request.json();
+  const user      = await updateUser(params.id, payload)
 
-  console.log("PAYLOAD", payload);
-  
-  const user = await updateUser(params.id, payload)
+   const data = await resend.emails.send({
+      from: 'no-reply@nemo-stanton.fr',
+      cc: [
+        "eric@kercambre.com",
+        // "elizastanton@gmail.com"
+      ],
+      to: [
+        user.email
+      ],
+      subject: '[Nemo-Stanton] Votre réponse a bien été prise en compte',
+      react: ConfirmUpdate({user}),
+    });
+
+
   return NextResponse.json({ user })
 }
