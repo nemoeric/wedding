@@ -19,9 +19,37 @@ export const handleFormLogin = async (formData: FormData) => {
   const email = formData.get('email');
   const user = await findUserByEmail(email)
   console.log('Server action : ', user);
-  
+
   if(user != null) {
     try {
+
+      if(user.isAdmin){
+        cookies().set({
+          name: 'uuid',
+          value: user.id,
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+          httpOnly: true,
+          path: '/',
+        })
+        revalidatePath('/')
+
+        console.log("Admin connected");
+        
+        // Update user
+        updateUser(
+          user.id,
+          {
+            hasConnected: true
+          }
+        )
+        return {
+          error: false,
+        }      
+  
+
+      }
+
+
       var token = jwt.sign(
         { 
           userId: user.id 
@@ -43,28 +71,9 @@ export const handleFormLogin = async (formData: FormData) => {
         }),
       });
 
-      // cookies().set({
-      //   name: 'uuid',
-      //   value: user.id,
-      //   expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-      //   httpOnly: true,
-      //   path: '/',
-      // })
-      // revalidatePath('/')
-
-      // Update user
-      // updateUser(
-      //   user.id,
-      //   {
-      //     hasConnected: true
-      //   }
-      // )
-
       return {
         error: false,
       }      
-  
-
 
 
     } catch (error) {

@@ -33,7 +33,3 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Todo
-- Menu (planning, liste de mariage, photos, nous écrire, RSVP)
-- La cérémonie aura lieu dans le jardin, tallon déconseillé
-- Préciser les outfit

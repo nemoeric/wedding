@@ -18,6 +18,8 @@
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "@vercel/postgres": "^0.4.1",
+    "accordion": "^3.0.2",
+    "add": "^2.0.6",
     "autoprefixer": "10.4.14",
     "daisyui": "^3.5.0",
     "eslint": "8.46.0",
@@ -32,6 +34,7 @@
     "react-email": "^1.9.4",
     "resend": "^0.17.2",
     "sass": "^1.64.1",
+    "shadcn-ui": "^0.3.0",
     "slugify": "^1.6.6",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"

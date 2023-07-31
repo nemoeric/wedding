@@ -1,26 +1,21 @@
 "use client"
 import {handleFormLogin} from "@/utils/serverAction"
-import {useState} from "react"
+import {useState, useTransition} from "react"
 
 const Login = () => {
 
   const [showError, setShowError] = useState(false)
-  const toastMarkup = showError && (
-    <div className="toast toast-center toast-middle z-30">
-      <div className="alert alert-error">
-        <span>{`L'email n'existe pas. Demandez à Eric votre email.`}</span>
-      </div>
-    </div>
+  const errorMessage = showError && (
+    <div className="text-sm text-error">{`L'email n'existe pas. Demandez votre email à Eric.`}</div>
   );
 
   const [showSuccess, setShowSuccess] = useState(false)
-  const successToast = showSuccess && (
-    <div className="toast toast-center toast-middle z-30">
-      <div className="alert alert-success">
-        <span>{`Veuillez consulter votre boite email pour vous connecter.`}</span>
-      </div>
-    </div>
+  const successMessage = showSuccess && (
+    <div className="text-sm text-success">{`Veuillez consulter votre boite email pour vous connecter.`}</div>
   )
+
+  let [isPending, startTransition] = useTransition()
+
   return (
     <div className="px-4 md:px-4 py-10 max-w-screen-lg mx-auto">
       <div className="rounded-lg shadow-xl grid gap-6 p-6 border border-grey text-primary">
@@ -30,26 +25,27 @@ const Login = () => {
         <div>
           Saisissez votre email pour recevoir votre lien de connexion sécurisé.
         </div>
-        <form action={async (formData:FormData)=>{
-          let response = await handleFormLogin(formData);
-          console.log("response", response);
-          if (response.error) {
-            setShowError(true)
-            setTimeout(()=>{
-              setShowError(false)
-            }, 3000)
-            return
-          }
-          else{
-            setShowSuccess(true)
-            setTimeout(()=>{
+        {errorMessage}
+        {successMessage}
+        <form action={ async (formData:FormData) => {
+
+          startTransition(async () => {
+            let response = await handleFormLogin(formData);
+            if (response.error) {
+              setShowError(true)
               setShowSuccess(false)
-            }, 5000)
-            return
-          }
+              return
+            }
+            else{
+              setShowError(false)
+              setShowSuccess(true)
+              return
+            }
+          })
 
           
         }} className="grid gap-2 md:grid-cols-5">
+          
           <div className="form-control col-span-3">
             <input 
               type="text" 
@@ -59,11 +55,13 @@ const Login = () => {
             />
           </div>
           <button className="btn btn-primary btn-block">
+            {isPending && (
+              <span className="loading loading-spinner"></span>
+            )}
             Se connecter
           </button>
         </form>
-        {toastMarkup}
-        {successToast}
+
 
       </div>
       
