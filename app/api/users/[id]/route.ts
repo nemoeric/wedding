@@ -4,7 +4,10 @@ import {
 } from '@/prisma/user'
 
 import resend from '@/utils/resend';
-import {ConfirmUpdate} from '@/components/EmailTemplates';
+import {
+  ConfirmUpdate,
+  VercelInviteUserEmail
+} from '@/components/EmailTemplates';
 
 
 export async function GET(request: Request, { params }: {
@@ -31,7 +34,7 @@ export async function PUT(request: Request, {params}:{
         user.email
       ],
       subject: '[Nemo-Stanton] Votre réponse a bien été prise en compte',
-      react: ConfirmUpdate({user}),
+      react: VercelInviteUserEmail({}),
     });
 
 
