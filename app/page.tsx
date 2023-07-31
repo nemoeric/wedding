@@ -125,7 +125,7 @@ export default async function Home() {
                   En savoir plus
                 </div>
                 <div className="collapse-content"> 
-                  <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                  <p>Soirée décontracté autour de la piscine ! On {`s'échauffe pour le lendemain !`}</p>
                 </div>
               </div>
 
@@ -205,7 +205,7 @@ export default async function Home() {
                     En savoir plus
                   </div>
                   <div className="collapse-content"> 
-                    <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                    <p>Attention, on sera dans {`l'herbe à un moment, donc gare aux talons !`}</p>
                   </div>
                 </div>
 

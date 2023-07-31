@@ -26,6 +26,7 @@ model User {
 
   // PROFIL
   hasCar                          Boolean @default(false)
+
   // Do you have food restrictions ?
   hasFoodRestrictions             Boolean @default(false)
   foodRestrictions                String?

@@ -71,3 +71,15 @@ export const handleFormLogin = async (formData: FormData) => {
   }
 
 }
+export const logout = async () => {
+  cookies().set({
+    name: 'uuid',
+    value: '',
+    expires: new Date('2016-10-05'),
+    path: '/',
+  })
+  revalidatePath('/')
+  return {
+    error: false,
+  }
+}
