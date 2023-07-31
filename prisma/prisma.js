@@ -12,21 +12,22 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 prisma.$use(async (params, next) => {
-  if( 
-    (params.action === 'create') 
-    && 
-    ['User'].includes(params.model)
-  ) {
+  if(  (params.action === 'create') && ['User'].includes(params.model) ) {
     console.log("Server middleware prisma.js", params);
-    let {
-      args:{
-        data
-      }
-    } = params;
+    let { args:{data} } = params;
     // Check if slug exists by `findUnique` (did not test)
     data.slug = slugify(`${data.lastName} ${data.firstName}`, {lower: true, strict: true, remove: /[*+~.()'"!:@]/g});
     data.email = data.email.toLowerCase();
   }
+
+  if (params.action === 'update' && ['User'].includes(params.model)) {
+    console.log("Server middleware prisma.js", params);
+    const now = new Date().toISOString();
+    const { data } = params.args;
+    data.updatedAt = now;
+  }
+
+
   const result = await next(params)
   return result
 })

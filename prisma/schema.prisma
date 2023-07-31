@@ -16,6 +16,7 @@ model User {
   lastName      String
   slug          String      
   createdAt     DateTime @default(now())
+  updatedAt     DateTime? @updatedAt
 
   isAdmin       Boolean  @default(false)
   gender        Gender      @default(Female)

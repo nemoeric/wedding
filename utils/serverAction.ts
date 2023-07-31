@@ -1,6 +1,6 @@
 "use server";
 
-import {findUserByEmail} from '@/prisma/user'
+import {findUserByEmail, updateUser} from '@/prisma/user'
 import resend from '@/utils/resend';
 
 import { cookies } from 'next/headers'
@@ -47,6 +47,14 @@ export const handleFormLogin = async (formData: FormData) => {
         path: '/',
       })
       revalidatePath('/')
+
+      // Update user
+      updateUser(
+        user.id,
+        {
+          hasConnected: true
+        }
+      )
 
       return {
         error: false,
