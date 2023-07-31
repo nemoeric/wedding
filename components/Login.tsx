@@ -1,8 +1,20 @@
 "use client"
 import {handleFormLogin} from "@/utils/serverAction"
+import {useState} from "react"
+
 const Login = () => {
+
+  const [showError, setShowError] = useState(false)
+  
+  const toastMarkup = showError && (
+    <div className="toast toast-center toast-middle z-30">
+      <div className="alert alert-error">
+        <span>{`L'email n'existe pas. Demandez à Eric votre email.`}</span>
+      </div>
+    </div>
+  )
   return (
-    <div className="px-4 md:px-10 py-10 max-w-screen-xl mx-auto">
+    <div className="px-4 md:px-4 py-10 max-w-screen-lg mx-auto">
       <div className="rounded-lg shadow-xl grid gap-6 p-6 border border-grey text-primary">
         <h2 className="font-serif text-3xl md:text-6xl">
           Espace invité
@@ -13,6 +25,12 @@ const Login = () => {
         <form action={async (formData:FormData)=>{
           let response = await handleFormLogin(formData);
           console.log("response", response);
+          if (response.error) {
+            setShowError(true)
+            setTimeout(()=>{
+              setShowError(false)
+            }, 3000)
+          }
           
         }} className="grid gap-2 md:grid-cols-5">
           <div className="form-control col-span-3">
@@ -27,7 +45,7 @@ const Login = () => {
             Se connecter
           </button>
         </form>
-
+        {toastMarkup}
 
       </div>
       

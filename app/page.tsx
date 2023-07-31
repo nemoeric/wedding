@@ -61,7 +61,7 @@ export default async function Home() {
           {/* TITRE */}
           <div className="text-primary text-center">
             <Animation>
-              <h1 className="font-serif text-3xl md:text-6xl  tracking-tight">
+              <h1 className="font-serif text-5xl md:text-7xl  tracking-tight">
                 Programme
               </h1>
             </Animation>
@@ -83,7 +83,7 @@ export default async function Home() {
             </div>
             <div className="text-primary w-full md:w-3/5">
               
-              <h1 className="font-serif text-3xl md:text-5xl mb-6  tracking-tight">
+              <h1 className="font-serif text-4xl md:text-6xl mb-6  tracking-tight">
                 Jeudi 31 Août
               </h1>
 
@@ -149,7 +149,7 @@ export default async function Home() {
               </Animation>
             </div>
             <div className="text-primary w-full md:w-3/5 md:text-right">
-              <h1 className="font-serif text-3xl md:text-5xl mb-6 tracking-tight">
+              <h1 className="font-serif text-4xl md:text-6xl mb-6 tracking-tight">
                 Vendredi 1 Septembre
               </h1>
               <div className="grid gap-4">
@@ -228,7 +228,7 @@ export default async function Home() {
             </div>
             <div className="text-primary w-full md:w-3/5">
               <Animation>
-                <h1 className="font-serif text-3xl md:text-5xl mb-6  tracking-tight">
+                <h1 className="font-serif text-4xl md:text-6xl mb-6  tracking-tight">
                   Samedi 2 Septembre
                 </h1>
 

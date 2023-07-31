@@ -5,9 +5,8 @@ import {
 
 import resend from '@/utils/resend';
 import {
-  ConfirmUpdate,
-  VercelInviteUserEmail
-} from '@/components/EmailTemplates';
+  ConfirmResponse
+} from '@/emails/confirmResponse';
 
 
 export async function GET(request: Request, { params }: {
@@ -24,18 +23,18 @@ export async function PUT(request: Request, {params}:{
   const payload   = await request.json();
   const user      = await updateUser(params.id, payload)
 
-   const data = await resend.emails.send({
+  const data = await resend.emails.send({
       from: 'no-reply@nemo-stanton.fr',
       cc: [
-        "eric@kercambre.com",
+        // "eric@kercambre.com",
         // "elizastanton@gmail.com"
       ],
       to: [
         user.email
       ],
       subject: '[Nemo-Stanton] Votre réponse a bien été prise en compte',
-      react: VercelInviteUserEmail({}),
-    });
+      react: ConfirmResponse({...user}),
+  });
 
 
   return NextResponse.json({ user })
