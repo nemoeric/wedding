@@ -3,7 +3,6 @@ import RegisterForm from './registerForm'
 
 const NewUser = () => {
 
-  console.log('NewUser');
   
   return (
     <div className='bg-white'>

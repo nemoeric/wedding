@@ -17,7 +17,7 @@ const RegisterForm = () => {
   let router = useRouter()
 
   return (
-    <form action={ async (formData: FormData)=>{
+    <form action={ (formData: FormData)=>{
       startTransition(async () => {
         let response = await handleFormRegister(formData)
         if(!response.error){

@@ -11,6 +11,12 @@ const nextConfig = {
         port: '',
         pathname: '/wedding/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'gondalier.s3.amazonaws.com',
+        port: '',
+        pathname: '/wedding/**',
+      },
     ],
   },
 }

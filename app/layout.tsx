@@ -3,6 +3,7 @@ import './theme.scss'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Open_Sans } from 'next/font/google'
+import isAccessTokenAdmin from '@/utils/isAdmin'
 import Link from 'next/link'
 
 // SANS FONT
@@ -86,6 +87,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const isAdmin:any = isAccessTokenAdmin()
+  console.log('isAdmin', isAdmin);
+  
   return (
     <html lang="en" data-theme="cupcake">
       <body className={`
@@ -95,17 +100,27 @@ export default function RootLayout({
       ${cambria_italic.variable} 
       ${calibri_medium.variable}
       ${adora.variable}
-      bg-white
       `}>
-
-        <div>
-          <Link href="/users/new">
-            <span className="btn btn-primary rounded-btn fixed top-4 right-4 z-20">ADD</span>
-          </Link>
+        {isAdmin && (
+          <div className='fixed top-5 right-5 z-20'>
+            <ul className="menu menu-vertical bg-accent lg:menu-horizontal rounded-box">
+              <li>
+                <Link href="/users">
+                  Invités
+                </Link>
+              </li>
+              <li>
+                <Link href="/users/new">
+                  Ajouter
+                </Link>
+              </li>
+            </ul>
+            
+          </div>
+        )}
+        <div className="bg-white text-primary">
+          {children}
         </div>
-
-
-        {children}
 
         <footer className="footer footer-center p-4 bg-base-300 text-base-content">
           <div className='pb-8  '>

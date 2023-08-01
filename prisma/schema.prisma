@@ -51,11 +51,11 @@ model User {
   saturdayWillNeedShuttleGoing    Boolean @default(false)
   saturdayWillNeedShuttleBack     Boolean @default(false)
 
-  // HAS RESPONDED
-  hasResponded                    Boolean @default(false)
-
   // HAS CONNECTED
   hasConnected                    Boolean @default(false)
+
+  // HAS RESPONDED
+  hasResponded                    Boolean @default(false)
 
 }
 
