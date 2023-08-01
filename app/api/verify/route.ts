@@ -24,15 +24,10 @@ export async function GET(request: Request) {
 
     if(user != null) {
 
-      var accessToken = jwt.sign(
-        { 
-          userId: user.id ,
-          isAdmin: user.isAdmin
-        }, 
-        process.env.JWT_SECRET, {
-          expiresIn: '1h'
-        }
-      );
+      var accessToken = jwt.sign({ 
+        userId: user.id ,
+        isAdmin: user.isAdmin
+      }, process.env.JWT_SECRET, {expiresIn: '1h'});
       cookies().set({
         name: 'accessToken',
         value: accessToken,
@@ -41,9 +36,8 @@ export async function GET(request: Request) {
         httpOnly: true,
         path: '/',
       })
-      revalidatePath('/')
-
       await updateUser(user.id,{hasConnected: true})
+      revalidatePath('/')
 
       // Send user to dashboard
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/`)
