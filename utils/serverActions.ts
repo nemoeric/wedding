@@ -1,6 +1,6 @@
 "use server";
 
-import {findUserByEmail, updateUser} from '@/prisma/user'
+import {findUserByEmail, updateUser, createUser} from '@/prisma/user'
 import resend from '@/utils/resend';
 import {
   MagicLink
@@ -14,20 +14,35 @@ var jwt = require('jsonwebtoken');
 
 export const handleFormLogin = async (formData: FormData) => {
   "use server"
-  console.log("Server action: handleFormLogin");
 
   const email = formData.get('email');
   const user = await findUserByEmail(email)
-  console.log('Server action : ', user);
 
   if(user != null) {
     try {
 
       if(user.isAdmin){
+        var accessToken = jwt.sign(
+          { 
+            userId: user.id ,
+            isAdmin: user.isAdmin
+          }, 
+          process.env.JWT_SECRET, {
+            expiresIn: '1h'
+          }
+        );
         cookies().set({
           name: 'uuid',
           value: user.id,
           expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+          httpOnly: true,
+          path: '/',
+        })
+        cookies().set({
+          name: 'accessToken',
+          value: accessToken,
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+          // expires: new Date(Date.now() + 1000 * 60 * 5),
           httpOnly: true,
           path: '/',
         })
@@ -97,8 +112,32 @@ export const logout = async () => {
     expires: new Date('2016-10-05'),
     path: '/',
   })
+  cookies().set({
+    name: 'accessToken',
+    value: '',
+    expires: new Date('2016-10-05'),
+    path: '/',
+  })
   revalidatePath('/')
   return {
     error: false,
   }
+}
+export const handleFormRegister = async (formData: FormData) => {
+
+  const email       = formData.get('email');
+  const firstName   = formData.get('firstName');
+  const lastName    = formData.get('lastName');
+
+  const user = await createUser({
+    email,
+    firstName,
+    lastName
+  })
+
+  return {
+    error: false,
+    user
+  }
+
 }

@@ -11,14 +11,14 @@ datasource db {
 model User {
   id            String   @id @default(uuid())
   email         String   @unique
-  image         String
+  image         String?
   firstName     String
   lastName      String
   slug          String      
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime? @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime?   @updatedAt
 
-  isAdmin       Boolean  @default(false)
+  isAdmin       Boolean     @default(false)
   gender        Gender      @default(Female)
 
   // Relationships

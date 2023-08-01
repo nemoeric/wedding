@@ -3,6 +3,7 @@ import './theme.scss'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Open_Sans } from 'next/font/google'
+import Link from 'next/link'
 
 // SANS FONT
 const openSans = Open_Sans({
@@ -94,7 +95,14 @@ export default function RootLayout({
       ${cambria_italic.variable} 
       ${calibri_medium.variable}
       ${adora.variable}
+      bg-white
       `}>
+
+        <div>
+          <Link href="/users/new">
+            <span className="btn btn-ghost btn-sm rounded-btn fixed top-4 right-4 z-20">RSVP</span>
+          </Link>
+        </div>
 
 
         {children}

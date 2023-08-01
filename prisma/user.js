@@ -8,8 +8,8 @@ export const findUserByEmail = async (email) => {
     }
   })
 }
-export const findUserById = async (id) => {
-  console.log('findUserById', id);
+export const getUserByID = async (id) => {
+  console.log('getUserByID', id);
   return await prisma.user.findUnique({
     where: {
       id
@@ -24,6 +24,11 @@ export const updateUser = async (id, data) => {
     where: {
       id
     },
+    data
+  })
+}
+export const createUser = async (data) => {
+  return await prisma.user.create({
     data
   })
 }

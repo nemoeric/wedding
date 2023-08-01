@@ -1,5 +1,5 @@
 "use client"
-import {handleFormLogin} from "@/utils/serverAction"
+import {handleFormLogin} from "@/utils/serverActions"
 import {useState, useTransition} from "react"
 
 const Login = () => {

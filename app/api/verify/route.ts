@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import {
-  findUserById,
+  getUserByID,
   updateUser
 } from '@/prisma/user'
 var jwt = require('jsonwebtoken');
@@ -21,16 +21,33 @@ export async function GET(request: Request) {
     var decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     console.log("DECODED IS", decodedToken);
 
-    const user = await findUserById(decodedToken.userId)
+    const user = await getUserByID(decodedToken.userId)
     console.log('user ici', user)
 
 
     if(user != null) {
 
+      var accessToken = jwt.sign(
+        { 
+          userId: user.id ,
+          isAdmin: user.isAdmin
+        }, 
+        process.env.JWT_SECRET, {
+          expiresIn: '1h'
+        }
+      );
       cookies().set({
         name: 'uuid',
         value: user.id,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+        httpOnly: true,
+        path: '/',
+      })
+      cookies().set({
+        name: 'accessToken',
+        value: accessToken,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+        // expires: new Date(Date.now() + 1000 * 60 * 5),
         httpOnly: true,
         path: '/',
       })

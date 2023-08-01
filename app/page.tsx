@@ -2,14 +2,9 @@ import Image from "next/image";
 import Animation from "@/components/Animation";
 import { cookies } from 'next/headers'
 import {
-  findUserById,
+  getUserByID,
 } from '@/prisma/user'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+
 
 import Login from "@/components/Login";
 import Rsvp from "@/components/Rsvp";
@@ -27,7 +22,7 @@ export default async function Home() {
   let user;
   if(userIdCookie) {
     console.log('userId', userIdCookie)
-    user = await findUserById(userIdCookie.value)
+    user = await getUserByID(userIdCookie.value)
   }
 
 
@@ -97,16 +92,6 @@ export default async function Home() {
               <h1 className="font-serif text-4xl md:text-6xl mb-6  tracking-tight">
                 Jeudi 31 Août
               </h1>
-
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                  <AccordionContent>
-                    Yes. It adheres to the WAI-ARIA design pattern.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-
 
               <div className="grid gap-4">
                 <Animation>
