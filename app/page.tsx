@@ -143,7 +143,7 @@ export default async function Home() {
                   <div className="collapse-title font-medium p-0 underline text-sm">
                     En savoir plus
                   </div>
-                  <div className="collapse-content"> 
+                  <div className="collapse-content text-sm"> 
                     <p>Soirée décontracté autour de la piscine ! On {`s'échauffe pour le lendemain !`}</p>
                   </div>
                 </div>
@@ -223,7 +223,7 @@ export default async function Home() {
                     <div className="collapse-title font-medium p-0 underline text-sm">
                       En savoir plus
                     </div>
-                    <div className="collapse-content"> 
+                    <div className="collapse-content text-sm"> 
                       <p>Attention, on sera dans {`l'herbe à un moment, donc gare aux talons !`}</p>
                     </div>
                   </div>
@@ -304,8 +304,8 @@ export default async function Home() {
                       <div className="collapse-title font-medium p-0 underline text-sm">
                         En savoir plus
                       </div>
-                      <div className="collapse-content"> 
-                        <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                      <div className="collapse-content text-sm"> 
+                        <p>Déjeuner de lendemain de mariage. Bar de plage et soirée pour les téméraires !</p>
                       </div>
                     </div>
                   </div>

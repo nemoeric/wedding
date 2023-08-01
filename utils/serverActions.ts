@@ -24,42 +24,42 @@ export const handleFormLogin = async (formData: FormData) => {
   if(user != null) {
     try {
 
-      if(user.isAdmin){
+      // if(user.isAdmin){
         
-        var accessToken = jwt.sign(
-          { 
-            userId: user.id ,
-            isAdmin: user.isAdmin
-          }, 
-          process.env.JWT_SECRET, {
-            expiresIn: '1h'
-          }
-        );
-        cookies().set({
-          name: 'accessToken',
-          value: accessToken,
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-          // expires: new Date(Date.now() + 1000 * 60 * 5),
-          httpOnly: true,
-          path: '/',
-        })
-        revalidatePath('/')
+      //   var accessToken = jwt.sign(
+      //     { 
+      //       userId: user.id ,
+      //       isAdmin: user.isAdmin
+      //     }, 
+      //     process.env.JWT_SECRET, {
+      //       expiresIn: '1h'
+      //     }
+      //   );
+      //   cookies().set({
+      //     name: 'accessToken',
+      //     value: accessToken,
+      //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
+      //     // expires: new Date(Date.now() + 1000 * 60 * 5),
+      //     httpOnly: true,
+      //     path: '/',
+      //   })
+      //   revalidatePath('/')
 
-        console.log("Admin connected");
+      //   console.log("Admin connected");
         
-        // Update user
-        updateUser(
-          user.id,
-          {
-            hasConnected: true
-          }
-        )
-        return {
-          error: false,
-        }      
+      //   // Update user
+      //   updateUser(
+      //     user.id,
+      //     {
+      //       hasConnected: true
+      //     }
+      //   )
+      //   return {
+      //     error: false,
+      //   }      
   
 
-      }
+      // }
 
 
       var token = jwt.sign(
@@ -72,13 +72,13 @@ export const handleFormLogin = async (formData: FormData) => {
       );
 
       const data = await resend.emails.send({
-        from: 'no-reply@nemo-stanton.fr',
+        from: 'hey@nemo-stanton.fr',
         to: [
           user.email
         ],
-        subject: 'Connexion à Nemo Stanton',
+        subject: 'Connexion - Mariage Nemo & Stanton',
         react: MagicLink({ 
-          firstName: user.firstName,
+          user,
           url: process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
         }),
       });
@@ -174,21 +174,22 @@ export const inviteUserToWebsite = async (formData: FormData) => {
   if(user != null) {
     try {
       var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '6h'});
-      // await resend.emails.send({
-      //   from: 'no-reply@nemo-stanton.fr',
-      //   to: [
-      //     user.email
-      //   ],
-      //   subject: 'RSVP - Mariage Nemo & Stanton',
-      //   react: InviteToWebsite({ 
-      //     user,
-      //     url:        process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
-      //   }),
-      // });
+      await resend.emails.send({
+        from: 'hey@nemo-stanton.fr',
+        to: [
+          user.email
+        ],
+        subject: 'RSVP - Mariage Nemo & Stanton',
+        react: InviteToWebsite({ 
+          user,
+          url:        process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
+        }),
+      });
 
       // update user
-      updateUser(user.id,{hasBeenInvited: false})
-      revalidatePath('/')
+      
+      await updateUser(user.id,{hasBeenInvited: true})
+      revalidatePath('/users')
       return {
         error: false,
       }      

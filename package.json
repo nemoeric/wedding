@@ -28,7 +28,7 @@
     "jsonwebtoken": "^9.0.1",
     "next": "13.4.12",
     "postcss": "8.4.27",
-    "prisma": "^5.0.0",
+    "prisma": "^5.1.0",
     "react": "18.2.0",
     "react-awesome-reveal": "^4.2.5",
     "react-dom": "18.2.0",

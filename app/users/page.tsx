@@ -6,7 +6,11 @@ import Link from 'next/link'
 import NotifyUserCell from './NotifyUserCell'
 
 const Users = async () => {
-  const users = await getUsers()
+  const users = await getUsers({
+    orderBy: {
+      firstName: 'asc',
+    },
+  })
   return (
     <div>
       <h1>Users</h1>
@@ -17,18 +21,20 @@ const Users = async () => {
           'Email',
           'Invited',
           'Connected',
-          'Answered',
-          'Invite'
+          'Responded',
         ]}
         rows={users.map((user:any) => {
           return [
             user.firstName,
             user.lastName,
             user.email,
-            <input type="checkbox"  defaultChecked={user.hasBeenInvited}  className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
-            <input type="checkbox"  defaultChecked={user.hasConnected}    className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
-            <input type="checkbox"  defaultChecked={user.hasResponded}    className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
-            <NotifyUserCell user={user} key={user.id}/>
+            user.hasBeenInvited ?
+            <input type="checkbox"  defaultChecked={user.hasBeenInvited}  disabled className="checkbox checkbox-success checkbox-sm" key={user.id}/>
+            :
+            <NotifyUserCell user={user} key={user.id}/>,
+
+            <input type="checkbox"  defaultChecked={user.hasConnected}    disabled className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
+            <input type="checkbox"  defaultChecked={user.hasResponded}    disabled className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
           ] 
         })}
         formats={['', '', '', '', '']}

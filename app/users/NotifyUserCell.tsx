@@ -1,9 +1,8 @@
 "use client"
-
 import MyButton from '@/components/daisyui/MyButton'
 import InputGroup from '@/components/daisyui/inputGroup'
-import {inviteUserToWebsite} from '@/utils/serverActions'
 import { useTransition } from 'react'
+import {inviteUserToWebsite} from '@/utils/serverActions'
 
 const NotifyUserCell = ({user}:{
   user: any
@@ -20,14 +19,16 @@ const NotifyUserCell = ({user}:{
         }
       })
     }}>
-      
       <InputGroup 
         type="text"
         name="userId"
         defaultValue={user.id}
         hidden={true}
       />
-      <MyButton title="Notifier" isPending={isPending} className="btn-xs"/>
+      <MyButton 
+        title="Invite" 
+        isPending={isPending} 
+        className="btn-xs text-xs"/>
     </form>
   )
 
