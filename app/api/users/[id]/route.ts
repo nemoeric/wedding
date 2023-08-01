@@ -35,8 +35,8 @@ export async function PUT(request: Request, {params}:{
       to: [
         user.email
       ],
-      subject: '[Nemo-Stanton] Votre réponse a bien été prise en compte',
-      react: ConfirmResponse({...user}),
+      subject: 'RSVP - Votre réponse a bien été prise en compte',
+      react: ConfirmResponse({user}),
   });
 
 

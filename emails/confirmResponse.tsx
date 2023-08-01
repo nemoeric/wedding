@@ -20,11 +20,11 @@ import {
 const baseUrl = process.env.NEXT_PUBLIC_URL
 
 export const ConfirmResponse = ({
-  firstName = "John",
-  image = "https://gondalier.s3.eu-west-3.amazonaws.com/wedding/nemo-eric.webp"
+  user = {
+    firstName: "Eric"
+  },
 }:{
-  firstName: string
-  image: string
+  user: any
 }) => {
 
   return (
@@ -32,58 +32,110 @@ export const ConfirmResponse = ({
       <Head />
       <Preview>{`Merci pour votre réponse`}</Preview>
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
+      <Body className=" bg-slate-50 my-auto mx-auto font-sans">
+          <Container className="bg-[#f4f0ec] border border-solid border-[#eaeaea] bg-red rounded my-[40px] mx-auto p-[20px] w-[465px]">
             <Section className="mt-[32px]">
-              <Img
-                src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palace_banner.jpg&w=1920&q=75`}
-                width="250"
-                height="250"
-                alt="Mariage Nemo Stanton"
-                className="my-0 mx-auto rounded-full"
-              />
+              <div className='flex'>
+                <Img
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palm.jpeg&w=3840&q=75`}
+                  width="150"
+                  height="150"
+                  alt="Mariage Nemo Stanton"
+                  className="my-0 mx-auto rounded-full translate-x-10 z-10"
+                />
+                <Img
+                  src={ user.image || "https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palace_banner.jpg&w=1920&q=75"}
+                  width="150"
+                  height="150"
+                  alt="Mariage Nemo Stanton"
+                  className="my-0 mx-auto rounded-full z-20"
+                />
+                <Img
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Flizandro.jpeg&w=3840&q=75`}
+                  width="150"
+                  height="150"
+                  alt="Mariage Nemo Stanton"
+                  className="my-0 mx-auto rounded-full -translate-x-10 z-30"
+                />
+              </div>
             </Section>
-            <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-              Merci pour votre réponse
+            <Heading className="text-black font-serif p-0 mx-0 text-[24px]">
+              Votre réponse a été prise en compte !
             </Heading>
-            <Text className="text-black text-[14px] leading-[24px]">
-              Bonjour {firstName},
-            </Text>
-            <Text className="text-black text-[14px] leading-[24px]">
-              Vos données ont été mise à jour. Vous pouvez les consulter à tout moment sur votre espace invité.
-            </Text>
-            <Section className="text-center mt-[32px] mb-[32px]">
-              <Text className="text-black text-[14px] leading-[24px]">
-                Le programme reste accesible à tout moment sur le site web.
-              </Text>
-              <Button
-                pX={20}
-                pY={12}
-                className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center"
-                href={baseUrl}
-              >
-                Voir le programme
-              </Button>
+            <Section>
+              <div className="text-black font-sans text-[14px]">
+                Bonjour {user.firstName},
+              </div>
+              <div className="text-black font-sans text-[14px]">
+                Nous avons reçu les réponses suivantes : 
+              </div>
             </Section>
-           {/* <Section>
-              <Row>
-                <Column align="right">
-                  <Img className="rounded-full" src={image} width="64" height="64" />
-                </Column>
-                <Column align="center">
-                  <Img
-                    src={`${baseUrl}/static/vercel-arrow.png`}
-                    width="12"
-                    height="9"
-                    alt="invited you to"
-                  />
-                </Column>
-                <Column align="left">
-                  <Img className="rounded-full" src={image} width="64" height="64" />
-                </Column>
-              </Row>
-            </Section> */}
+            {user.hasFoodRestrictions ?? (
+              <Section>
+                <Heading as="h2" className="text-black font-serif">
+                  Restrictions alimentaires
+                </Heading>
+                <Text className='italic'>{user.foodRestrictions}</Text>;
+              </Section>
+            )}
+            {/* JEUDI */}
+            <Section>
+              <Heading as="h2" className="text-black font-serif">
+                Jeudi
+              </Heading>
+              <div className="text-black font-sans text-[14px]">
+                Présence : <span className='text-bold'>{user.thursdayWillAttend ? "Oui" : "Non"}</span> 
+              </div>
+              <div className="text-black font-sans text-[14px]">
+                {`Besoin d'un transport`} : <span className='text-bold'>{user.thursdayWillNeedTransport ? "Oui" : "Non"}</span> 
+              </div>
+            </Section>
+            {/* VENDREDI */}
+            <Section>
+              <Heading as="h2" className="text-black font-serif">
+                Vendredi
+              </Heading>
+              <div className="text-black font-sans text-[14px]">
+                Présence : <span className='text-bold'>{user.fridayWillAttend ? "Oui" : "Non"}</span> 
+              </div>
+              <div className="text-black font-sans text-[14px]">
+                {`Besoin d'un transport`} : <span className='text-bold'>{user.fridayWillNeedTransport ? "Oui" : "Non"}</span> 
+              </div>
+            </Section>
+            {/* SAMEDI */}
+            <Section>
+              <Heading as="h2" className="text-black font-serif">
+                Samedi
+              </Heading>
+
+              <div className="text-black font-sans text-[14px]">
+                Présence : <span className='text-bold'>{user.saturdayWillAttend ? "Oui" : "Non"}</span> 
+              </div>
+              <div className="text-black font-sans text-[14px]">
+                {`Besoin d'un transport`} : <span className='text-bold'>{user.saturdayWillNeedTransport ? "Oui" : "Non"}</span> 
+              </div>
+
+            </Section>
+            
+            {
+              user.fridayWillAttend ?
+              <Section className="text-center mt-[32px] mb-[32px]">
+                <Text className="text-black font-sans text-[14px] leading-[24px]">
+                  Nous sommes ravis de bientôt vous retrouver au Portugal !
+                </Text>
+              </Section>
+              :
+              <Section className="text-center mt-[32px] mb-[32px]">
+                <Text className="text-black font-sans text-[14px] leading-[24px]">
+                  {`Nous sommes tristes d'apprendre que vous ne serez pas parmi nous au mariage mais nous espérons vous revoir bientôt !`}
+                </Text>
+              </Section>
+            }
+            
           </Container>
+          <Text className="text-white text-center font-sans text-xs leading-[24px]">
+            Coded with ❤️ by Nemo
+          </Text>
         </Body>
       </Tailwind>
     </Html>

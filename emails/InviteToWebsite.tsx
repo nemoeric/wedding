@@ -70,7 +70,7 @@ export const InviteToWebsite = ({
               Nous espérons que vous êtes déjà en vacances et sommes ravis de bientôt vous retrouver au Portugal !
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              La date approchant, nous avons mis à votre disposition un site web comprenant toutes les informations essentielles. De notre côté, nous aurions besoin que vous preniez 3 minutes pour nous confirmer votre présence aux différents évènements, besoin d'un moyen de transport et potentielles restrictions alimentaires.
+              {`La date approchant, nous avons mis à votre disposition un site web comprenant toutes les informations essentielles. De notre côté, nous aurions besoin que vous preniez 3 minutes pour nous confirmer votre présence aux différents évènements, besoin d'un moyen de transport et potentielles restrictions alimentaires.`}
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
               En cliquant sur le lien ci-dessous, vous accéderez à votre espace invité permettant de mettre à jour ces informations.
