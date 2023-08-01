@@ -70,7 +70,7 @@ export const ConfirmResponse = ({
                 Nous avons reçu les réponses suivantes : 
               </div>
             </Section>
-            {user.hasFoodRestrictions ?? (
+            {user.hasFoodRestrictions && (
               <Section>
                 <Heading as="h2" className="text-black font-serif">
                   Restrictions alimentaires
