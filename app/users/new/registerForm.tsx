@@ -4,7 +4,7 @@ import {useRouter} from "next/navigation"
 
 import InputGroup from "@/components/daisyui/inputGroup";
 import Card from "@/components/daisyui/card";
-import Button from "@/components/daisyui/button"
+import MyButton from "@/components/daisyui/MyButton"
 
 import {
   handleFormRegister
@@ -30,7 +30,7 @@ const RegisterForm = () => {
         <InputGroup label="Prénom" name="firstName" required/>
         <InputGroup label="Nom" name="lastName" required/>
         <InputGroup label="Email" name="email" type="email" required/>
-        <Button title="Se connecter" isPending={isPending}/>
+        <MyButton title="Se connecter" isPending={isPending}/>
       </Card>
     </form>
   )
