@@ -123,9 +123,9 @@ export default function RootLayout({
         </div>
 
         <footer className="footer footer-center p-4 bg-base-300 text-base-content">
-          <div className='pb-8  '>
-            <p>Copyright © 2023 - From scratch by Nemo</p>
-            <p>Yes, just for the wedding</p>
+          <div className='py-6'>
+            <p>Coded with ❤️ by Nemo</p>
+            <p className='italic'>Yes, just for the wedding</p>
           </div>
         </footer>
       </body>

@@ -34,22 +34,15 @@ model User {
 
   // PRESENCE LE JEUDI
   thursdayWillAttend              Boolean @default(false)
-  thursdayWillNeedShuttleGoing    Boolean @default(false)
-  thursdayWillNeedShuttleBack     Boolean @default(false)
+  thursdayWillNeedTransport       Boolean @default(false)
 
   // PRESENCE LE VENDREDI
   fridayWillAttend                Boolean @default(false)
-  fridayWillNeedShuttleGoing      Boolean @default(false)
-  fridayWillNeedShuttleBack       Boolean @default(false)
-
+  fridayWillNeedTransport         Boolean @default(false)
 
   // PRESENCE LE SAMEDI
-  saturdayWillAttendLunch         Boolean @default(false)
-  saturdayWillAttendBeach         Boolean @default(false)
-  saturdayWillAttendDinner        Boolean @default(false)
-
-  saturdayWillNeedShuttleGoing    Boolean @default(false)
-  saturdayWillNeedShuttleBack     Boolean @default(false)
+  saturdayWillAttend              Boolean @default(false)
+  saturdayWillNeedTransport       Boolean @default(false)
 
   hasBeenInvited                  Boolean @default(false)
   hasConnected                    Boolean @default(false)

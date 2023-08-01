@@ -10,7 +10,7 @@ import Login from "@/components/Login";
 import Rsvp from "@/components/Rsvp";
 import Container from "@/components/Container";
 var jwt = require('jsonwebtoken');
-
+import Card from "@/components/daisyui/card";
 
 
 

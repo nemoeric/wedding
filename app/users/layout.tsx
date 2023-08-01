@@ -16,7 +16,7 @@ export default function UserLayout({
   
   let accessToken = cookie?.value
   try {
-    let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
     if(!decodedToken?.isAdmin) return redirect("/")
   } catch (error) {
     return redirect("/")

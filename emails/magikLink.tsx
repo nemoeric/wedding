@@ -46,7 +46,7 @@ export const MagicLink = ({
                   className="my-0 mx-auto rounded-full translate-x-10 z-10"
                 />
                 <Img
-                  src={ user.image || "https://tugny.kercambre.com/_next/image?url=https%3A%2F%2Fgondalier.s3.amazonaws.com%2Fmembers%2Fnemo-stanton-elizabeth.jpg&w=640&q=75"}
+                  src={ user.image || "https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palace_banner.jpg&w=1920&q=75"}
                   width="150"
                   height="150"
                   alt="Mariage Nemo Stanton"

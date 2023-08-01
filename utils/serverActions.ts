@@ -62,15 +62,7 @@ export const handleFormLogin = async (formData: FormData) => {
       // }
 
 
-      var token = jwt.sign(
-        { 
-          userId: user.id 
-        }, 
-        process.env.JWT_SECRET, {
-          expiresIn: '1h'
-        }
-      );
-
+      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '1h'});
       const data = await resend.emails.send({
         from: 'hey@nemo-stanton.fr',
         to: [

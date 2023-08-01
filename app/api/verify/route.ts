@@ -18,11 +18,8 @@ export async function GET(request: Request) {
 
   // Otherwise, verify token
   try {
-    var decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("DECODED IS", decodedToken);
-
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const user = await getUserByID(decodedToken.userId)
-    console.log('user ici', user)
 
 
     if(user != null) {
@@ -46,22 +43,19 @@ export async function GET(request: Request) {
       })
       revalidatePath('/')
 
-      updateUser(
-        user.id,
-        {
-          hasConnected: true
-        }
-      )
+      await updateUser(user.id,{hasConnected: true})
 
       // Send user to dashboard
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/`)
     }
 
   } catch (error) {
-    // Change response code to 401
     console.log("error", error)
-
     return NextResponse.json({ error })
+    
+    // redirect to login
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/login?error=`)
+
   }
 
   return NextResponse.json({ message: "ok" })

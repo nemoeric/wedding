@@ -8,7 +8,6 @@ const isAccessTokenAdmin = () => {
 
   try {
     let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-    console.log("decodedToken", decodedToken);
     return decodedToken?.isAdmin
   } catch (error) {
     return false    
