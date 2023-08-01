@@ -13,7 +13,7 @@ const Button = ({
         {isPending && (
           <span className="loading loading-spinner"></span>
         )}
-        {title}
+        {title} 
       </button>
     )
   )
