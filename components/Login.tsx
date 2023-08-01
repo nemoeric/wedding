@@ -1,7 +1,7 @@
 "use client"
 import {handleFormLogin} from "@/utils/serverActions"
 import {useState, useTransition} from "react"
-
+import Button from "@/components/daisyui/button"
 const Login = () => {
 
   const [showError, setShowError] = useState(false)
@@ -54,12 +54,8 @@ const Login = () => {
               className="input input-bordered input-accent"
             />
           </div>
-          <button className="btn btn-primary btn-block">
-            {isPending && (
-              <span className="loading loading-spinner"></span>
-            )}
-            Se connecter
-          </button>
+          <Button title="Se connecter" isPending={isPending}/>
+         
         </form>
 
 

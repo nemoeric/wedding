@@ -100,7 +100,7 @@ export default function RootLayout({
 
         <div>
           <Link href="/users/new">
-            <span className="btn btn-ghost btn-sm rounded-btn fixed top-4 right-4 z-20">RSVP</span>
+            <span className="btn btn-primary rounded-btn fixed top-4 right-4 z-20">ADD</span>
           </Link>
         </div>
 

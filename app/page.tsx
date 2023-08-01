@@ -8,6 +8,7 @@ import {
 
 import Login from "@/components/Login";
 import Rsvp from "@/components/Rsvp";
+var jwt = require('jsonwebtoken');
 
 
 
@@ -17,12 +18,16 @@ import Rsvp from "@/components/Rsvp";
 export default async function Home() {
   
   
-  const cookieStore = cookies()
-  const userIdCookie = cookieStore.get('uuid')
+  const cookie = cookies().get('accessToken')
+  console.log("cookie",cookie);
+  
   let user;
-  if(userIdCookie) {
-    console.log('userId', userIdCookie)
-    user = await getUserByID(userIdCookie.value)
+  if(cookie && cookie.value) {
+    let accessToken = cookie?.value
+    let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+    console.log("decodedToken",decodedToken);
+    
+    user = await getUserByID(decodedToken.userId)
   }
 
 

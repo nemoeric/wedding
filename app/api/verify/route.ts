@@ -37,13 +37,6 @@ export async function GET(request: Request) {
         }
       );
       cookies().set({
-        name: 'uuid',
-        value: user.id,
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-        httpOnly: true,
-        path: '/',
-      })
-      cookies().set({
         name: 'accessToken',
         value: accessToken,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days

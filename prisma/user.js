@@ -19,6 +19,14 @@ export const getUserByID = async (id) => {
     }
   })
 }
+export const getUserBySlug = async (slug) => {
+  console.log('getUserBySlug', slug);
+  return await prisma.user.findUnique({
+    where: {
+      slug
+    }
+  })
+}
 export const updateUser = async (id, data) => {
   return await prisma.user.update({
     where: {
@@ -31,4 +39,7 @@ export const createUser = async (data) => {
   return await prisma.user.create({
     data
   })
+}
+export const getUsers = async () => {
+  return await prisma.user.findMany()
 }

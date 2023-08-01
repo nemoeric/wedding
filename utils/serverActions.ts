@@ -22,6 +22,7 @@ export const handleFormLogin = async (formData: FormData) => {
     try {
 
       if(user.isAdmin){
+        
         var accessToken = jwt.sign(
           { 
             userId: user.id ,
@@ -31,13 +32,6 @@ export const handleFormLogin = async (formData: FormData) => {
             expiresIn: '1h'
           }
         );
-        cookies().set({
-          name: 'uuid',
-          value: user.id,
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-          httpOnly: true,
-          path: '/',
-        })
         cookies().set({
           name: 'accessToken',
           value: accessToken,
@@ -106,12 +100,6 @@ export const handleFormLogin = async (formData: FormData) => {
 
 }
 export const logout = async () => {
-  cookies().set({
-    name: 'uuid',
-    value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
-  })
   cookies().set({
     name: 'accessToken',
     value: '',
