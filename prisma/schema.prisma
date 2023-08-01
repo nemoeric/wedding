@@ -51,12 +51,9 @@ model User {
   saturdayWillNeedShuttleGoing    Boolean @default(false)
   saturdayWillNeedShuttleBack     Boolean @default(false)
 
-  // HAS CONNECTED
+  hasBeenInvited                  Boolean @default(false)
   hasConnected                    Boolean @default(false)
-
-  // HAS RESPONDED
   hasResponded                    Boolean @default(false)
-
 }
 
 enum Gender {
