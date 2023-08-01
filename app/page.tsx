@@ -20,15 +20,12 @@ export default async function Home() {
   
   
   const cookie = cookies().get('accessToken')
-  console.log("cookie",cookie);
-  
   let user;
   if(cookie && cookie.value) {
 
     try{
       let accessToken = cookie?.value
       let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-      console.log("decodedToken",decodedToken);
       user = await getUserByID(decodedToken.userId)
     }catch(err){
       console.log("err",err);

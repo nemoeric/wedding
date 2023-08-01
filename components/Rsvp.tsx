@@ -152,7 +152,7 @@ const Rsvp = ({user}:{
                 </span>
               </button>
             </form>
-            <button className="btn" onClick={logout}>
+            <button className="btn" onClick={()=>logout()}>
               Déconnexion
             </button>
 

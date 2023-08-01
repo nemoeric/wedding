@@ -3,8 +3,9 @@ import './theme.scss'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Open_Sans } from 'next/font/google'
-import isAccessTokenAdmin from '@/utils/isAdmin'
 import Link from 'next/link'
+import Image from 'next/image'
+import getUserFromCookie from '@/utils/getUserFromCookie'
 
 // SANS FONT
 const openSans = Open_Sans({
@@ -60,35 +61,57 @@ export const metadata: Metadata = {
   description: 'Eric & Elizabeth',
 }
 
-const Navigation = () => {
+const Navigation = async () => {
+
+  const user = await getUserFromCookie()
 
   return (
-      <ul className="menu menu-horizontal menu-lg bg-accent rounded-box mt-6 fixed bottom-4 left-1/2 z-20 -translate-x-1/2">
-        <li>
-          <a className="tooltip" data-tip="Home">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-          </a>
-        </li>
-        <li>
-          <a className="tooltip" data-tip="Details">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </a>
-        </li>
-        <li>
-          <a className="tooltip" data-tip="Stats">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-          </a>
-        </li>
-      </ul>
+      <div className="navbar bg-base-100 text-primary">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+              <li><a>PROGRAMME</a></li>
+              <li><a>LISTE DE MARIAGE</a></li>
+              <li><a>LOCALISATION</a></li>
+              <li><a>Nous ecrire</a></li>
+
+            </ul>
+          </div>
+        </div>
+        <div className="navbar-center">
+          <a className="btn btn-ghost normal-case text-xl"></a>
+        </div>
+        <div className="navbar-end">
+          <Link href="/login" className="btn btn-primary btn-sm mx-2">
+            RSVP
+          </Link>
+
+          {user && (
+            <div className="w-10 rounded-full mx-2">
+              <Image
+                  src={user.image}
+                  alt="Eric & Elizabeth"
+                  width={40}
+                  height={40}
+                  className="rounded-full" 
+                />
+            </div>
+          )}
+        </div>
+      </div>
   )
 }
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
 
-  const isAdmin:any = isAccessTokenAdmin()
+  const user = await getUserFromCookie()
+  const isAdmin = user?.isAdmin
   console.log('isAdmin', isAdmin);
   
   return (
@@ -101,23 +124,7 @@ export default function RootLayout({
       ${calibri_medium.variable}
       ${adora.variable}
       `}>
-        {isAdmin && (
-          <div className='fixed top-5 right-5 z-20'>
-            <ul className="menu menu-vertical bg-accent lg:menu-horizontal rounded-box">
-              <li>
-                <Link href="/users">
-                  Invités
-                </Link>
-              </li>
-              <li>
-                <Link href="/users/new">
-                  Ajouter
-                </Link>
-              </li>
-            </ul>
-            
-          </div>
-        )}
+        <Navigation />
         <div className="bg-white text-primary">
           {children}
         </div>
