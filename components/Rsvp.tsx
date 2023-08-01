@@ -10,6 +10,7 @@ const Rsvp = ({user}:{
  
   const [formData, setFormData] = useState(user)
   const [showToast, setShowToast] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const toastMarkup = showToast && (
     <div className="toast toast-top toast-right z-30">
@@ -21,6 +22,7 @@ const Rsvp = ({user}:{
 
   const handleFormSubmit = async (e:any) => {
     e.preventDefault()
+    setIsLoading(true)
     console.log('formData', formData);
     
     // remove key canEdit from formData
@@ -36,6 +38,7 @@ const Rsvp = ({user}:{
     let data = await response.json()
     console.log("data", data)
 
+    setIsLoading(false)
     setShowToast(true)
     // wait 1 second and hide toast
     setTimeout(()=>{
@@ -143,7 +146,10 @@ const Rsvp = ({user}:{
             </div>
             <form onSubmit={handleFormSubmit} className="w-full">
               <button className="btn btn-primary mt-4 btn-block mb-2">
-                Enregistrer
+                {isLoading && <span className="loading loading-spinner"></span> }
+                <span>
+                  Enregistrer
+                </span>
               </button>
             </form>
             <button className="btn" onClick={logout}>
