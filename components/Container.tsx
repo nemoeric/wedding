@@ -6,7 +6,7 @@ const Container = ({ children }: {
 }) => {
 
   return (
-    <div className="md:py-10 max-w-screen-lg mx-auto ">
+    <div className="px-4 md:px-3 lg:px-4 md:py-10 max-w-screen-lg mx-auto ">
       {children}
     </div>
     

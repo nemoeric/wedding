@@ -24,11 +24,15 @@ export default async function Home() {
   
   let user;
   if(cookie && cookie.value) {
-    let accessToken = cookie?.value
-    let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-    console.log("decodedToken",decodedToken);
-    
-    user = await getUserByID(decodedToken.userId)
+
+    try{
+      let accessToken = cookie?.value
+      let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+      console.log("decodedToken",decodedToken);
+      user = await getUserByID(decodedToken.userId)
+    }catch(err){
+      console.log("err",err);
+    }
   }
 
 
@@ -59,19 +63,19 @@ export default async function Home() {
 
       {/* ATTENDING CLIENT COMPONENT */}
       <Container>
-      {user ?
-        <div className="grid gap-4">
-          <Rsvp user={user}/>
-          {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
-        </div>      
-      :
-        <Login />
-      }
+        {user ?
+          <div className="grid gap-4 mt-2">
+            <Rsvp user={user}/>
+            {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
+          </div>      
+        :
+          <Login />
+        }
       </Container>
       
       {/* PROGRAMME */}
       <Container>
-        <div className="flex flex-col gap-12 p-4">
+        <div className="flex flex-col gap-6 mt-6">
 
             {/* TITRE */}
             <div className="text-primary text-center">
