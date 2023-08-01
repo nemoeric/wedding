@@ -17,24 +17,27 @@ const User = async ({
 
   return (
     <div className='grid gap-6'>
-      <Card title='Photo'>
-        <h1>{user.firstName} {user.lastName}</h1>
-        <form action={uploadImage}>
-          <InputGroup
-            label='Image'
-            name='file'
-            type='file'
-          />
-          <InputGroup
-            hidden
-            label='id'
-            name='userId'
-            type='text'
-            defaultValue={user.id}
-          />
-            <MyButton title="Save" />
-        </form>
-      </Card>
+      {user.isAdmin && (
+        <Card title='Photo'>
+          <h1>{user.firstName} {user.lastName}</h1>
+          <form action={uploadImage}>
+            <InputGroup
+              label='Image'
+              name='file'
+              type='file'
+            />
+            <InputGroup
+              hidden
+              label='id'
+              name='userId'
+              type='text'
+              defaultValue={user.id}
+            />
+              <MyButton title="Save" />
+          </form>
+        </Card>
+      )}
+
       <Rsvp user={user} />
     </div>
   )

@@ -1,11 +1,15 @@
 "use client"
 
+import Container from "@/components/Container"
 import Login from "@/components/Login"
 const Rsvp = () => {  
 
   return (
-    <div className="h-screen bg-white flex justify-center items-center text-primary">
-      <Login/>
+    <div className="h-screen bg-slate-200 flex justify-center items-center text-primary">
+      <Container>
+        <Login/>
+      </Container>
+
     </div>
   )
 }

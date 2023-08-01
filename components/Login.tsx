@@ -2,6 +2,7 @@
 import {handleFormLogin} from "@/utils/serverActions"
 import {useState, useTransition} from "react"
 import MyButton from "@/components/daisyui/MyButton"
+import Card from "./daisyui/card"
 const Login = () => {
 
   const [showError, setShowError] = useState(false)
@@ -17,8 +18,7 @@ const Login = () => {
   let [isPending, startTransition] = useTransition()
 
   return (
-    <div className="py-6">
-      <div className="rounded-lg shadow-xl grid gap-6 p-6 border border-grey text-primary">
+    <Card>
         <h2 className="font-serif text-3xl md:text-6xl">
           Espace invité
         </h2>
@@ -44,7 +44,7 @@ const Login = () => {
           })
 
           
-        }} className="grid gap-2 md:grid-cols-5">
+        }} className="flex gap-3 flex-col">
           
           <div className="form-control col-span-3">
             <input 
@@ -55,13 +55,9 @@ const Login = () => {
             />
           </div>
           <MyButton title="Se connecter" isPending={isPending}/>
-         
+        
         </form>
-
-
-      </div>
-      
-    </div>
+    </Card>
   )
 }
 export default Login

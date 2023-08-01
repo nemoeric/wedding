@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   return (
     ( 
-      <button className={`btn btn-primary btn-block ${className}`}>
+      <button className={`btn btn-primary btn-block ${className} btn-block`}>
         {isPending && (
           <span className="loading loading-spinner"></span>
         )}

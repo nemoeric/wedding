@@ -82,23 +82,31 @@ const Navigation = async () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl"></a>
+          <Link href="/" className='btn btn-ghost normal-case  font-adora'>
+            E & E
+          </Link>
         </div>
         <div className="navbar-end">
-          <Link href="/login" className="btn btn-primary btn-sm mx-2">
-            RSVP
-          </Link>
-
+          { user ?
+            !user.hasResponded ? <Link href={`/users/${user.slug}`} className="btn btn-primary btn-sm mx-2">RSVP</Link> : ""
+          :(
+            <Link href="/login" className="btn btn-primary btn-sm mx-2">
+              LOGIN
+            </Link>
+          )}
           {user && (
-            <div className="w-10 rounded-full mx-2">
-              <Image
-                  src={user.image}
-                  alt="Eric & Elizabeth"
-                  width={40}
-                  height={40}
-                  className="rounded-full" 
-                />
-            </div>
+            <Link href={`/users/${user.slug}`}>
+              <div className="w-10 rounded-full mx-2">
+                <Image
+                    src={user.image}
+                    alt="Eric & Elizabeth"
+                    width={40}
+                    height={40}
+                    className="rounded-full" 
+                  />
+              </div>
+            </Link>
+
           )}
         </div>
       </div>
@@ -117,6 +125,8 @@ export default async function RootLayout({
   return (
     <html lang="en" data-theme="cupcake">
       <body className={`
+      pt-16
+      bg-white
       ${silk_medium.variable} 
       ${ropa_bold.variable} 
       ${openSans.className} 
@@ -124,17 +134,19 @@ export default async function RootLayout({
       ${calibri_medium.variable}
       ${adora.variable}
       `}>
-        <Navigation />
+        <div className='fixed top-0 left-0 w-full z-20' >
+          <Navigation />
+        </div>
         <div className="bg-white text-primary">
           {children}
         </div>
-
         <footer className="footer footer-center p-4 bg-base-300 text-base-content">
           <div className='py-6'>
             <p>Coded with ❤️ by Nemo</p>
             <p className='italic'>Yes, just for the wedding</p>
           </div>
         </footer>
+
       </body>
     </html>
   )

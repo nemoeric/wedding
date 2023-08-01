@@ -11,6 +11,7 @@ import Rsvp from "@/components/Rsvp";
 import Container from "@/components/Container";
 var jwt = require('jsonwebtoken');
 import Card from "@/components/daisyui/card";
+import UserCard from "@/components/userCard";
 
 
 
@@ -58,18 +59,36 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* ATTENDING CLIENT COMPONENT */}
+      {/* USER CARDS */}
       <Container>
-        {user ?
-          <div className="grid gap-4 mt-2">
-            <Rsvp user={user}/>
-            {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
-          </div>      
-        :
-          <Login />
-        }
+        <h2 className="font-serif mt-12 text-center text-4xl">Hello</h2>
+        <div className="my-6">
+          {user ?
+            <div className="grid gap-4 mt-2">
+              <UserCard user={user}/>
+              {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
+            </div>      
+          :
+            <Login />
+          }
+        </div>
       </Container>
-      
+
+      {/* ATTENDING CLIENT COMPONENT */}
+      {/* <Container>
+        <div className="my-6">
+          {user ?
+            <div className="grid gap-4 mt-2">
+              <Rsvp user={user}/>
+              {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
+            </div>      
+          :
+            <Login />
+          }
+        </div>
+
+      </Container>
+       */}
       {/* PROGRAMME */}
       <Container>
         <div className="flex flex-col gap-6 mt-6">
