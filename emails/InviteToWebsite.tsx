@@ -17,14 +17,15 @@ import {
   Text,
 } from '@react-email/components';
 
-const baseUrl = process.env.NEXT_PUBLIC_URL
 
-export const ConfirmResponse = ({
-  firstName = "John",
-  image = "https://gondalier.s3.eu-west-3.amazonaws.com/wedding/nemo-eric.webp"
+export const InviteToWebsite = ({
+  user = {
+    firstName: 'Eric',
+  },
+  url = 'https://www.nemo-stanton.fr',
 }:{
-  firstName: string
-  image: string
+  user: any
+  url: string
 }) => {
 
   return (
@@ -58,33 +59,32 @@ export const ConfirmResponse = ({
                   className="my-0 mx-auto rounded-full -translate-x-10 z-30"
                 />
               </div>
-
             </Section>
             <Heading className="text-black text-[24px] font-serif p-0 my-[30px] mx-0">
               Confirmez votre présence
             </Heading>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              Bonjour {firstName},
+              Bonjour {user.firstName},
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              On est ravis de vous convier à notre mariage du 31/08 au 02/09 à Sintra, Portugal.
+              Nous espérons que vous êtes déjà en vacances et sommes ravis de bientôt vous retrouver au Portugal !
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              On a (enfin) mis à votre disposition un site web avec toutes les informations.
+              La date approchant, nous avons mis à votre disposition un site web comprenant toutes les informations essentielles. De notre côté, nous aurions besoin que vous preniez 3 minutes pour nous confirmer votre présence aux différents évènements, besoin d'un moyen de transport et potentielles restrictions alimentaires.
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              On a besoin que vous nous confirmiez votre présence aux différentes journées, et que vous nous précisiez si vous avez des restrictions alimentaires.
+              En cliquant sur le lien ci-dessous, vous accéderez à votre espace invité permettant de mettre à jour ces informations.
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              En cliquant sur le lien, vous arriverez (authentifié) sur votre espace invité.
+              {`Merci d'avance !`}
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
                 pX={20}
                 pY={12}
                 // className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center"
-                className="rounded-sm bg-slate-300 text-primary font-sans uppercase text-sm"
-                href={baseUrl}
+                className="rounded-sm bg-slate-300 font-sans uppercase text-sm text-black"
+                href={url}
               >
                 Accéder à mon espace
               </Button>
@@ -98,4 +98,4 @@ export const ConfirmResponse = ({
     </Html>
   );
 };
-export default ConfirmResponse;
+export default InviteToWebsite;

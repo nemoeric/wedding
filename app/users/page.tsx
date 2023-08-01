@@ -15,17 +15,19 @@ const Users = async () => {
           'First Name', 
           'Last Name', 
           'Email',
+          'Invited',
           'Connected',
           'Answered',
-          'Notify'
+          'Invite'
         ]}
         rows={users.map((user:any) => {
           return [
             user.firstName,
             user.lastName,
             user.email,
-            <input type="checkbox"  defaultChecked={user.hasConnected} className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
-            <input type="checkbox"  defaultChecked={user.hasResponded} className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
+            <input type="checkbox"  defaultChecked={user.hasBeenInvited}  className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
+            <input type="checkbox"  defaultChecked={user.hasConnected}    className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
+            <input type="checkbox"  defaultChecked={user.hasResponded}    className="checkbox checkbox-success checkbox-sm" key={user.id}/>,
             <NotifyUserCell user={user} key={user.id}/>
           ] 
         })}
@@ -50,9 +52,7 @@ const Users = async () => {
                     <div>
                     {user.firstName} {user.lastName}
                     </div>
-
                   </div>
-
                 </div>
               </Card>
             </Link>

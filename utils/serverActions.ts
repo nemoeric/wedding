@@ -1,10 +1,14 @@
 "use server";
 
-import {findUserByEmail, updateUser, createUser, getUserByID} from '@/prisma/user'
-import resend from '@/utils/resend';
 import {
-  MagicLink
-} from '@/emails/magikLink';
+  getUserByEmail, 
+  updateUser, 
+  createUser, 
+  getUserByID
+} from '@/prisma/user'
+import resend from '@/utils/resend';
+import { MagicLink} from '@/emails/magikLink';
+import { InviteToWebsite } from '@/emails/InviteToWebsite';
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "@/utils/aws";
 import { cookies } from 'next/headers'
@@ -15,7 +19,7 @@ var jwt = require('jsonwebtoken');
 export const handleFormLogin = async (formData: FormData) => {
 
   const email = formData.get('email');
-  const user = await findUserByEmail(email)
+  const user = await getUserByEmail(email)
 
   if(user != null) {
     try {
@@ -164,33 +168,27 @@ export const testServerAction = async (formData: FormData) => {
   }
 }
 
-export const notifyUser = async (formData: FormData) => {
-  
+export const inviteUserToWebsite = async (formData: FormData) => {
   const userId       = formData.get('userId');
-  const user          = await getUserByID(userId)
-
-
+  const user         = await getUserByID(userId)
   if(user != null) {
     try {
-      var token = jwt.sign(
-        { 
-          userId: user.id 
-        }, 
-        process.env.JWT_SECRET, {
-          expiresIn: '1h'
-        }
-      );
-      const data = await resend.emails.send({
-        from: 'no-reply@nemo-stanton.fr',
-        to: [
-          user.email
-        ],
-        subject: 'Connexion à Nemo Stanton',
-        react: MagicLink({ 
-          firstName: user.firstName,
-          url: process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
-        }),
-      });
+      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '6h'});
+      // await resend.emails.send({
+      //   from: 'no-reply@nemo-stanton.fr',
+      //   to: [
+      //     user.email
+      //   ],
+      //   subject: 'RSVP - Mariage Nemo & Stanton',
+      //   react: InviteToWebsite({ 
+      //     user,
+      //     url:        process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
+      //   }),
+      // });
+
+      // update user
+      updateUser(user.id,{hasBeenInvited: false})
+      revalidatePath('/')
       return {
         error: false,
       }      
@@ -203,7 +201,7 @@ export const notifyUser = async (formData: FormData) => {
   }
   return {
     error: true,
-    errorMessage: "L'adresse email n'est pas reconnue"
+    errorMessage: "Le userId n'est pas reconnu"
   }
   
   

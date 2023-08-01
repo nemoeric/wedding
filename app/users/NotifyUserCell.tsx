@@ -2,7 +2,7 @@
 
 import MyButton from '@/components/daisyui/MyButton'
 import InputGroup from '@/components/daisyui/inputGroup'
-import {notifyUser} from '@/utils/serverActions'
+import {inviteUserToWebsite} from '@/utils/serverActions'
 import { useTransition } from 'react'
 
 const NotifyUserCell = ({user}:{
@@ -14,7 +14,7 @@ const NotifyUserCell = ({user}:{
   return (
     <form action={ (formData: FormData)=>{
       startTransition(async () => {
-        let response = await notifyUser(formData)
+        let response = await inviteUserToWebsite(formData)
         if(!response.error){
           console.log(response)
         }

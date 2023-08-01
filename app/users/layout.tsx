@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 import Container from '@/components/Container';
 import { cookies } from 'next/headers'
-
+import { redirect } from 'next/navigation'
 
 export default function UserLayout({
   children, // will be a page or nested layout
@@ -11,11 +11,16 @@ export default function UserLayout({
 }) {
 
   const cookie = cookies().get('accessToken')
-  if(!cookie || !cookie.value) return <Container>Not Authorized</Container>
+  if(!cookie || !cookie.value) return redirect("/login")
+
   
   let accessToken = cookie?.value
-  let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-  if(!decodedToken?.isAdmin) return <Container>Not Authorized</Container>
+  try {
+    let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
+    if(!decodedToken?.isAdmin) return redirect("/")
+  } catch (error) {
+    return redirect("/")
+  }
 
   
 
