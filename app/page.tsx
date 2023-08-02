@@ -4,6 +4,7 @@ import Login from "@/components/Login";
 import Container from "@/components/Container";
 import UserCard from "@/components/userCard";
 import getSessionUserFromCookie from "@/utils/getSessionUserFromCookie";
+import Countdown from "@/components/Countdown";
 
 
 export default async function Home() {
@@ -26,6 +27,8 @@ export default async function Home() {
             <div className="animate-pulse">
               31-08 | 02-09
             </div>
+            <Countdown date={new Date('2023-08-31T17:00:00')} />
+
           </Animation>
         </div>
       </div>

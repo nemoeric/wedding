@@ -61,7 +61,6 @@ export const metadata: Metadata = {
 const Navigation = async () => {
 
   const sessionUser = await getSessionUserFromCookie()
-  console.log("session user from nav", sessionUser.firstName);
   
   
   return (
