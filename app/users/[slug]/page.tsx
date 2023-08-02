@@ -4,6 +4,7 @@ import InputGroup from '@/components/daisyui/inputGroup'
 import Card from '@/components/daisyui/card'
 import {uploadImage} from '@/utils/serverActions'
 import MyButton from "@/components/daisyui/MyButton"
+import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
 
 const User = async ({
   params
@@ -11,10 +12,11 @@ const User = async ({
   params: any
 }) => {
 
+  const sessionUser = await getSessionUserFromCookie()
   const user = await getUserBySlug(params.slug)
   return (
     <div className='grid gap-6'>
-      {user?.isAdmin && (
+      {sessionUser?.isAdmin && (
         <Card title='Photo'>
           <h1>{user?.firstName} {user?.lastName}</h1>
           <form action={uploadImage}>
