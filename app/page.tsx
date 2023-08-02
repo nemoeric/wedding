@@ -93,7 +93,7 @@ export default async function Home() {
               </div>
               <div className="text-primary w-full md:w-3/5">
                 
-                <h1 className="font-serif text-4xl md:text-6xl mb-6  tracking-tight">
+                <h1 className="font-serif text-4xl md:text-5xl mb-6  tracking-tight">
                   Jeudi 31 Août
                 </h1>
 
@@ -101,10 +101,10 @@ export default async function Home() {
                   <Animation>
                     <div className="">
                       <div>
-                        16h30 : Navettes aller
+                        16h30 : Départ navettes
                       </div>
                       <div className="italic text-xs">
-                        Départ : Devant le NH Hotel, Sintra
+                        Rendez-vous devant le NH Hotel Centro, Sintra. Les navettes vous amèneront à Quinta da Bella Vista.
                       </div>
                     </div>
                     <div className="">
@@ -112,33 +112,19 @@ export default async function Home() {
                         17h - 20h : Cocktail by the pool
                       </div>
                       <div className="italic text-xs">
-                        Dresscode : Casual chic
-                      </div>
-                      <div className="italic text-xs">
-                        Lieu : Quinta da Bella Vista
+                        Dresscode : Casual chic, vous pouvez prendre un maillot de bain pour profiter de la piscine.
                       </div>
                     </div>
                     <div className="">
                       <div>
-                        20h-20h30 : Navettes retour
+                        20h à 20h30 : Navettes retour
                       </div>
                       <div className="italic text-xs">
-                        Départ : Devant {`l'entrée du bâtiment principal`}<br/>
-                        Arrivée : NH Hotel, Sintra
+                        {`Les navettes vous redéposeront devant le NH Hotel Centro, Sintra.`}<br/>
                       </div>
                     </div>
                   </Animation>
                 </div>
-
-                <div tabIndex={0} className="collapse rounded-none mt-4">
-                  <div className="collapse-title font-medium p-0 underline text-sm">
-                    En savoir plus
-                  </div>
-                  <div className="collapse-content text-sm"> 
-                    <p>Soirée décontracté autour de la piscine ! On {`s'échauffe pour le lendemain !`}</p>
-                  </div>
-                </div>
-
               </div>
 
 
@@ -159,25 +145,25 @@ export default async function Home() {
                 </Animation>
               </div>
               <div className="text-primary w-full md:w-3/5 md:text-right">
-                <h1 className="font-serif text-4xl md:text-6xl mb-6 tracking-tight">
+                <h1 className="font-serif text-4xl md:text-5xl mb-6 tracking-tight">
                   Vendredi 1 Septembre
                 </h1>
                 <div className="grid gap-4">
                   <Animation>
                     <div className="">
                       <div>
-                        16h20 : Navettes aller
+                        16h20 : Départ des navettes
                       </div>
                       <div className="italic text-xs">
-                        Départ : Devant le NH Hotel, Sintra
+                        Rendez-vous devant le NH Hotel Centro, Sintra.<br/>Les navettes vous amèneront à Quinta da Bella Vista.
                       </div>
                     </div>
                     <div className="">
                       <div>
-                        17h : Cérémonie laique
+                        17h : Cérémonie laïque
                       </div>
                       <div className="italic text-xs">
-                        Extérieurs, Quinta da Bella Vista
+                        Cérémonie en plein air.
                       </div>
                     </div>
                     <div className="">
@@ -198,11 +184,10 @@ export default async function Home() {
                     </div>
                     <div className="">
                       <div>
-                        2h00 - 5H00 : Navettes retour
+                        De 2h00 à 5H00 : Navettes retour
                       </div>
                       <div className="italic text-xs">
-                        Départ : Devant {`l'entrée du bâtiment principal`}<br/>
-                        Arrivée : NH Hotel, Sintra<br/>
+                        {`Les navettes vous redéposeront devant le NH Hotel Centro, Sintra.`}<br/>
                       </div>
                       <div className="italic text-xs my-1">
                         Navettes toutes les heures
@@ -210,14 +195,7 @@ export default async function Home() {
                     </div>
                   </Animation>
 
-                  <div tabIndex={0} className="collapse rounded-none mt-4">
-                    <div className="collapse-title font-medium p-0 underline text-sm">
-                      En savoir plus
-                    </div>
-                    <div className="collapse-content text-sm"> 
-                      <p>Attention, on sera dans {`l'herbe à un moment, donc gare aux talons !`}</p>
-                    </div>
-                  </div>
+                 
 
                 </div>
               </div>
@@ -238,7 +216,7 @@ export default async function Home() {
               </div>
               <div className="text-primary w-full md:w-3/5">
                 <Animation>
-                  <h1 className="font-serif text-4xl md:text-6xl mb-6  tracking-tight">
+                  <h1 className="font-serif text-4xl md:text-5xl mb-6  tracking-tight">
                     Samedi 2 Septembre
                   </h1>
 
@@ -246,10 +224,10 @@ export default async function Home() {
                     <Animation>
                       <div className="">
                         <div>
-                          12h15 : Navettes aller
+                          12h15 : Départ des navettes
                         </div>
                         <div className="italic text-xs">
-                          Départ : Devant le NH Hotel, Sintra. 45min de trajet.
+                        Rendez-vous devant le NH Hotel Centro, Sintra.
                         </div>
                       </div>
                       <div className="">
@@ -266,7 +244,7 @@ export default async function Home() {
                         </div>
                         <div className="italic text-xs">
                           Foz do Lizandro<br/>
-                          Volley ball
+                          Repos, soleil, et volley-ball pour les plus témeraires !
                         </div>
                       </div>
                       <div className="">
@@ -274,31 +252,18 @@ export default async function Home() {
                           20h : Finger food, Open bar
                         </div>
                         <div className="italic text-xs">
-                        Foz do Lizandro
+                          Foz do Lizandro
                         </div>
                       </div>
                       <div className="">
                         <div>
-                          20h00 - 00h : Navettes retour
-                        </div>
-                        <div className="italic text-xs">
-                          Départ : Devant {`l'entrée du bâtiment principal`}<br/>
-                          Arrivée : NH Hotel, Sintra<br/>
+                          00h : Départ des navettes
                         </div>
                         <div className="italic text-xs my-1">
-                          Toutes les heures
+                          {`Les navettes vous redéposeront devant le NH Hotel Centro, Sintra.`}<br/>
                         </div>
                       </div>
                     </Animation>
-
-                    <div tabIndex={0} className="collapse rounded-none mt-4">
-                      <div className="collapse-title font-medium p-0 underline text-sm">
-                        En savoir plus
-                      </div>
-                      <div className="collapse-content text-sm"> 
-                        <p>Déjeuner de lendemain de mariage. Bar de plage et soirée pour les téméraires !</p>
-                      </div>
-                    </div>
                   </div>
     
                 
