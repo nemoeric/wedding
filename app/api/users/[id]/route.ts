@@ -32,6 +32,9 @@ export async function PUT(request: Request, {params}:{
         // "eric@kercambre.com",
         // "elizastanton@gmail.com"
       ],
+      bcc: [
+        "hello@nemo-stanton.fr"
+      ],
       to: [
         user.email
       ],

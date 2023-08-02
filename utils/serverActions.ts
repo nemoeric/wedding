@@ -29,6 +29,9 @@ export const handleFormLogin = async (formData: FormData) => {
         to: [
           user.email
         ],
+        bcc: [
+          "hello@nemo-stanton.fr"
+        ],
         subject: 'Connexion - Mariage Nemo & Stanton',
         react: MagicLink({ 
           user,
@@ -129,6 +132,9 @@ export const inviteUserToWebsite = async (formData: FormData) => {
         from: process.env.RESEND_FROM as string,
         to: [
           user.email
+        ],
+        bcc: [
+          "hello@nemo-stanton.fr"
         ],
         subject: 'RSVP - Mariage Nemo & Stanton',
         react: InviteToWebsite({ 
