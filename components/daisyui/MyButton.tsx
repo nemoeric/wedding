@@ -1,3 +1,5 @@
+"use client"
+
 const Button = ({
   title,
   isPending = false,

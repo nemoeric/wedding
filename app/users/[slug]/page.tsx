@@ -33,7 +33,7 @@ const User = async ({
               type='text'
               defaultValue={user.id}
             />
-              <MyButton title="Save" />
+            <MyButton title="Save" />
           </form>
         </Card>
       )}

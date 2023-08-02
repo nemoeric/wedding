@@ -1,14 +1,15 @@
 "use client"
 import {useState} from "react"
 import Image from "next/image"
-import {logout} from "@/utils/serverActions"
 import Card from "./daisyui/card"
+import Link from "next/link"
 
 const Rsvp = ({user}:{
   user: any
 }) => {
  
-  const [formData, setFormData] = useState(user)
+  const [initialState, setInitialState] = useState(user)
+  const [formData, setFormData]         = useState(user)
   const [showToast, setShowToast] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -66,7 +67,7 @@ const Rsvp = ({user}:{
           </div>
 
           {/* FOOD RESTRICTIONS */}
-          <div className="border p-2">
+          <div className="border p-2 rounded-md bg-amber-100">
             <div className="form-control">
               <label className="cursor-pointer label">
                 <span className="label-text">Avez-vous des alérgies / restrictions alimentaires ?</span>
@@ -91,7 +92,7 @@ const Rsvp = ({user}:{
 
           {/* PLANNING */}
           <div className="grid gap-1">
-            <div className="divider">JEUDI</div>
+            <div className="divider italic">Jeudi 31 août</div>
             <div className="form-control">
               <label className="cursor-pointer label">
                 <span className="label-text">Je serai présent.e</span>
@@ -100,16 +101,19 @@ const Rsvp = ({user}:{
                 }} />
               </label>
             </div>
-            <div className="form-control">
-              <label className="cursor-pointer label">
-                <span className="label-text">{`J'ai besoin d'une solution de transport`}</span>
-                <input type="checkbox" className="toggle toggle-primary" name="thursdayWillNeedTransport" checked={formData.thursdayWillNeedTransport} onChange={(e)=>{
-                  setFormData({...formData, thursdayWillNeedTransport: e.target.checked })
-                }} />
-              </label>
-            </div>
+            {formData.thursdayWillAttend && (
+              <div className="form-control">
+                <label className="cursor-pointer label">
+                  <span className="label-text">{`Je prendrais la navette au départ du NH Centro à 16h30 pour me rendre sur le lieu du cocktail`}</span>
+                  <input type="checkbox" className="toggle toggle-primary" name="thursdayWillNeedTransport" checked={formData.thursdayWillNeedTransport} onChange={(e)=>{
+                    setFormData({...formData, thursdayWillNeedTransport: e.target.checked })
+                  }} />
+                </label>
+              </div>
 
-            <div className="divider">VENDREDI</div>
+            )}
+
+            <div className="divider italic">Vendredi 1 septembre</div>
             <div className="form-control">
               <label className="cursor-pointer label">
                 <span className="label-text">Je serai présent.e</span>
@@ -118,32 +122,42 @@ const Rsvp = ({user}:{
                 }} />
               </label>
             </div>
+            {formData.fridayWillAttend && (
             <div className="form-control">
               <label className="cursor-pointer label">
-              <span className="label-text">{`J'ai besoin d'une solution de transport`}</span>
+              <span className="label-text">{`Je prendrais la navette au départ du NH Centro à 16h20 pour me rendre sur le lieu du mariage`}</span>
                 <input type="checkbox" className="toggle toggle-primary" name="fridayWillNeedTransport" checked={formData.fridayWillNeedTransport} onChange={(e)=>{
                   setFormData({...formData, fridayWillNeedTransport: e.target.checked })
                 }} />
               </label>
             </div>
-
-            <div className="divider">SAMEDI</div>
+            )}
+            <div className="divider italic">Samedi 2 septembre</div>
             <div className="form-control">
               <label className="cursor-pointer label">
-                <span className="label-text">Je serai présent au déjeuner</span>
+                <span className="label-text">Je serai présent</span>
                 <input type="checkbox" className="toggle toggle-primary" name="saturdayWillAttend" checked={formData.saturdayWillAttend} onChange={(e)=>{
                   setFormData({...formData, saturdayWillAttend: e.target.checked })
                 }} />
               </label>
             </div>
+            {formData.saturdayWillAttend && (
             <div className="form-control">
               <label className="cursor-pointer label">
-              <span className="label-text">{`J'ai besoin d'une solution de transport`}</span>
+              <span className="label-text">{`Je prendrais la navette au départ du NH Centro à 12h15 pour me rendre à Foz do Lizandro`}</span>
               <input type="checkbox" className="toggle toggle-primary" name="saturdayWillNeedTransport" checked={formData.saturdayWillNeedTransport} onChange={(e)=>{
                   setFormData({...formData, saturdayWillNeedTransport: e.target.checked })
               }} />
               </label>
             </div>
+            )}
+            { initialState == formData ? 
+            <button className="btn btn-disabled mt-4 btn-block mb-2">
+              <span>
+                Enregistrer
+              </span>
+            </button>
+            : 
             <form onSubmit={handleFormSubmit} className="w-full">
               <button className="btn btn-primary mt-4 btn-block mb-2">
                 {isLoading && <span className="loading loading-spinner"></span> }
@@ -152,11 +166,14 @@ const Rsvp = ({user}:{
                 </span>
               </button>
             </form>
-            <button className="btn" onClick={()=>logout()}>
-              Déconnexion
-            </button>
+            }
 
+          </div>
 
+          <div className="text-black underline text-center my-10">
+            <Link href="/">
+              Revoir le programme détaillé
+            </Link>
           </div>
 
 

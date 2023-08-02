@@ -30,6 +30,9 @@ const UserCard = ({ user }:{
             </div>
           </div>
         </div>
+        <div className="absolute right-4 bottom-4 text-xs italic underline">
+          Accéder
+        </div>
       </Link>
 
     </Card>

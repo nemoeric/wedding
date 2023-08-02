@@ -39,13 +39,13 @@ export default async function Home() {
     <div className=" pb-16">
 
       {/* BANNER */}
-      <div className="text-primary bg-slate-200 text-center h-[500px] md:h-[600px] flex justify-center items-center">
+      <div className="text-primary bg-slate-200 text-center h-[500px] md:h-[600px] lg:h-[700px] flex justify-center items-center">
         <div className="grid gap-6">
           <Animation>
             <div className="text-3xl mb-10 font-adora">
                 Elizabeth & Eric
               </div>
-            <h1 className='font-serif text-7xl tracking-tight'>
+            <h1 className='font-serif text-7xl tracking-tight p-1'>
               RENDEZ-VOUS À SINTRA
             </h1>
             <div className="animate-pulse">
@@ -64,9 +64,10 @@ export default async function Home() {
         <h2 className="font-serif mt-12 text-center text-4xl">Hello</h2>
         <div className="my-6">
           {user ?
-            <div className="grid gap-4 mt-2">
+            <div className="grid gap-4 mt-2 md:grid-cols-2  items-center justify-center">
               <UserCard user={user}/>
               {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
+
             </div>      
           :
             <Login />
@@ -91,7 +92,7 @@ export default async function Home() {
        */}
       {/* PROGRAMME */}
       <Container>
-        <div className="flex flex-col gap-6 mt-6">
+        <div className="flex flex-col gap-6 mt-12">
 
             {/* TITRE */}
             <div className="text-primary text-center">

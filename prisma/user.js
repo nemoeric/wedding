@@ -4,7 +4,7 @@ export const getUserByEmail = async (email) => {
   console.log('getUserByEmail', email);
   return await prisma.user.findUnique({
     where: {
-      email : email.toLowerCase()
+      email : email.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
     }
   })
 }

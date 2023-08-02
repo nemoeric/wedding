@@ -23,45 +23,6 @@ export const handleFormLogin = async (formData: FormData) => {
 
   if(user != null) {
     try {
-
-      // if(user.isAdmin){
-        
-      //   var accessToken = jwt.sign(
-      //     { 
-      //       userId: user.id ,
-      //       isAdmin: user.isAdmin
-      //     }, 
-      //     process.env.JWT_SECRET, {
-      //       expiresIn: '1h'
-      //     }
-      //   );
-      //   cookies().set({
-      //     name: 'accessToken',
-      //     value: accessToken,
-      //     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // 3 days
-      //     // expires: new Date(Date.now() + 1000 * 60 * 5),
-      //     httpOnly: true,
-      //     path: '/',
-      //   })
-      //   revalidatePath('/')
-
-      //   console.log("Admin connected");
-        
-      //   // Update user
-      //   updateUser(
-      //     user.id,
-      //     {
-      //       hasConnected: true
-      //     }
-      //   )
-      //   return {
-      //     error: false,
-      //   }      
-  
-
-      // }
-
-
       var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '1h'});
       const data = await resend.emails.send({
         from: 'hey@nemo-stanton.fr',

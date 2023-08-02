@@ -6,6 +6,7 @@ import { Open_Sans } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
 import getUserFromCookie from '@/utils/getUserFromCookie'
+import LogoutButton from '@/components/LogoutButton'
 
 // SANS FONT
 const openSans = Open_Sans({
@@ -73,10 +74,14 @@ const Navigation = async () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </label>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li><a>PROGRAMME</a></li>
-              <li><a>LISTE DE MARIAGE</a></li>
+              <li>
+                <Link href="/">
+                  Accueil
+                </Link>
+              </li>
+              {/* <li><a>LISTE DE MARIAGE</a></li>
               <li><a>LOCALISATION</a></li>
-              <li><a>Nous ecrire</a></li>
+              <li><a>Nous ecrire</a></li> */}
 
             </ul>
           </div>
@@ -95,17 +100,33 @@ const Navigation = async () => {
             </Link>
           )}
           {user && (
-            <Link href={`/users/${user.slug}`}>
-              <div className="w-10 rounded-full mx-2">
-                <Image
-                    src={user.image}
-                    alt="Eric & Elizabeth"
-                    width={40}
-                    height={40}
-                    className="rounded-full" 
-                  />
-              </div>
-            </Link>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <Image
+                      src={user.image}
+                      alt="Eric & Elizabeth"
+                      width={40}
+                      height={40}
+                      className="rounded-full" 
+                    />
+                </div>
+              </label>
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                <li>
+                  <Link className="justify-between" href={`/users/${user.slug}`}>
+                    Profil
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+                <li>
+                  <LogoutButton>
+                    Déconnexion
+                  </LogoutButton>
+                </li>
+              </ul>
+            </div>
+           
 
           )}
         </div>
