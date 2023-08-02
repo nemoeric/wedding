@@ -1,40 +1,15 @@
 import Image from "next/image";
 import Animation from "@/components/Animation";
-import { cookies } from 'next/headers'
-import {
-  getUserByID,
-} from '@/prisma/user'
-
-
 import Login from "@/components/Login";
-import Rsvp from "@/components/Rsvp";
 import Container from "@/components/Container";
-var jwt = require('jsonwebtoken');
-import Card from "@/components/daisyui/card";
 import UserCard from "@/components/userCard";
-
-
-
+import getSessionUserFromCookie from "@/utils/getSessionUserFromCookie";
 
 
 export default async function Home() {
+
+  const user = await getSessionUserFromCookie()
   
-  
-  const cookie = cookies().get('accessToken')
-  let user;
-  if(cookie && cookie.value) {
-
-    try{
-      let accessToken = cookie?.value
-      let decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-      user = await getUserByID(decodedToken.userId)
-    }catch(err){
-      console.log("err",err);
-    }
-  }
-
-
-
   return (
     <div className=" pb-16">
 
@@ -51,11 +26,7 @@ export default async function Home() {
             <div className="animate-pulse">
               31-08 | 02-09
             </div>
-            
           </Animation>
-
-
-
         </div>
       </div>
 

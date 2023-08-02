@@ -4,8 +4,14 @@ import {getUsers} from '@/prisma/user'
 import Image from 'next/image'
 import Link from 'next/link'
 import NotifyUserCell from './NotifyUserCell'
+import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
+import { redirect } from 'next/navigation'
 
 const Users = async () => {
+
+  let sessionUser = await getSessionUserFromCookie()
+  if(!sessionUser.isAdmin) return redirect("/")
+
   const users = await getUsers({
     orderBy: {
       firstName: 'asc',

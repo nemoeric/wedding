@@ -32,7 +32,7 @@ export const handleFormLogin = async (formData: FormData) => {
         subject: 'Connexion - Mariage Nemo & Stanton',
         react: MagicLink({ 
           user,
-          url: process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
+          url: process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token,
         }),
       });
 
@@ -113,14 +113,12 @@ export const uploadImage = async (formData: FormData) => {
     user
   }
 }
-
 export const testServerAction = async (formData: FormData) => {
   console.log("testServerAction");
   return {
     error: false,
   }
 }
-
 export const inviteUserToWebsite = async (formData: FormData) => {
   const userId       = formData.get('userId');
   const user         = await getUserByID(userId)
@@ -135,7 +133,7 @@ export const inviteUserToWebsite = async (formData: FormData) => {
         subject: 'RSVP - Mariage Nemo & Stanton',
         react: InviteToWebsite({ 
           user,
-          url:        process.env.NEXT_PUBLIC_URL + "/api/verify?token=" + token,
+          url:        process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token,
         }),
       });
 

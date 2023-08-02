@@ -1,8 +1,6 @@
 
-const jwt = require('jsonwebtoken');
 import Container from '@/components/Container';
-import getUserFromCookie from '@/utils/getUserFromCookie';
-import { cookies } from 'next/headers'
+import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie';
 import { redirect } from 'next/navigation'
 
 export default async function UserLayout({
@@ -11,12 +9,15 @@ export default async function UserLayout({
   children: React.ReactNode
 }) {
 
-  const user = await getUserFromCookie()  
+  const user = await getSessionUserFromCookie()  
   if(user) return redirect("/users/" + user.slug)
 
   return (
-    <Container>
-      {children}
-    </Container>
+    <div className='bg-slate-200'>
+      <Container>
+        {children}
+      </Container>
+    </div>
+
   )
 }

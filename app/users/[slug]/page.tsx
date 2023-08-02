@@ -12,9 +12,6 @@ const User = async ({
 }) => {
 
   const user = await getUserBySlug(params.slug)
-  console.log(user);
-  
-
   return (
     <div className='grid gap-6'>
       {user.isAdmin && (

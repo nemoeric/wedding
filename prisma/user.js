@@ -9,7 +9,7 @@ export const getUserByEmail = async (email) => {
   })
 }
 export const getUserByID = async (id) => {
-  console.log('getUserByID', id);
+  // console.log('getUserByID', id);
   return await prisma.user.findUnique({
     where: {
       id

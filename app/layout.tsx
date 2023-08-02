@@ -5,8 +5,8 @@ import localFont from 'next/font/local'
 import { Open_Sans } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
-import getUserFromCookie from '@/utils/getUserFromCookie'
 import LogoutButton from '@/components/LogoutButton'
+import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
 
 // SANS FONT
 const openSans = Open_Sans({
@@ -54,83 +54,88 @@ const ropa_bold = localFont({
 })
 
 
- 
-
-
 export const metadata: Metadata = {
   title: 'Mariage à Sintra',
   description: 'Eric & Elizabeth',
 }
-
 const Navigation = async () => {
 
-  const user = await getUserFromCookie()
-
+  const sessionUser = await getSessionUserFromCookie()
+  console.log("session user from nav", sessionUser.firstName);
+  
+  
   return (
-      <div className="navbar bg-base-100 text-primary">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-            </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+    <div className="navbar bg-base-100 text-primary">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+          </label>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li>
+              <Link href="/">
+                Accueil
+              </Link>
+            </li>
+            { sessionUser?.isAdmin && (
               <li>
-                <Link href="/">
-                  Accueil
+                <Link href={"/users"}>
+                  Participations
                 </Link>
               </li>
-              {/* <li><a>LISTE DE MARIAGE</a></li>
-              <li><a>LOCALISATION</a></li>
-              <li><a>Nous ecrire</a></li> */}
+            )}
+            {/* <li><a>LISTE DE MARIAGE</a></li>
+            <li><a>LOCALISATION</a></li>
+            <li><a>Nous ecrire</a></li> */}
 
-            </ul>
-          </div>
-        </div>
-        <div className="navbar-center">
-          <Link href="/" className='btn btn-ghost normal-case  font-adora'>
-            E & E
-          </Link>
-        </div>
-        <div className="navbar-end">
-          { user ?
-            !user.hasResponded ? <Link href={`/users/${user.slug}`} className="btn btn-primary btn-sm mx-2">RSVP</Link> : ""
-          :(
-            <Link href="/login" className="btn btn-primary btn-sm mx-2">
-              LOGIN
-            </Link>
-          )}
-          {user && (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <Image
-                      src={user.image}
-                      alt="Eric & Elizabeth"
-                      width={40}
-                      height={40}
-                      className="rounded-full" 
-                    />
-                </div>
-              </label>
-              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                  <Link className="justify-between" href={`/users/${user.slug}`}>
-                    Profil
-                    <span className="badge">New</span>
-                  </Link>
-                </li>
-                <li>
-                  <LogoutButton>
-                    Déconnexion
-                  </LogoutButton>
-                </li>
-              </ul>
-            </div>
-           
-
-          )}
+          </ul>
         </div>
       </div>
+      <div className="navbar-center">
+        <Link href="/" className='btn btn-ghost normal-case  font-adora'>
+          E & E
+        </Link>
+      </div>
+      <div className="navbar-end">
+        { sessionUser ?
+          !sessionUser.hasResponded ? <Link href={`/users/${sessionUser.slug}`} className="btn btn-primary btn-sm mx-2">RSVP</Link> : ""
+        :(
+          <Link href="/login" className="btn btn-primary btn-sm mx-2">
+            LOGIN
+          </Link>
+        )}
+        {sessionUser && (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <Image
+                    src={sessionUser.image}
+                    alt="Eric & Elizabeth"
+                    width={40}
+                    height={40}
+                    className="rounded-full" 
+                  />
+              </div>
+            </label>
+            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+              <li>
+                <Link className="justify-between" href={`/users/${sessionUser.slug}`}>
+                  Profil
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <LogoutButton>
+                  Déconnexion
+                </LogoutButton>
+              </li>
+            </ul>
+          </div>
+          
+
+        )}
+      </div>
+    </div>
   )
 }
 export default async function RootLayout({
@@ -139,10 +144,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const user = await getUserFromCookie()
-  const isAdmin = user?.isAdmin
-  console.log('isAdmin', isAdmin);
-  
   return (
     <html lang="en" data-theme="cupcake">
       <body className={`

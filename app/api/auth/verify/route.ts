@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 
+// SIGN UP VERIFY TOKEN
 export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url)

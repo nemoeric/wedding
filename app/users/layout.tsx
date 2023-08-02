@@ -1,27 +1,18 @@
 
-const jwt = require('jsonwebtoken');
 import Container from '@/components/Container';
-import { cookies } from 'next/headers'
+import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie';
 import { redirect } from 'next/navigation'
 
-export default function UserLayout({
+export default async function UserLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode
 }) {
 
-  const cookie = cookies().get('accessToken')
-  if(!cookie || !cookie.value) return redirect("/login")
+  let sessionUser = await getSessionUserFromCookie()
 
-  
-  let accessToken = cookie?.value
-  try {
-    const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-    if(!decodedToken?.isAdmin) return redirect("/")
-  } catch (error) {
-    return redirect("/")
-  }
-
+  if(!sessionUser) return redirect("/login")
+  // if(!user.isAdmin)  return redirect("/")
   
 
   return (

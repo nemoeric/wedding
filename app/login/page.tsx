@@ -5,7 +5,7 @@ import Login from "@/components/Login"
 const Rsvp = () => {  
 
   return (
-    <div className="h-screen bg-slate-200 flex justify-center items-center text-primary">
+    <div className="h-[600px] flex justify-center items-center text-primary">
       <Container>
         <Login/>
       </Container>
