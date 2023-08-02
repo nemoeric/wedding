@@ -12,7 +12,7 @@ const Card = ({
 }) => {
   return (
     (
-      <div className={`card border border-grey w-full shadow-xl text-primary bg-white ${className} relative`}>
+      <div className={`card border border-grey w-full shadow-xl text-primary bg-white ${className} relative overflow-x-auto`}>
 
         {imageUrl &&(
           <figure>

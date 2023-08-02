@@ -11,9 +11,8 @@ const User = async ({
 }:{
   params: any
 }) => {
-
-  const sessionUser = await getSessionUserFromCookie()
-  const user = await getUserBySlug(params.slug)
+  const sessionUser   = await getSessionUserFromCookie()
+  const user          = await getUserBySlug(params.slug)
   return (
     <div className='grid gap-6'>
       {sessionUser?.isAdmin && (

@@ -38,32 +38,23 @@ export default async function Home() {
           {user ?
             <div>
               <h2 className="font-serif mt-12 text-center text-4xl">Hello</h2>
-              <div className="grid gap-4 mt-2 md:grid-cols-2  items-center justify-center">
+              <Container small>
                 <UserCard user={user}/>
+              </Container>
+              {user.canEdit.length && (
+              <Container small>
+                <h2 className="font-serif mt-12 text-center text-3xl">Vous venez avec</h2>
                 {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
-              </div>     
+              </Container>
+
+              )}
             </div> 
           :
             <Login />
           }
         </div>
       </Container>
-
-      {/* ATTENDING CLIENT COMPONENT */}
-      {/* <Container>
-        <div className="my-6">
-          {user ?
-            <div className="grid gap-4 mt-2">
-              <Rsvp user={user}/>
-              {user.canEdit.map((user:any) => <Rsvp key={user.id} user={user}/> )}
-            </div>      
-          :
-            <Login />
-          }
-        </div>
-
-      </Container>
-       */}
+      
       {/* PROGRAMME */}
       <Container>
         <div className="flex flex-col gap-6 mt-12">
@@ -163,7 +154,7 @@ export default async function Home() {
                         17h : Cérémonie laïque
                       </div>
                       <div className="italic text-xs">
-                        Cérémonie en plein air.
+                        Officiée par nos proches.
                       </div>
                     </div>
                     <div className="">
@@ -171,7 +162,7 @@ export default async function Home() {
                         18h - 20h : Cocktail
                       </div>
                       <div className="italic text-xs">
-                        Jardin, Quinta da Bella Vista
+                        Jardin, Quinta da Bella Vista.
                       </div>
                     </div>
                     <div className="">
@@ -179,7 +170,7 @@ export default async function Home() {
                         20h : Diner
                       </div>
                       <div className="italic text-xs">
-                        Grande serre, Quinta da Bella Vista
+                        Grande serre, Quinta da Bella Vista.
                       </div>
                     </div>
                     <div className="">
@@ -190,7 +181,7 @@ export default async function Home() {
                         {`Les navettes vous redéposeront devant le NH Hotel Centro, Sintra.`}<br/>
                       </div>
                       <div className="italic text-xs my-1">
-                        Navettes toutes les heures
+                        Navettes toutes les heures.
                       </div>
                     </div>
                   </Animation>
@@ -227,7 +218,7 @@ export default async function Home() {
                           12h15 : Départ des navettes
                         </div>
                         <div className="italic text-xs">
-                        Rendez-vous devant le NH Hotel Centro, Sintra.
+                          Rendez-vous devant le NH Hotel Centro, Sintra.
                         </div>
                       </div>
                       <div className="">
@@ -235,7 +226,7 @@ export default async function Home() {
                           13h : Déjeuner bar de plage
                         </div>
                         <div className="italic text-xs">
-                          Foz do Lizandro
+                          Foz do Lizandro.
                         </div>
                       </div>
                       <div className="">
@@ -252,7 +243,7 @@ export default async function Home() {
                           20h : Finger food, Open bar
                         </div>
                         <div className="italic text-xs">
-                          Foz do Lizandro
+                          Foz do Lizandro.
                         </div>
                       </div>
                       <div className="">

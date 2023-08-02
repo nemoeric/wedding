@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LogoutButton from '@/components/LogoutButton'
 import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
+import Section from '@/components/Section'
 
 // SANS FONT
 const openSans = Open_Sans({
@@ -79,6 +80,16 @@ const Navigation = async () => {
             <li>
               <Link href="/venues">
                 Lieux
+              </Link>
+            </li>
+            <li>
+              <Link href="/photos">
+                Photos
+              </Link>
+            </li>
+            <li>
+              <Link href="/list">
+                Liste de mariage
               </Link>
             </li>
             {/* <li><a>LISTE DE MARIAGE</a></li>

@@ -14,7 +14,6 @@ const Venues = () => {
                 Quinta da Bella Vista
                 <div className="badge badge-secondary">Sintra</div>
               </h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
             </div>
           </Card>
 
@@ -24,7 +23,6 @@ const Venues = () => {
                 Indigo
                 <div className="badge badge-secondary">Foz do Lizandro</div>
               </h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
             </div>
           </Card>
         </div>

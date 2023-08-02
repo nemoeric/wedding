@@ -27,7 +27,7 @@ export async function PUT(request: Request, {params}:{
   })
 
   const data = await resend.emails.send({
-      from: 'hey@nemo-stanton.fr',
+      from: process.env.RESEND_FROM as string,
       cc: [
         // "eric@kercambre.com",
         // "elizastanton@gmail.com"
