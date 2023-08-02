@@ -1,7 +1,7 @@
 const Card = ({
   title,
   children,
-  className = ""
+  className = "",
 }:{
   title?: string,
   children: React.ReactNode,
@@ -9,8 +9,8 @@ const Card = ({
 }) => {
   return (
     (
-      <div className={`card border border-grey w-full shadow-xl text-primary bg-white ${className}`}>
-        <div className="card-body">
+      <div className={`card border border-grey w-full shadow-xl text-primary bg-white ${className} relative`}>
+        <div className="card-body p-4">
           {title &&
           <h2 className="card-title">{title}</h2>
           }

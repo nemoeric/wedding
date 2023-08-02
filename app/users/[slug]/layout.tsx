@@ -14,13 +14,13 @@ export default async function UserLayout({
   let sessionUser   = await getSessionUserFromCookie()
   const user        = await getUserBySlug(params.slug)
 
-  if(sessionUser.isAdmin) return <>{children}</>
-  if(sessionUser.id == user.id) return <>{children}</>
+  if(sessionUser?.isAdmin) return <>{children}</>
+  if(sessionUser?.id == user?.id) return <>{children}</>
 
-  let result = sessionUser.canEdit.filter( (canEditUser:any) => canEditUser.id == user.id)
+  let result = sessionUser?.canEdit.filter( (canEditUser:any) => canEditUser.id == user?.id)
   console.log(result);
   
-  if(result.length) return <>{children}</>
+  if(result?.length) return <>{children}</>
   
 
   return redirect("/")

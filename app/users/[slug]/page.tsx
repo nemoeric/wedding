@@ -14,9 +14,9 @@ const User = async ({
   const user = await getUserBySlug(params.slug)
   return (
     <div className='grid gap-6'>
-      {user.isAdmin && (
+      {user?.isAdmin && (
         <Card title='Photo'>
-          <h1>{user.firstName} {user.lastName}</h1>
+          <h1>{user?.firstName} {user?.lastName}</h1>
           <form action={uploadImage}>
             <InputGroup
               label='Image'
@@ -28,7 +28,7 @@ const User = async ({
               label='id'
               name='userId'
               type='text'
-              defaultValue={user.id}
+              defaultValue={user?.id}
             />
             <MyButton title="Save" />
           </form>

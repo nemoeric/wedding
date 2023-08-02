@@ -76,13 +76,6 @@ const Navigation = async () => {
                 Accueil
               </Link>
             </li>
-            { sessionUser?.isAdmin && (
-              <li>
-                <Link href={"/users"}>
-                  Participations
-                </Link>
-              </li>
-            )}
             {/* <li><a>LISTE DE MARIAGE</a></li>
             <li><a>LOCALISATION</a></li>
             <li><a>Nous ecrire</a></li> */}
@@ -97,39 +90,48 @@ const Navigation = async () => {
       </div>
       <div className="navbar-end">
         { sessionUser ?
-          !sessionUser.hasResponded ? <Link href={`/users/${sessionUser.slug}`} className="btn btn-primary btn-sm mx-2">RSVP</Link> : ""
-        :(
+          !sessionUser.hasResponded ? (<Link href={`/users/${sessionUser.slug}`} className="btn btn-primary btn-sm mx-2">RSVP</Link>) : ""
+        :
+        (
           <Link href="/login" className="btn btn-primary btn-sm mx-2">
             LOGIN
           </Link>
         )}
         {sessionUser && (
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <Image
-                    src={sessionUser.image}
-                    alt="Eric & Elizabeth"
-                    width={40}
-                    height={40}
-                    className="rounded-full" 
-                  />
-              </div>
-            </label>
-            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-              <li>
-                <Link className="justify-between" href={`/users/${sessionUser.slug}`}>
-                  Profil
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <li>
-                <LogoutButton>
-                  Déconnexion
-                </LogoutButton>
-              </li>
-            </ul>
-          </div>
+          <>
+            {sessionUser.isAdmin ? (
+              <Link href="/admin" className="btn btn-accent btn-sm mx-2">
+                ADMIN
+              </Link>
+            ):""}
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <Image
+                      src={sessionUser.image || '/placeholder_h.png'}
+                      alt="Eric & Elizabeth"
+                      width={40}
+                      height={40}
+                      className="rounded-full" 
+                    />
+                </div>
+              </label>
+              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                <li>
+                  <Link className="justify-between" href={`/users/${sessionUser.slug}`}>
+                    Profil
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+                <li>
+                  <LogoutButton>
+                    Déconnexion
+                  </LogoutButton>
+                </li>
+              </ul>
+            </div>
+          </>
+
           
 
         )}
