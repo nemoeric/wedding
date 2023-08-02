@@ -24,9 +24,10 @@ export default async function Home() {
             <h1 className='font-serif text-7xl tracking-tight p-1'>
               RENDEZ-VOUS À SINTRA
             </h1>
-            <div className="animate-pulse">
+            {/* <div className="animate-pulse">
               31-08 | 02-09
-            </div>
+            </div> */}
+            <Countdown date={new Date('2023-08-31T17:00:00')} />
           </Animation>
         </div>
       </div>

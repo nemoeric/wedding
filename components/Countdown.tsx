@@ -33,29 +33,29 @@ const Countdown = ({ date }: { date: Date }) => {
 
   return (
     <div className="flex gap-5 font-sans justify-center text-center">
-      <div className="flex flex-col">
-        <span className="countdown text-4xl">
+      <div className="flex gap-1">
+        <span className="countdown text-xl">
           <span style={valueStyleDays}></span>
         </span>
-        jours
+        j
       </div>
-      <div className="flex flex-col">
-        <span className="countdown text-4xl">
+      <div className="flex gap-1">
+        <span className="countdown text-xl">
           <span style={valueStyleHours}></span>
         </span>
-        heures
+        h
       </div>
-      <div className="flex flex-col">
-        <span className="countdown text-4xl">
+      <div className="flex gap-1">
+        <span className="countdown text-xl">
           <span style={valueStyleMinutes}></span>
         </span>
-        min
+        m
       </div>
-      <div className="flex flex-col">
-        <span className="countdown text-4xl">
+      <div className="flex gap-1">
+        <span className="countdown text-xl">
           <span style={valueStyleSeconds}></span>
         </span>
-        sec
+        s
       </div>
     </div>
   );
