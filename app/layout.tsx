@@ -76,6 +76,11 @@ const Navigation = async () => {
                 Accueil
               </Link>
             </li>
+            <li>
+              <Link href="/venues">
+                Lieux
+              </Link>
+            </li>
             {/* <li><a>LISTE DE MARIAGE</a></li>
             <li><a>LOCALISATION</a></li>
             <li><a>Nous ecrire</a></li> */}
