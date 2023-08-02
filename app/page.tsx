@@ -27,22 +27,21 @@ export default async function Home() {
             <div className="animate-pulse">
               31-08 | 02-09
             </div>
-            <Countdown date={new Date('2023-08-31T17:00:00')} />
-
           </Animation>
         </div>
       </div>
 
       {/* USER CARDS */}
       <Container>
-        <h2 className="font-serif mt-12 text-center text-4xl">Hello</h2>
         <div className="my-6">
           {user ?
-            <div className="grid gap-4 mt-2 md:grid-cols-2  items-center justify-center">
-              <UserCard user={user}/>
-              {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
-
-            </div>      
+            <div>
+              <h2 className="font-serif mt-12 text-center text-4xl">Hello</h2>
+              <div className="grid gap-4 mt-2 md:grid-cols-2  items-center justify-center">
+                <UserCard user={user}/>
+                {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
+              </div>     
+            </div> 
           :
             <Login />
           }
