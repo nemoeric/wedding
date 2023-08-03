@@ -197,7 +197,7 @@ export default async function Home() {
               <div className="md:w-2/5">
                 <Animation>
                   <Image 
-                    src="/lizandro.jpeg" 
+                    src="/lizandro.jpg" 
                     alt="lizandro of the author"
                     className="object-cover aspect-square mask mask-heart	w-full"
                     width={1920}
