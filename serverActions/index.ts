@@ -6,11 +6,11 @@ import {
   createUser, 
   getUserByID
 } from '@/prisma/user'
-import resend from '@/utils/resend';
+import resend from '@/libs/resend';
 import { MagicLink} from '@/emails/magikLink';
 import { InviteToWebsite } from '@/emails/InviteToWebsite';
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "@/utils/aws";
+import { s3Client } from "@/libs/aws";
 import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 

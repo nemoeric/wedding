@@ -1,5 +1,5 @@
 "use client"
-import { logout } from '@/utils/serverActions'
+import { logout } from '@/serverActions'
 
 const LogoutButton = ({
   children

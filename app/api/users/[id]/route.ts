@@ -3,7 +3,7 @@ import {
   updateUser,
 } from '@/prisma/user'
 
-import resend from '@/utils/resend';
+import resend from '@/libs/resend';
 import {
   ConfirmResponse
 } from '@/emails/confirmResponse';

@@ -8,7 +8,7 @@ import MyButton from "@/components/daisyui/MyButton"
 
 import {
   handleFormRegister
-} from "@/utils/serverActions";
+} from "@/serverActions";
 import {useTransition} from "react"
 
 const RegisterForm = () => {

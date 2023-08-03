@@ -2,7 +2,7 @@
 import MyButton from '@/components/daisyui/MyButton'
 import InputGroup from '@/components/daisyui/inputGroup'
 import { useTransition } from 'react'
-import {inviteUserToWebsite} from '@/utils/serverActions'
+import {inviteUserToWebsite} from '@/serverActions'
 
 const NotifyUserCell = ({user}:{
   user: any

@@ -2,7 +2,7 @@ import {getUserBySlug} from '@/prisma/user'
 import Rsvp from '@/components/Rsvp'
 import InputGroup from '@/components/daisyui/inputGroup'
 import Card from '@/components/daisyui/card'
-import {uploadImage} from '@/utils/serverActions'
+import {uploadImage} from '@/serverActions'
 import MyButton from "@/components/daisyui/MyButton"
 import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
 
