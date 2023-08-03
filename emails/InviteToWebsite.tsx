@@ -35,35 +35,47 @@ export const InviteToWebsite = ({
       <Tailwind>
         <Body className=" bg-slate-50 my-auto mx-auto font-sans">
           <Container className="bg-[#f4f0ec] border border-solid border-[#eaeaea] bg-red rounded my-[40px] mx-auto p-[20px] w-[465px]">
-            <Section className="mt-[32px]">
+            <Section>
+              <Img
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2FlogoTr.png&w=128&q=75`}
+                  width="50"
+                  height="50"
+                  alt="Mariage Nemo Stanton"
+                  className="mx-auto"
+                />
+            </Section>
+            {/* <Section className="mt-[32px]">
               <div className='flex'>
                 <Img
-                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palm.jpeg&w=3840&q=75`}
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palm.jpeg&w=100&q=75`}
                   width="150"
                   height="150"
                   alt="Mariage Nemo Stanton"
                   className="my-0 mx-auto rounded-full translate-x-10 z-10"
                 />
                 <Img
-                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palace_banner.jpg&w=1920&q=75`}
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Fqbv_palace_banner.jpg&w=100&q=75`}
                   width="150"
                   height="150"
                   alt="Mariage Nemo Stanton"
                   className="my-0 mx-auto rounded-full z-20"
                 />
                 <Img
-                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Flizandro.jpeg&w=3840&q=75`}
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Flizandro.jpg&w=100&q=75`}
                   width="150"
                   height="150"
                   alt="Mariage Nemo Stanton"
                   className="my-0 mx-auto rounded-full -translate-x-10 z-30"
                 />
               </div>
-            </Section>
-            <Heading className="text-black text-[24px] font-serif p-0 my-[30px] mx-0">
+            </Section> */}
+            <Heading className="text-black text-[24px] font-serif p-0 mt-6 mb-0 text-center">
               Confirmez votre présence
             </Heading>
-            <Text className="text-black font-sans text-[14px] leading-[24px]">
+            <Text className="text-black font-sans italic underline text-center mt-1">
+              Réponse souhaitée avant le 10 Août 2023
+            </Text>
+            <Text className="text-black font-sans text-[14px] leading-[24px] mt-6">
               Bonjour {user.firstName},
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
