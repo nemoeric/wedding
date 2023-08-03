@@ -40,7 +40,7 @@ const Navigation = async () => {
       </div>
       <div className="navbar-center">
         <Link href="/" className='h-'>
-          <Image  src="/logoTr.png" alt="Eric & Elizabeth" width={50} height={50} className='h-hull relative' />
+          <Image  src="/logo.png" alt="Eric & Elizabeth" width={50} height={50} className='h-hull relative' />
         </Link>
       </div>
       <div className="navbar-end">

@@ -36,7 +36,7 @@ export const ConfirmResponse = ({
           <Container className="bg-[#f4f0ec] border border-solid border-[#eaeaea] bg-red rounded my-[40px] mx-auto p-[20px] w-[465px]">
             <Section>
               <Img
-                  src={`https://www.nemo-stanton.fr/_next/image?url=%2FlogoTr.png&w=128&q=75`}
+                  src={`https://www.nemo-stanton.fr/_next/image?url=%2Flogo.png&w=128&q=75`}
                   width="50"
                   height="50"
                   alt="Mariage Nemo Stanton"
