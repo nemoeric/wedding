@@ -28,7 +28,8 @@ export async function GET(request: Request) {
       var accessToken = jwt.sign({ 
         userId: user.id ,
         isAdmin: user.isAdmin
-      }, process.env.JWT_SECRET, {expiresIn: '1h'});
+      }, process.env.JWT_SECRET, {expiresIn: '3d'});
+      
       cookies().set({
         name: 'accessToken',
         value: accessToken,
@@ -37,6 +38,7 @@ export async function GET(request: Request) {
         httpOnly: true,
         path: '/',
       })
+      
       await updateUser(user.id,{hasConnected: true})
       revalidatePath('/')
 

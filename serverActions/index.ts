@@ -23,7 +23,7 @@ export const handleFormLogin = async (formData: FormData) => {
 
   if(user != null) {
     try {
-      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '100ms'});
+      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '6h'});
       await resend.emails.send({
         from: process.env.RESEND_FROM as string,
         to: [
