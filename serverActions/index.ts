@@ -23,8 +23,8 @@ export const handleFormLogin = async (formData: FormData) => {
 
   if(user != null) {
     try {
-      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '1h'});
-      const data = await resend.emails.send({
+      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '100ms'});
+      await resend.emails.send({
         from: process.env.RESEND_FROM as string,
         to: [
           user.email
@@ -127,7 +127,7 @@ export const inviteUserToWebsite = async (formData: FormData) => {
   const user         = await getUserByID(userId)
   if(user != null) {
     try {
-      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '6h'});
+      var token = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '7d'});
       await resend.emails.send({
         from: process.env.RESEND_FROM as string,
         to: [
@@ -143,8 +143,6 @@ export const inviteUserToWebsite = async (formData: FormData) => {
         }),
       });
 
-      // update user
-      
       await updateUser(user.id,{hasBeenInvited: true})
       revalidatePath('/users')
       return {

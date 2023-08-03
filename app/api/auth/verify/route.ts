@@ -46,10 +46,10 @@ export async function GET(request: Request) {
 
   } catch (error) {
     console.log("error", error)
-    return NextResponse.json({ error })
+    // return NextResponse.json({ error })
     
     // redirect to login
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/login?error=`)
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/login?expired=true`)
 
   }
 

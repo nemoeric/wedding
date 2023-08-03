@@ -3,7 +3,11 @@ import {handleFormLogin} from "@/serverActions"
 import {useState, useTransition} from "react"
 import MyButton from "@/components/daisyui/MyButton"
 import Card from "./daisyui/card"
-const Login = () => {
+const Login = ({
+  expired = false
+}:{
+  expired?: boolean
+}) => {
 
   const [showError, setShowError] = useState(false)
   const errorMessage = showError && (
@@ -22,6 +26,14 @@ const Login = () => {
         <h2 className="font-serif text-3xl md:text-6xl">
           Espace invité
         </h2>
+        {expired && (
+          <div className="alert alert-error my-4 text-sm italic">
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>
+              Votre lien a expiré. Saisissez votre email pour recevoir un nouveau lien.
+            </span>
+          </div>
+        )}
         <div>
           Saisissez votre email pour recevoir votre lien de connexion sécurisé.
         </div>

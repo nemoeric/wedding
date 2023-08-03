@@ -102,7 +102,7 @@ export const InviteToWebsite = ({
               </Button>
             </Section>
 
-            <Text className=" text-center font-sans text-xs leading-[24px]">
+            <Text className="text-black text-center font-sans text-xs leading-[24px]">
               Coded with ❤️ by Nemo
             </Text>
           </Container>
