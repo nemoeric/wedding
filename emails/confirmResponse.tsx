@@ -60,7 +60,7 @@ export const ConfirmResponse = ({
               </div>
             </Section>
             <Heading className="text-black font-serif p-0 mx-0 text-[24px]">
-              Votre réponse a été prise en compte !
+              Merci pour votre réponse
             </Heading>
             <Section>
               <div className="text-black font-sans text-[14px]">
@@ -75,36 +75,36 @@ export const ConfirmResponse = ({
                 <Heading as="h2" className="text-black font-serif">
                   Restrictions alimentaires
                 </Heading>
-                <Text className='italic'>{user.foodRestrictions}</Text>;
+                <Text className='italic'>{user.foodRestrictions}</Text>
               </Section>
             )}
             {/* JEUDI */}
             <Section>
-              <Heading as="h2" className="text-black font-serif">
+              <Heading as="h4" className="text-black mb-2 font-serif">
                 Jeudi
               </Heading>
               <div className="text-black font-sans text-[14px]">
                 Présence : <span className='text-bold'>{user.thursdayWillAttend ? "Oui" : "Non"}</span> 
               </div>
               <div className="text-black font-sans text-[14px]">
-                {`Besoin d'un transport`} : <span className='text-bold'>{user.thursdayWillNeedTransport ? "Oui" : "Non"}</span> 
+                {`Navettes`} : <span className='text-bold'>{user.thursdayWillNeedTransport ? "Oui" : "Non"}</span> 
               </div>
             </Section>
             {/* VENDREDI */}
             <Section>
-              <Heading as="h2" className="text-black font-serif">
+              <Heading as="h4" className="text-black mb-2 font-serif">
                 Vendredi
               </Heading>
               <div className="text-black font-sans text-[14px]">
                 Présence : <span className='text-bold'>{user.fridayWillAttend ? "Oui" : "Non"}</span> 
               </div>
               <div className="text-black font-sans text-[14px]">
-                {`Besoin d'un transport`} : <span className='text-bold'>{user.fridayWillNeedTransport ? "Oui" : "Non"}</span> 
+                {`Navettes`} : <span className='text-bold'>{user.fridayWillNeedTransport ? "Oui" : "Non"}</span> 
               </div>
             </Section>
             {/* SAMEDI */}
             <Section>
-              <Heading as="h2" className="text-black font-serif">
+              <Heading as="h4" className="text-black mb-2 font-serif">
                 Samedi
               </Heading>
 
@@ -112,7 +112,7 @@ export const ConfirmResponse = ({
                 Présence : <span className='text-bold'>{user.saturdayWillAttend ? "Oui" : "Non"}</span> 
               </div>
               <div className="text-black font-sans text-[14px]">
-                {`Besoin d'un transport`} : <span className='text-bold'>{user.saturdayWillNeedTransport ? "Oui" : "Non"}</span> 
+                {`Navettes`} : <span className='text-bold'>{user.saturdayWillNeedTransport ? "Oui" : "Non"}</span> 
               </div>
 
             </Section>
@@ -131,11 +131,13 @@ export const ConfirmResponse = ({
                 </Text>
               </Section>
             }
+
+            <Text className=" text-center font-sans text-xs leading-[24px]">
+              Coded with ❤️ by Nemo
+            </Text>
             
           </Container>
-          <Text className="text-white text-center font-sans text-xs leading-[24px]">
-            Coded with ❤️ by Nemo
-          </Text>
+
         </Body>
       </Tailwind>
     </Html>

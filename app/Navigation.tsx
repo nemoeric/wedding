@@ -22,11 +22,6 @@ const Navigation = async () => {
               </Link>
             </li>
             <li>
-              <Link href="/venues">
-                Lieux
-              </Link>
-            </li>
-            <li>
               <Link href="/photos">
                 Photos
               </Link>
@@ -44,8 +39,8 @@ const Navigation = async () => {
         </div>
       </div>
       <div className="navbar-center">
-        <Link href="/" className='btn btn-ghost normal-case  font-adora'>
-          E & E
+        <Link href="/" className='h-'>
+          <Image  src="/logoTr.png" alt="Eric & Elizabeth" width={50} height={50} className='h-hull relative' />
         </Link>
       </div>
       <div className="navbar-end">

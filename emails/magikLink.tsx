@@ -36,6 +36,15 @@ export const MagicLink = ({
       <Tailwind>
         <Body className=" bg-slate-50 my-auto mx-auto font-sans">
           <Container className="bg-[#f4f0ec] border border-solid border-[#eaeaea] bg-red rounded my-[40px] mx-auto p-[20px] w-[465px]">
+            <Section>
+              <Img
+                  src={`/logoTr.png`}
+                  width="30"
+                  height="30"
+                  alt="Mariage Nemo Stanton"
+                  className="mx-auto"
+                />
+            </Section>
             <Section className="mt-[32px]">
               <div className='flex'>
                 <Img
@@ -85,10 +94,11 @@ export const MagicLink = ({
                 Se connecter
               </Button>
             </Section>
+            <Text className=" text-center font-sans text-xs leading-[24px]">
+              Coded with ❤️ by Nemo
+            </Text>
           </Container>
-          <Text className="text-white text-center font-sans text-xs leading-[24px]">
-            Coded with ❤️ by Nemo
-          </Text>
+
         </Body>
       </Tailwind>
     </Html>

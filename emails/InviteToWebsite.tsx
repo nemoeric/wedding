@@ -89,10 +89,12 @@ export const InviteToWebsite = ({
                 Accéder à mon espace
               </Button>
             </Section>
+
+            <Text className=" text-center font-sans text-xs leading-[24px]">
+              Coded with ❤️ by Nemo
+            </Text>
           </Container>
-          <Text className="text-white text-center font-sans text-xs leading-[24px]">
-            Coded with ❤️ by Nemo
-          </Text>
+
         </Body>
       </Tailwind>
     </Html>
