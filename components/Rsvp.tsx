@@ -70,7 +70,7 @@ const Rsvp = ({user}:{
           <div className="border p-2 rounded-md bg-amber-100">
             <div className="form-control">
               <label className="cursor-pointer label">
-                <span className="label-text">Avez-vous des alérgies / restrictions alimentaires ?</span>
+                <span className="label-text">Avez-vous des allergies / restrictions alimentaires ?</span>
                 <input type="checkbox" className="toggle toggle-primary" name="hasFoodRestrictions" checked={formData.hasFoodRestrictions} onChange={(e)=>{
                   setFormData({...formData, hasFoodRestrictions: e.target.checked })
                 }} />

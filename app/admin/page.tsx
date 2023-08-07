@@ -17,12 +17,21 @@ const Users = async () => {
 
   return (
     <Container>
-      <h1 className="text-3xl font-serif mb-4">Welcome to the back office</h1>
 
+      <div className="flex justify-between mb-6">
+        <h1 className="text-3xl font-serif mb-4">Welcome to the back office</h1>
+
+        <Link href={"/users/new"}>
+          <button className="btn btn-primary btn-sm">
+            Add guest
+          </button>
+        </Link>
+
+      </div>
       <div className="grid gap-4">
 
         <Card title="Engagment">
-          <p>Review the guest list and the engagment with the platform.</p>
+          <p>Review the guest list ({users.length}) and the engagment with the platform.</p>
           <Table
             headings={[
               'Guest', 
