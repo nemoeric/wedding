@@ -73,7 +73,7 @@ export const InviteToWebsite = ({
               Confirmez votre présence
             </Heading>
             <Text className="text-black font-sans italic underline text-center mt-1">
-              Réponse souhaitée avant le 10 Août 2023
+              Réponse souhaitée avant le 12 Août 2023
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px] mt-6">
               Bonjour {user.firstName},
