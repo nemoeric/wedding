@@ -1,5 +1,5 @@
-
 import Container from '@/components/Container';
+import Section from '@/components/Section';
 import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie';
 import { redirect } from 'next/navigation'
 
@@ -10,14 +10,13 @@ export default async function UserLayout({
 }) {
 
   let sessionUser = await getSessionUserFromCookie()
-
   if(!sessionUser) return redirect("/login")
-  // if(!user.isAdmin)  return redirect("/")
-  
 
   return (
-    <Container>
-      {children}
-    </Container>
+    <Section>
+      <Container>
+        {children}
+      </Container>
+    </Section>
   )
 }

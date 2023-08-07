@@ -44,7 +44,10 @@ export default async function Home() {
               {user.canEdit.length && (
               <Container small>
                 <h2 className="font-serif mt-12 text-center text-3xl">Vous venez avec</h2>
-                {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
+                <div className="grid gap-2">
+                  {user.canEdit.map((user:any) => <UserCard key={user.id} user={user}/> )}
+
+                </div>
               </Container>
 
               )}

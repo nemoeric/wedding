@@ -22,12 +22,17 @@ const Navigation = async () => {
               </Link>
             </li>
             <li>
+              <Link href="/users">
+                Invités
+              </Link>
+            </li>
+            <li>
               <Link href="/photos">
                 Photos
               </Link>
             </li>
             <li>
-              <Link href="/list">
+              <Link href="https://ericetelizabeth.zankyou.com/fr/liste-de-mariage" target='_blank'>
                 Liste de mariage
               </Link>
             </li>

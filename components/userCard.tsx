@@ -15,7 +15,7 @@ const UserCard = ({ user }:{
             height={90}
             src={user.image || '/placeholder_h.png'}
             alt="Eric & Elizabeth"
-            className="rounded-full"
+            className="rounded-full object-cover aspect-square"
           />
           <div>
             <div className="font-bold">
