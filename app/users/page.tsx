@@ -42,8 +42,20 @@ const Users = async () => {
 
   // for Each user, merge canEdit and canBeEditedBy and remove duplicates
   users.forEach((user:any) => {
+    console.log("LA JE SUIS SUR", user.firstName, user.lastName);
+    
     user.relatedTo = user.canEdit.concat(user.canBeEditedBy)
-    user.relatedTo = user.canEdit.filter((v:any,i:any,a:any)=>a.findIndex((t:any)=>(t.id === v.id))===i)
+    console.log(user.relatedTo.length);
+
+
+    user.relatedTo = user.relatedTo.filter((subUser:any, index:any, self:any) =>
+      index === self.findIndex((t:any) => (
+        t.id === subUser.id
+      ))
+    )
+    console.log("Apres suppression", user.relatedTo.length);
+
+  
   })
 
 
@@ -71,7 +83,7 @@ const Users = async () => {
                       {user.firstName} {user.lastName}
                     </div>
                     <div className='flex gap-1'>
-                      {user.canEdit?.map( (canEditUser:any, i:any) =>  {
+                      {user.relatedTo?.map( (canEditUser:any, i:any) =>  {
                         return <Image
                           src={canEditUser.image || '/placeholder_h.png'}
                           alt={canEditUser.firstName}
