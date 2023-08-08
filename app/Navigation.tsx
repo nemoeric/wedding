@@ -80,7 +80,6 @@ const Navigation = async () => {
                 <li>
                   <Link className="justify-between" href={`/users/${sessionUser.slug}`}>
                     Profil
-                    <span className="badge">New</span>
                   </Link>
                 </li>
                 <li>
