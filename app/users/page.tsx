@@ -3,14 +3,9 @@ import Card from '@/components/daisyui/card'
 import {getUsers} from '@/prisma/user'
 import Image from 'next/image'
 import Link from 'next/link'
-import NotifyUserCell from '../../components/NotifyUserCell'
-import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
-import { redirect } from 'next/navigation'
 
 const Users = async () => {
 
-  let sessionUser = await getSessionUserFromCookie()
-  if(!sessionUser?.isAdmin) return redirect("/")
 
   const users = await getUsers({
     orderBy: {
@@ -42,20 +37,12 @@ const Users = async () => {
 
   // for Each user, merge canEdit and canBeEditedBy and remove duplicates
   users.forEach((user:any) => {
-    console.log("LA JE SUIS SUR", user.firstName, user.lastName);
-    
     user.relatedTo = user.canEdit.concat(user.canBeEditedBy)
-    console.log(user.relatedTo.length);
-
-
     user.relatedTo = user.relatedTo.filter((subUser:any, index:any, self:any) =>
       index === self.findIndex((t:any) => (
         t.id === subUser.id
       ))
     )
-    console.log("Apres suppression", user.relatedTo.length);
-
-  
   })
 
 
