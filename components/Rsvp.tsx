@@ -135,7 +135,7 @@ const Rsvp = ({user}:{
             <div className="divider italic">Samedi 2 septembre</div>
             <div className="form-control">
               <label className="cursor-pointer label">
-                <span className="label-text">Je serai présent</span>
+                <span className="label-text">Je serai présent.e</span>
                 <input type="checkbox" className="toggle toggle-primary" name="saturdayWillAttend" checked={formData.saturdayWillAttend} onChange={(e)=>{
                   setFormData({...formData, saturdayWillAttend: e.target.checked })
                 }} />

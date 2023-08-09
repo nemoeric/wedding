@@ -39,16 +39,34 @@ const Users = async () => {
             <div className="stat">
               <div className="stat-title">Jeudi</div>
               <div className="stat-value">{users.filter(user => user.thursdayWillAttend).length}</div>
+              <div>
+                Not coming : {users.filter(user => !user.thursdayWillAttend && user.hasResponded).length}
+              </div>
+              <div>
+                Not Answered : {users.filter(user => !user.thursdayWillAttend && !user.hasResponded).length}
+              </div>
             </div>
             <div className="stat">
        
               <div className="stat-title">Vendredi</div>
               <div className="stat-value">{users.filter(user => user.fridayWillAttend).length}</div>
+              <div>
+                Not coming : {users.filter(user => !user.fridayWillAttend && user.hasResponded).length}
+              </div>
+              <div>
+                Not Answered : {users.filter(user => !user.fridayWillAttend && !user.hasResponded).length}
+              </div>
             </div>
             <div className="stat">
       
               <div className="stat-title">Samedi</div>
               <div className="stat-value">{users.filter(user => user.saturdayWillAttend).length}</div>
+              <div>
+                Not coming : {users.filter(user => !user.saturdayWillAttend && user.hasResponded).length}
+              </div>
+              <div>
+                Not Answered : {users.filter(user => !user.saturdayWillAttend && !user.hasResponded).length}
+              </div>
             </div>
             
           </div>
