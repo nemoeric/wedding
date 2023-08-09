@@ -13,6 +13,9 @@ const Users = async () => {
       firstName: 'asc',
     },
   })
+
+
+  const thursdayWillAttend = users.filter(user => user.thursdayWillAttend)
   
 
   return (
@@ -29,6 +32,27 @@ const Users = async () => {
 
       </div>
       <div className="grid gap-4">
+
+        <Card title="Participation">
+          <p>These are the number of positive answers yet received</p>
+          <div className="stats shadow">
+            <div className="stat">
+              <div className="stat-title">Jeudi</div>
+              <div className="stat-value">{users.filter(user => user.thursdayWillAttend).length}</div>
+            </div>
+            <div className="stat">
+       
+              <div className="stat-title">Vendredi</div>
+              <div className="stat-value">{users.filter(user => user.fridayWillAttend).length}</div>
+            </div>
+            <div className="stat">
+      
+              <div className="stat-title">Samedi</div>
+              <div className="stat-value">{users.filter(user => user.saturdayWillAttend).length}</div>
+            </div>
+            
+          </div>
+        </Card>
 
         <Card title="Engagment">
           <p>Review the guest list ({users.length}) and the engagment with the platform.</p>
