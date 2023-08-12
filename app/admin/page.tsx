@@ -12,11 +12,32 @@ const Users = async () => {
     orderBy: {
       firstName: 'asc',
     },
+    include: {
+      room: true,
+    }
   })
 
+  // filter on user without room
+  const usersWithoutRoom = users.filter(user => user.roomId === null)
 
-  const thursdayWillAttend = users.filter(user => user.thursdayWillAttend)
-  
+  const rooms = await prisma.room.findMany({
+    orderBy: {
+      name: 'asc',
+    },
+    select: {
+      name: true,
+      location: true,
+      floor: true,
+      users: {
+        select: {
+          firstName: true,
+          lastName: true,
+          image: true,
+        }
+      },
+
+    }
+  })
 
   return (
     <Container>
@@ -33,44 +54,122 @@ const Users = async () => {
       </div>
       <div className="grid gap-4">
 
-        <Card title="Participation">
-          <p>These are the number of positive answers yet received</p>
-          <div className="stats shadow">
-            <div className="stat">
-              <div className="stat-title">Jeudi</div>
-              <div className="stat-value">{users.filter(user => user.thursdayWillAttend).length}</div>
+
+        <div className="grid grid-cols-3 gap-2">
+          <Card title="Thurdsay">
+            <div>
+              Sleeping at QBV : { users.filter(user => user.roomId !== null).length} people
+            </div>
+            <div className="divider"></div>
+            <div>
+              Needs transportation : {users.filter(user => user.thursdayWillAttend && user.thursdayWillNeedTransport && user.roomId === null).length} people
+            </div>
+            <div>
+              On their own : {users.filter(user => user.thursdayWillAttend && !user.thursdayWillNeedTransport && user.roomId === null).length} people
+            </div>
+            <div className="divider"></div>
+            <div className="stat-value">
+              {users.filter(user => user.thursdayWillAttend).length} attenting
+            </div>
+            <div className="flex gap-3 italic text-sm">
               <div>
-                Not coming : {users.filter(user => !user.thursdayWillAttend && user.hasResponded).length}
+                {users.filter(user => !user.thursdayWillAttend && user.hasResponded).length} not coming
               </div>
               <div>
-                Not Answered : {users.filter(user => !user.thursdayWillAttend && !user.hasResponded).length}
+                {users.filter(user => !user.thursdayWillAttend && !user.hasResponded).length} not answered
+              </div>
+
+            </div>
+
+          </Card>
+
+          <Card title="Friday">
+            <div>
+              Sleeping at QBV : { users.filter(user => user.roomId !== null).length} people
+            </div>
+            <div className="divider"></div>
+            <div>
+              Needs transportation : {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport && user.roomId === null).length} people
+            </div>
+            <div>
+              On their own : {users.filter(user => user.fridayWillAttend && !user.fridayWillNeedTransport && user.roomId === null).length} people
+            </div>
+
+            <div className="divider"></div>
+            <div className="stat-value">
+              {users.filter(user => user.fridayWillAttend).length} attenting
+            </div>
+            <div className="flex gap-3 italic text-sm">
+              <div>
+                {users.filter(user => !user.fridayWillAttend && user.hasResponded).length} not coming
+              </div>
+              <div>
+                {users.filter(user => !user.fridayWillAttend && !user.hasResponded).length} not answered
               </div>
             </div>
-            <div className="stat">
-       
-              <div className="stat-title">Vendredi</div>
-              <div className="stat-value">{users.filter(user => user.fridayWillAttend).length}</div>
+
+          </Card>
+
+          <Card title="Saturday">
+            <div>
+              Needs transportation : {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport).length} people
+            </div>
+            <div>
+              On their own : {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).length} people
+            </div>
+
+            <div className="divider"></div>
+            <div className="stat-value">
+              {users.filter(user => user.saturdayWillAttend).length} attenting
+            </div>
+            <div className="flex gap-3 italic text-sm">
               <div>
-                Not coming : {users.filter(user => !user.fridayWillAttend && user.hasResponded).length}
+                {users.filter(user => !user.saturdayWillAttend && user.hasResponded).length} not coming
               </div>
               <div>
-                Not Answered : {users.filter(user => !user.fridayWillAttend && !user.hasResponded).length}
+                {users.filter(user => !user.saturdayWillAttend && !user.hasResponded).length} not answered
               </div>
             </div>
-            <div className="stat">
-      
-              <div className="stat-title">Samedi</div>
-              <div className="stat-value">{users.filter(user => user.saturdayWillAttend).length}</div>
-              <div>
-                Not coming : {users.filter(user => !user.saturdayWillAttend && user.hasResponded).length}
-              </div>
-              <div>
-                Not Answered : {users.filter(user => !user.saturdayWillAttend && !user.hasResponded).length}
-              </div>
-            </div>
-            
-          </div>
+
+          </Card>
+
+        </div>
+
+        <Card title="Food restrictions">
+          <p>Keep an eye on foodrestrictions.</p>
+          <Table
+            headings={[
+              'Guest', 
+              'Food restrictions',
+            ]}
+            rows={users.filter(user=>user.hasFoodRestrictions).map((user:any) => {
+
+              const avatarMarkup = (
+                <Link href={`/users/${user.slug}`} key={user.id}>
+                  <div className="flex items-center space-x-3" key={user.id}>
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <Image src={user.image || "/placeholder_h.png"} width="50" height="50" className="rounded-full" key={user.id} alt={user.slug}/>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{user.firstName} {user.lastName}</div>
+                      <div className="text-sm opacity-50">{user.email}</div>
+                    </div>
+                  </div>
+                </Link>
+              )
+              
+
+              return [
+                avatarMarkup,
+                user.foodRestrictions,
+              ] 
+            })}
+            formats={['', '', '', '']}
+          />
         </Card>
+
 
         <Card title="Engagment">
           <p>Review the guest list ({users.length}) and the engagment with the platform.</p>
@@ -113,41 +212,6 @@ const Users = async () => {
             formats={['', '', '', '']}
           />
 
-        </Card>
-
-        <Card title="Food restrictions">
-          <p>Keep an eye on foodrestrictions.</p>
-          <Table
-            headings={[
-              'Guest', 
-              'Food restrictions',
-            ]}
-            rows={users.filter(user=>user.hasFoodRestrictions).map((user:any) => {
-
-              const avatarMarkup = (
-                <Link href={`/users/${user.slug}`} key={user.id}>
-                  <div className="flex items-center space-x-3" key={user.id}>
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <Image src={user.image || "/placeholder_h.png"} width="50" height="50" className="rounded-full" key={user.id} alt={user.slug}/>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{user.firstName} {user.lastName}</div>
-                      <div className="text-sm opacity-50">{user.email}</div>
-                    </div>
-                  </div>
-                </Link>
-              )
-              
-
-              return [
-                avatarMarkup,
-                user.foodRestrictions,
-              ] 
-            })}
-            formats={['', '', '', '']}
-          />
         </Card>
 
       </div>

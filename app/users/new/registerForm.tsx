@@ -30,7 +30,7 @@ const RegisterForm = () => {
         <InputGroup label="Prénom" name="firstName" required/>
         <InputGroup label="Nom" name="lastName" required/>
         <InputGroup label="Email" name="email" type="email" required/>
-        <MyButton title="Se connecter" isPending={isPending}/>
+        <MyButton title="Create guest" isPending={isPending}/>
       </Card>
     </form>
   )
