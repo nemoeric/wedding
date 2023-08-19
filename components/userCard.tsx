@@ -2,8 +2,9 @@ import Image from "next/image"
 import Card from "./daisyui/card"
 import Link from "next/link"
 
-const UserCard = ({ user }:{
-  user: any
+const UserCard = ({ user, preview }:{
+  user: any,
+  preview?: boolean,
 }) => {
   let borderColor = user.hasResponded ? "border-green-400" : "border-warning"
   return  (
@@ -21,18 +22,23 @@ const UserCard = ({ user }:{
             <div className="font-bold">
               {user.firstName} {user.lastName}
             </div>
-            <div>
-              {user.hasResponded ? (
-                "Vous avez répondu 🫶🏻"
-              ):(
-                <span className="text-warning">{`Vous n'avez pas encore répondu !`}</span>
-              )}
-            </div>
+            {!preview && (
+              <div>
+                {user.hasResponded ? (
+                  "Vous avez répondu 🫶🏻"
+                ):(
+                  <span className="text-warning">{`Vous n'avez pas encore répondu !`}</span>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        <div className="absolute right-4 bottom-4 text-xs italic underline">
-          Accéder
-        </div>
+        {!preview && (
+          <div className="absolute right-4 bottom-4 text-xs italic underline">
+            Accéder au profil
+          </div>
+
+        )}
       </Link>
 
     </Card>

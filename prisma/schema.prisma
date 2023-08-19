@@ -66,6 +66,7 @@ model Room {
   location  String
   slug      String   @unique
   floor     Int      @default(0)
+  image     String?
 
   // Relationships
   users User[]

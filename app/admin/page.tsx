@@ -5,6 +5,9 @@ import Card             from "@/components/daisyui/card"
 import prisma           from "@/prisma/prisma"
 import Image from "next/image"
 import Link from "next/link"
+import Modal from "@/components/daisyui/Modal"
+import UserCard from "@/components/userCard"
+import SmallUserCard from "@/components/smallUserCard"
 
 const Users = async () => {
 
@@ -44,97 +47,273 @@ const Users = async () => {
 
       <div className="flex justify-between mb-6">
         <h1 className="text-3xl font-serif mb-4">Welcome to the back office</h1>
-
-        <Link href={"/users/new"}>
-          <button className="btn btn-primary btn-sm">
-            Add guest
-          </button>
-        </Link>
-
       </div>
+
+
       <div className="grid gap-4">
 
-
-        <div className="grid grid-cols-3 gap-2">
-          <Card title="Thurdsay">
-            <div>
-              Sleeping at QBV : { users.filter(user => user.roomId !== null).length} people
-            </div>
-            <div className="divider"></div>
-            <div>
-              Needs transportation : {users.filter(user => user.thursdayWillAttend && user.thursdayWillNeedTransport && user.roomId === null).length} people
-            </div>
-            <div>
-              On their own : {users.filter(user => user.thursdayWillAttend && !user.thursdayWillNeedTransport && user.roomId === null).length} people
-            </div>
-            <div className="divider"></div>
-            <div className="stat-value">
-              {users.filter(user => user.thursdayWillAttend).length} attenting
-            </div>
-            <div className="flex gap-3 italic text-sm">
+        <div className="divider">Guests participation</div>
+        <div className="grid md:grid-cols-3 gap-2">
+          <Card title="Thursday">
+            <div className="flex">
               <div>
-                {users.filter(user => !user.thursdayWillAttend && user.hasResponded).length} not coming
+                Adults : {users.filter(user => user.thursdayWillAttend && !user.isChild).length} attenting
               </div>
-              <div>
-                {users.filter(user => !user.thursdayWillAttend && !user.hasResponded).length} not answered
-              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.thursdayWillAttend && !user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
 
+                </div>
+              </Modal>
+            </div>
+            <div className="flex">
+              <div>
+                Children : {users.filter(user => user.thursdayWillAttend && user.isChild).length} attenting
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayAttendingChildren"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.thursdayWillAttend && user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
+            </div>
+
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Not coming : {users.filter(user => !user.thursdayWillAttend).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayNotAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => !user.thursdayWillAttend).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
             </div>
 
           </Card>
 
           <Card title="Friday">
-            <div>
-              Sleeping at QBV : { users.filter(user => user.roomId !== null).length} people
+            <div className="flex">
+              <div>
+                Adults : {users.filter(user => user.fridayWillAttend && !user.isChild).length} attenting
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.fridayWillAttend && !user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>
             </div>
-            <div className="divider"></div>
-            <div>
-              Needs transportation : {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport && user.roomId === null).length} people
-            </div>
-            <div>
-              On their own : {users.filter(user => user.fridayWillAttend && !user.fridayWillNeedTransport && user.roomId === null).length} people
+            <div className="flex">
+              <div>
+                Children : {users.filter(user => user.fridayWillAttend && user.isChild).length} attenting
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayAttendingChildren"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.fridayWillAttend && user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
             </div>
 
-            <div className="divider"></div>
-            <div className="stat-value">
-              {users.filter(user => user.fridayWillAttend).length} attenting
-            </div>
-            <div className="flex gap-3 italic text-sm">
-              <div>
-                {users.filter(user => !user.fridayWillAttend && user.hasResponded).length} not coming
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Not coming : {users.filter(user => !user.fridayWillAttend).length} people
               </div>
-              <div>
-                {users.filter(user => !user.fridayWillAttend && !user.hasResponded).length} not answered
-              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayNotAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => !user.fridayWillAttend).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
             </div>
 
           </Card>
 
+
           <Card title="Saturday">
-            <div>
-              Needs transportation : {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport).length} people
+            <div className="flex">
+              <div>
+                Adults : {users.filter(user => user.saturdayWillAttend && !user.isChild).length} attenting
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.saturdayWillAttend && !user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>
             </div>
-            <div>
-              On their own : {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).length} people
+            <div className="flex">
+              <div>
+                Children : {users.filter(user => user.saturdayWillAttend && user.isChild).length} attenting
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayAttendingChildren"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.saturdayWillAttend && user.isChild).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
             </div>
 
-            <div className="divider"></div>
-            <div className="stat-value">
-              {users.filter(user => user.saturdayWillAttend).length} attenting
-            </div>
-            <div className="flex gap-3 italic text-sm">
-              <div>
-                {users.filter(user => !user.saturdayWillAttend && user.hasResponded).length} not coming
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Not coming : {users.filter(user => !user.saturdayWillAttend).length} people
               </div>
-              <div>
-                {users.filter(user => !user.saturdayWillAttend && !user.hasResponded).length} not answered
-              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayNotAttending"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => !user.saturdayWillAttend).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>          
             </div>
 
           </Card>
 
         </div>
+        <div className="divider">Transportation</div>
+        <div className="grid md:grid-cols-3 gap-2">
+          
+          <Card title="Thursday">
+            <div className="flex">
+              <div>
+               {users.filter(user => user.thursdayWillAttend && user.thursdayWillNeedTransport ).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.thursdayWillAttend && user.thursdayWillNeedTransport ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
 
+                </div>
+              </Modal>
+            </div>
+
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Coming on their own : {users.filter(user => user.thursdayWillAttend && !user.thursdayWillNeedTransport && user.roomId == null).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayNotShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.thursdayWillAttend && !user.thursdayWillNeedTransport && user.roomId == null ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
+          </Card>
+
+          <Card title="Friday">
+            <div className="flex">
+              <div>
+               {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport ).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>
+            </div>
+
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Coming on their own : {users.filter(user => user.fridayWillAttend && !user.fridayWillNeedTransport && user.roomId == null).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayNotShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.fridayWillAttend && !user.fridayWillNeedTransport && user.roomId == null ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
+          </Card>
+
+          <Card title="Saturday">
+            <div className="flex">
+              <div>
+               {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport ).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+
+                </div>
+              </Modal>
+            </div>
+
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Coming on their own : {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayNotShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
+          </Card>
+          
+
+        </div>         
+        <div className="divider">Informations</div>
         <Card title="Food restrictions">
           <p>Keep an eye on foodrestrictions.</p>
           <Table

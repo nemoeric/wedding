@@ -21,13 +21,13 @@ const Card = ({
               alt="Quinta da Boa Vista Palace"
               width={2000}
               height={2000}
-              className="aspect-video	"
+              className="aspect-[6/2]	 object-cover"
             />
           </figure>
         )}
         <div className="card-body p-4">
           {title &&
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title font-serif text-3xl">{title}</h2>
           }
           {children}
         </div>

@@ -4,6 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
+    domains: ['a0.muscache.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,6 +17,12 @@ const nextConfig = {
         hostname: 'gondalier.s3.amazonaws.com',
         port: '',
         pathname: '/wedding/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'a0.muscache.com',
+        port: '',
+        pathname: '*',
       },
     ],
   },
