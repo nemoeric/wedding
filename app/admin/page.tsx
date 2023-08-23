@@ -85,6 +85,9 @@ const Users = async () => {
                 </div>
               </Modal>          
             </div>
+            <div>
+              Total : {users.filter(user => user.thursdayWillAttend).length} attenting
+            </div>
 
             <div className="flex justify-end items-center">
               <div className="italic text-xs">
@@ -135,7 +138,9 @@ const Users = async () => {
                 </div>
               </Modal>          
             </div>
-
+            <div>
+              Total : {users.filter(user => user.fridayWillAttend).length} attenting
+            </div>
             <div className="flex justify-end items-center">
               <div className="italic text-xs">
                 Not coming : {users.filter(user => !user.fridayWillAttend).length} people
@@ -186,7 +191,9 @@ const Users = async () => {
                 </div>
               </Modal>          
             </div>
-
+            <div>
+              Total : {users.filter(user => user.saturdayWillAttend).length} attenting
+            </div>
             <div className="flex justify-end items-center">
               <div className="italic text-xs">
                 Not coming : {users.filter(user => !user.saturdayWillAttend).length} people
@@ -241,12 +248,27 @@ const Users = async () => {
               </Modal>          
             </div>
 
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Staying at QBV : {users.filter(user => user.roomId !== null).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"thurdsayStaying"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.roomId !== null ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
           </Card>
 
           <Card title="Friday">
             <div className="flex">
               <div>
-               {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport ).length} people
+               {users.filter(user => user.fridayWillAttend && user.fridayWillNeedTransport && user.roomId == null ).length} people
               </div>
               <Modal callToAction={"view"} className="ml-2" id={"fridayShuttle"}>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -275,16 +297,31 @@ const Users = async () => {
               </Modal>          
             </div>
 
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Staying at QBV : {users.filter(user => user.roomId !== null).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"fridayStaying"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.roomId !== null ).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
           </Card>
 
           <Card title="Saturday">
             <div className="flex">
               <div>
-               {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport ).length} people
+                From NH Hotel {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport && user.roomId == null).length} people
               </div>
               <Modal callToAction={"view"} className="ml-2" id={"saturdayShuttle"}>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport ).map((user:any, i:number) => {
+                  {users.filter(user => user.saturdayWillAttend && user.saturdayWillNeedTransport && user.roomId == null).map((user:any, i:number) => {
                     return (<div key={i}>
                       <SmallUserCard user={user}/>
                     </div>)
@@ -294,13 +331,13 @@ const Users = async () => {
               </Modal>
             </div>
 
-            <div className="flex justify-end items-center">
-              <div className="italic text-xs">
-                Coming on their own : {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).length} people
+            <div className="flex">
+              <div className="">
+                From QBV : {users.filter(user => user.saturdayWillAttend && user.roomId !== null).length} people
               </div>
-              <Modal callToAction={"view"} className="ml-2" id={"saturdayNotShuttle"}>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayStaying"}>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport).map((user:any, i:number) => {
+                  {users.filter(user => user.saturdayWillAttend && user.roomId !== null).map((user:any, i:number) => {
                     return (<div key={i}>
                       <SmallUserCard user={user}/>
                     </div>)
@@ -308,6 +345,23 @@ const Users = async () => {
                 </div>
               </Modal>          
             </div>
+
+            <div className="flex justify-end items-center">
+              <div className="italic text-xs">
+                Coming on their own : {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport && user.roomId == null).length} people
+              </div>
+              <Modal callToAction={"view"} className="ml-2" id={"saturdayNotShuttle"}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {users.filter(user => user.saturdayWillAttend && !user.saturdayWillNeedTransport && user.roomId == null).map((user:any, i:number) => {
+                    return (<div key={i}>
+                      <SmallUserCard user={user}/>
+                    </div>)
+                  })}
+                </div>
+              </Modal>          
+            </div>
+
+           
 
           </Card>
           
