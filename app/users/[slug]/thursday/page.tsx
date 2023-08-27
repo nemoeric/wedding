@@ -24,16 +24,14 @@ const Page = async ({
             </div>
             <div>
               Vous avez indiqué que <span className='underline'>
-                  { user.thursdayWillNeedTransport ? (
-                    'vous prendrez la navette au départ du NH Hotel Sintra à 16h30.'
-                  ) : (
-                    'vous viendrez par votre propre moyen'
-                  )}
-                </span>
+                { user.thursdayWillNeedTransport ? (
+                  'vous prendrez la navette au départ du NH Hotel Sintra à 16h30.'
+                ) : (
+                  'vous viendrez par votre propre moyen'
+                )}
+              </span>
             </div>
-
           </div>
-
 
         ): (
           <div>

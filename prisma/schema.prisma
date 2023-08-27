@@ -42,8 +42,9 @@ model User {
   fridayWillNeedTransport Boolean @default(false)
 
   // PRESENCE LE SAMEDI
-  saturdayWillAttend        Boolean @default(false)
-  saturdayWillNeedTransport Boolean @default(false)
+  saturdayWillAttend        Boolean      @default(false)
+  saturdayWillNeedTransport Boolean      @default(false)
+  saturdayPlateChoice       PlateChoice?
 
   hasBeenInvited Boolean @default(false)
   hasConnected   Boolean @default(false)
@@ -76,4 +77,10 @@ model Room {
 enum Gender {
   Male
   Female
+}
+
+enum PlateChoice {
+  Angus
+  Tuna
+  Nasi
 }

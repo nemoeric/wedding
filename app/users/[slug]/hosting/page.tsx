@@ -72,14 +72,14 @@ const Page = async ({
             )
           })}
         </div>
-        <div className="divider"></div>
+        <div className="divider">Contribution</div>
 
         {room.isPaid ? (
-          <div className='text-xs italic'>
+          <div className='italic'>
             Merci, nous avons bien reçu le paiement pour votre chambre.
           </div>
         ):(
-          <div className='text-xs italic'>
+          <div className='italic'>
           Pour le paiement de votre chambre, vous pouvez effecturer un virement de 300€ pour les 2 nuits sur le rib FR76 1010 7001 7600 9270 4972 730
         </div>
         )}

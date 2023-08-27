@@ -1,5 +1,5 @@
 "use server";
-
+import prisma from '@/prisma/prisma'
 import {
   getUserByEmail, 
   updateUser, 
@@ -8,6 +8,8 @@ import {
 } from '@/prisma/user'
 import resend from '@/libs/resend';
 import { MagicLink} from '@/emails/magikLink';
+import { SaturdayConfirmation} from '@/emails/saturday/Confirmation';
+
 import { InviteToWebsite } from '@/emails/InviteToWebsite';
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "@/libs/aws";
@@ -162,4 +164,30 @@ export const inviteUserToWebsite = async (formData: FormData) => {
   
   
 
+}
+export const savePlateChoiceForSaturday = async (formData: FormData) => {
+  const userId       = formData.get('userId') as string
+  const plateChoice  = formData.get("choice") as string
+  const user         = await getUserByID(userId)
+
+  if(user){
+    console.log("savePlateChoiceForSaturday", plateChoice);
+    await updateUser(userId,{saturdayPlateChoice: plateChoice})
+
+    await resend.emails.send({
+      from: process.env.RESEND_FROM as string,
+      to: [user.email],
+      bcc: ["hello@nemo-stanton.fr"],
+      subject: 'Samedi - Mariage Nemo & Stanton',
+      react: SaturdayConfirmation({user, plateChoice})
+    });
+    
+    revalidatePath(`/users/${user.slug}/saturday`)
+  }
+  
+
+
+  return {
+    error: false
+  }
 }

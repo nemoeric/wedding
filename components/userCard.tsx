@@ -6,9 +6,8 @@ const UserCard = ({ user, preview }:{
   user: any,
   preview?: boolean,
 }) => {
-  let borderColor = user.hasResponded ? "border-green-400" : "border-warning"
   return  (
-    <Card className={borderColor + " relative"}>
+    <Card className={" relative"}>
       <Link href={`/users/${user.slug}`}>
         <div className="flex gap-4 items-center">
           <Image
@@ -22,13 +21,9 @@ const UserCard = ({ user, preview }:{
             <div className="font-bold">
               {user.firstName} {user.lastName}
             </div>
-            {!preview && (
-              <div>
-                {user.hasResponded ? (
-                  "Vous avez répondu 🫶🏻"
-                ):(
-                  <span className="text-warning">{`Vous n'avez pas encore répondu !`}</span>
-                )}
+            { user.saturdayWillAttend && user.saturdayPlateChoice == null && (
+              <div className="bg-warning rounded px-2">
+                <span className="text-warning-content text-xs italic">Précisez votre plat pour samedi</span>
               </div>
             )}
           </div>

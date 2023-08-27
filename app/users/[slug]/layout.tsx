@@ -23,7 +23,7 @@ export default async function UserLayout({
 
   const content = (
     <Section>
-      <div className='flex justify-center items-center gap-3'>
+      <div className='md:flex justify-center items-center gap-3'>
         <Image
           src={user?.image || "/placeholder_h.png"}
           alt={user?.firstName || "jkjkej"}
