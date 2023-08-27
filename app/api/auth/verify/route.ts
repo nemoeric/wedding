@@ -42,6 +42,12 @@ export async function GET(request: Request) {
       await updateUser(user.id,{hasConnected: true})
       revalidatePath('/')
 
+      // if redirect params, use value to redirect
+      const redirect = searchParams.get('redirect')
+      if(redirect != null && redirect != "") return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}${redirect}`)
+
+
+
       // Send user to dashboard
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_URL}/`)
     }

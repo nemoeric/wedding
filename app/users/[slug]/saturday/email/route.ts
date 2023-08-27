@@ -14,9 +14,8 @@ export async function GET(request: Request, { params }: {
 
   if(user){
     const token   = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '7d'});
-    const url     = process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token
+    const url     = process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token + "&redirect=/users/" + user.slug + "/saturday"  
 
-    
     let data = await resend.emails.send({
       from: process.env.RESEND_FROM as string,
       to: [user.email],

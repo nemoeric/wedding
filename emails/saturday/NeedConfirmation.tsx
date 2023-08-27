@@ -68,7 +68,7 @@ export const NeedConfirmation = ({
               </ul>
             </Html>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              {`Pour répondre, rendez-vous sur votre profil sur le site.`}
+              {`Pour répondre, rendez-vous sur votre profil sur le site. (en haut à droite : profil, puis onglet Samedi)`}
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
@@ -82,7 +82,7 @@ export const NeedConfirmation = ({
               </Button>
             </Section>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              {`Merci d'avance !`}
+              {`J-4, on a trop hate !`}
             </Text>
             <Text className="text-black text-center font-sans text-xs leading-[24px]">
               Coded with ❤️ by Nemo
