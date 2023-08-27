@@ -5,20 +5,12 @@ import Container from "@/components/Container";
 import UserCard from "@/components/userCard";
 import getSessionUserFromCookie from "@/utils/getSessionUserFromCookie";
 import Countdown from "@/components/Countdown";
-import prisma from "@/prisma/prisma";
-import Card from "@/components/daisyui/card";
-import Section from "@/components/Section";
 
 
 export default async function Home() {
 
   const user = await getSessionUserFromCookie()
 
-  console.log(user);
-  
-  const room = user?.roomId ? await prisma.room.findUnique({
-    where: { id : user.roomId }
-  }) : null
     
   return (
     <div className=" pb-16">
@@ -41,19 +33,7 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* ROOM */}
-      {room && (
-        <Section>
-          <Container>
-            <h2 className="font-serif mt-12 text-center text-4xl">Votre hébèrgement</h2>
-
-            <Card title={room.name}>
-              Nous avons le plaisir de vous faire savoir que vous dormez dans : <br/>
-            </Card>
-
-          </Container>
-        </Section>
-      )}
+     
 
       {/* USER CARDS */}
       <Container>

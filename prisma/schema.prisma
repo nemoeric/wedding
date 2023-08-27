@@ -67,6 +67,7 @@ model Room {
   slug      String   @unique
   floor     Int      @default(0)
   image     String?
+  isPaid    Boolean  @default(false)
 
   // Relationships
   users User[]

@@ -1,10 +1,10 @@
 import {getUserBySlug} from '@/prisma/user'
 import Rsvp from '@/components/Rsvp'
 import getSessionUserFromCookie from '@/utils/getSessionUserFromCookie'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
-import Card from '@/components/daisyui/card'
 import prisma from '@/prisma/prisma'
+
+
 const User = async ({
   params
 }:{
@@ -22,14 +22,14 @@ const User = async ({
         select: {
           id: true,
           firstName: true, 
-          image: true
+          image: true,
         }
       }
     }
   }) : null
+  if(room) return redirect(`/users/${params.slug}/hosting`)
 
-  console.log("room", room);
-  
+  return redirect(`/users/${params.slug}/saturday`)
 
   return (
     <div className='grid gap-6'>
@@ -56,72 +56,6 @@ const User = async ({
           </form>
         </Card>
       )} */}
-
-      <div className='flex justify-center items-center gap-3'>
-        <Image
-          src={user.image || "/placeholder_h.png"}
-          alt={user.firstName || "jkjkej"}
-          className="mask mask-hexagon-2 w-48 h-48 object-cover "
-          width={300}
-          height={300}
-        />
-        <div className='grow'>
-          <h2 className="font-serif text-6xl">
-            {user.firstName} {user.lastName}
-          </h2>
-          <div className="pb-6 italic">
-            {user.email}
-          </div>
-        </div>
-
-      </div>
-
-      {room && (
-        <Card title="Votre chambre" imageUrl={room.image ?? ""}>
-          <div>
-            Nous avons le plaisir de vous confirmez que vous dormirez parmi nous à Quinta da Bella Vista.
-          </div>
-          <div>
-            À votre arrivée, présentez vous au Palace et cherchez Dinesh. Donnez lui {`les informations suivantes :`}
-          </div>
-          <div>
-            Bâtiment : {room.location}
-          </div>
-          <div>
-            Chambre : {room.name}
-          </div>
-          <div>
-            Étage : {room.floor}
-          </div>
-          <div className='flex items-center justify-start gap-4'>
-            <div>
-              Vous dormirez avec : 
-            </div> 
-            {room.users.map(roomUser=>{
-              return (
-                <div className="avatar" key={roomUser.id}>
-                  <div className="w-10 md:w-16 rounded">
-                    <Image
-                      src={roomUser.image || "/placeholder_h.png"}
-                      alt={roomUser.firstName || "jkjkej"}
-                      className="object-cover"
-                      width={80}
-                      height={80}
-                    />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-          <div className="divider"></div>
-          <div className='text-xs italic'>
-            Pour le paiement de votre chambre, vous pouvez effecturer un virement de 300€ pour les 2 nuits sur le rib FR76 1010 7001 7600 9270 4972 730
-          </div>
-
-        </Card>
-
-      )}
-
       <Rsvp user={user} />
     </div>
   )
