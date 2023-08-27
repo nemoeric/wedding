@@ -28,24 +28,24 @@ export async function GET(request: Request, { params }: {
 
   console.log(users.length)
 
-  for(let user of users){
-    if(user.saturdayPlateChoice == null ){
-      const token   = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '7d'});
-      const url     = process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token + "&redirect=/users/" + user.slug + "/saturday"  
+  // for(let user of users){
+  //   if(user.saturdayPlateChoice == null ){
+  //     const token   = jwt.sign({userId: user.id}, process.env.JWT_SECRET, {expiresIn: '7d'});
+  //     const url     = process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token + "&redirect=/users/" + user.slug + "/saturday"  
 
-      await resend.emails.send({
-        from: process.env.RESEND_FROM as string,
-        to: [user.email],
-        bcc: ["hello@nemo-stanton.fr"],
-        subject: 'Samedi - Mariage Nemo & Stanton',
-        react: NeedConfirmation({
-          user,
-          url
-        })
-      });
+  //     await resend.emails.send({
+  //       from: process.env.RESEND_FROM as string,
+  //       to: [user.email],
+  //       bcc: ["hello@nemo-stanton.fr"],
+  //       subject: 'Samedi - Mariage Nemo & Stanton',
+  //       react: NeedConfirmation({
+  //         user,
+  //         url
+  //       })
+  //     });
 
-    }
-  }
+  //   }
+  // }
 
  
 
