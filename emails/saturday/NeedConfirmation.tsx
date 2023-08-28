@@ -58,7 +58,7 @@ export const NeedConfirmation = ({
             </Text>
             
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              Nous aurions besoin de connaitre votre choix de plat parmis les possibilités suivantes : 
+              Nous aurions besoin de connaitre votre choix de plat parmi les possibilités suivantes : 
             </Text>
             <Html>
               <ul>
