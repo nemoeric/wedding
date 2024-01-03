@@ -4,27 +4,27 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ['a0.muscache.com'],
+    domains: ["a0.muscache.com", "res.cloudinary.com"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'gondalier.s3.eu-west-3.amazonaws.com',
-        port: '',
-        pathname: '/wedding/**',
+        protocol: "https",
+        hostname: "gondalier.s3.eu-west-3.amazonaws.com",
+        port: "",
+        pathname: "/wedding/**",
       },
       {
-        protocol: 'https',
-        hostname: 'gondalier.s3.amazonaws.com',
-        port: '',
-        pathname: '/wedding/**',
+        protocol: "https",
+        hostname: "gondalier.s3.amazonaws.com",
+        port: "",
+        pathname: "/wedding/**",
       },
       {
-        protocol: 'https',
-        hostname: 'a0.muscache.com',
-        port: '',
-        pathname: '*',
+        protocol: "https",
+        hostname: "a0.muscache.com",
+        port: "",
+        pathname: "*",
       },
     ],
   },
-}
-module.exports = nextConfig
+};
+module.exports = nextConfig;

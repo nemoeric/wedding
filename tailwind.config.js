@@ -44,8 +44,7 @@ module.exports = {
       adora:  [
         'var(--font-adora)', 
       ],
-    },
-
+    }
   },
   plugins: [
     require("daisyui")
@@ -56,6 +55,8 @@ module.exports = {
         cupcake: {
           ...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
           "primary":    "#1d583f",
+          "lightgreen": "#ccd1c4"
+
         },
       },// first one will be the default theme
       // {
