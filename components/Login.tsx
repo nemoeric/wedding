@@ -57,6 +57,7 @@ const Login = ({
         action={async (formData: FormData) => {
           startTransition(async () => {
             let response = await handleFormLogin(formData);
+            console.log("response", response);
             if (response.error) {
               setShowError(true);
               setShowSuccess(false);
