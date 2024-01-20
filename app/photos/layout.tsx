@@ -86,9 +86,11 @@ export default async function Layout({
         <div className="italic my-2">
           Hey {sessionUser?.firstName}, we had a great time with you !
         </div>
-        <FolderNavigation folders={folders} />
       </div>
-      <div className="pb-10">{children}</div>
+      <div className="pb-10">
+        <FolderNavigation folders={folders} />
+        <div>{children}</div>
+      </div>
     </div>
   );
 }

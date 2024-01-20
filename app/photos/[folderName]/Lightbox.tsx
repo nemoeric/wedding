@@ -1,11 +1,9 @@
 "use client";
 
-import CldImage from "../cloudImage";
 import * as React from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Download from "yet-another-react-lightbox/plugins/download";
 import Masonry from "react-layout-masonry";
-import Image from "next/image";
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -64,9 +62,6 @@ export default function LightboxComponent({
           fade: 250,
           swipe: 200,
           navigation: 200,
-          easing: {
-            fade: "linear",
-          },
         }}
       />
     </>
