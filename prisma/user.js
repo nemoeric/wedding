@@ -1,45 +1,51 @@
-import prisma from './prisma'
+import prisma from "./prisma";
 
 export const getUserByEmail = async (email) => {
-  console.log('getUserByEmail', email);
-  return await prisma.user.findUnique({
+  console.log("getUserByEmail", email);
+  let result = await prisma.user.findUnique({
     where: {
-      email : email.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
-    }
-  })
-}
+      email: email
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase(),
+    },
+  });
+  console.log("getUserByEmail", result);
+
+  return result;
+};
 export const getUserByID = async (id) => {
   // console.log('getUserByID', id);
   return await prisma.user.findUnique({
     where: {
-      id
+      id,
     },
     include: {
-      canEdit: true
-    }
-  })
-}
+      canEdit: true,
+    },
+  });
+};
 export const getUserBySlug = async (slug) => {
-  console.log('getUserBySlug', slug);
+  console.log("getUserBySlug", slug);
   return await prisma.user.findUnique({
     where: {
-      slug
-    }
-  })
-}
+      slug,
+    },
+  });
+};
 export const updateUser = async (id, data) => {
   return await prisma.user.update({
     where: {
-      id
+      id,
     },
-    data
-  })
-}
+    data,
+  });
+};
 export const createUser = async (data) => {
   return await prisma.user.create({
-    data
-  })
-}
-export const getUsers = async (params={}) => {
-  return await prisma.user.findMany(params)
-}
+    data,
+  });
+};
+export const getUsers = async (params = {}) => {
+  return await prisma.user.findMany(params);
+};
