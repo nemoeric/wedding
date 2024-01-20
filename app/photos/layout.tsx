@@ -2,6 +2,7 @@ import Container from "@/components/Container";
 import Login from "@/components/Login";
 import getSessionUserFromCookie from "@/utils/getSessionUserFromCookie";
 import Link from "next/link";
+import FolderNavigation from "./FolderNavigation";
 
 export default async function Layout({
   searchParams,
@@ -11,7 +12,6 @@ export default async function Layout({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const sessionUser = await getSessionUserFromCookie();
-  console.log("sessionUser", sessionUser);
   let expired = searchParams?.expired === "true" ? true : false;
 
   if (!sessionUser)
@@ -86,13 +86,7 @@ export default async function Layout({
         <div className="italic my-2">
           Hey {sessionUser?.firstName}, we had a great time with you !
         </div>
-        <ul className="menu bg-base-200 lg:menu-horizontal rounded-box">
-          {folders.map((folder, i) => (
-            <li key={i}>
-              <Link href={`/photos/${folder.handle}`}>{folder.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <FolderNavigation folders={folders} />
       </div>
       <div className="pb-10">{children}</div>
     </div>
