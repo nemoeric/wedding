@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import UserCard from "@/components/userCard";
 import getSessionUserFromCookie from "@/utils/getSessionUserFromCookie";
 import Countdown from "@/components/Countdown";
+import Link from "next/link";
 
 export default async function Home() {
   const user = await getSessionUserFromCookie();
@@ -12,15 +13,23 @@ export default async function Home() {
   return (
     <div className=" pb-16">
       {/* BANNER */}
-      <div className="text-primary bg-slate-200 text-center h-[500px] md:h-[600px] lg:h-[700px] flex justify-center items-center">
-        <div className="grid gap-6">
+      <div className="text-primary bg-slate-200 text-center py-10 flex justify-center items-center relative">
+        <div className="grid gap-6 relative z-10">
           <Animation>
-            <div className="text-3xl mb-10 font-adora">Elizabeth & Eric</div>
-            <h1 className="font-serif text-7xl tracking-tight p-1">
-              RENDEZ-VOUS À SINTRA
-            </h1>
-            <div className="animate-pulse">31-08 | 02-09</div>
-            {/* <Countdown date={new Date("2023-08-31T17:00:00")} /> */}
+            <div className="text-3xl font-adora">Elizabeth & Eric</div>
+            <h1 className="font-serif text-7xl tracking-tight">MERCI</h1>
+            {user && (
+              <Link href="/photos">
+                <button className="btn btn-primary">Voir les photos</button>
+              </Link>
+            )}
+            <Image
+              src="/homeV1.jpg"
+              alt="Picture of the author"
+              className="object-cover aspect-square mask mask-hexagon w-full "
+              width={500}
+              height={500}
+            />
           </Animation>
         </div>
       </div>

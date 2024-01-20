@@ -1,16 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        home: "url('/public/homeV1.jpg')",
+        "footer-texture": "url('/img/footer-texture.png')",
       },
       keyframes: {
         "accordion-down": {
@@ -24,41 +26,28 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans:   [
+      sans: [
         // 'JetBrains Mono',
-        'Open Sans',
+        "Open Sans",
         // 'var(--font-calibri-medium)',
-        'sans-serif'
+        "sans-serif",
       ],
-      mono:   [
-        'JetBrains Mono', 
-        'monospace'
-      ],
-      serif:  [
-        'var(--font-silk-medium)', 
-        'serif'
-      ],
-      italic:  [
-        'var(--font-cambria-italic)', 
-      ],
-      adora:  [
-        'var(--font-adora)', 
-      ],
-    }
+      mono: ["JetBrains Mono", "monospace"],
+      serif: ["var(--font-silk-medium)", "serif"],
+      italic: ["var(--font-cambria-italic)"],
+      adora: ["var(--font-adora)"],
+    },
   },
-  plugins: [
-    require("daisyui")
-  ],
+  plugins: [require("daisyui")],
   daisyui: {
     themes: [
       {
         cupcake: {
           ...require("daisyui/src/theming/themes")["[data-theme=cupcake]"],
-          "primary":    "#1d583f",
-          "lightgreen": "#ccd1c4"
-
+          primary: "#1d583f",
+          lightgreen: "#ccd1c4",
         },
-      },// first one will be the default theme
+      }, // first one will be the default theme
       // {
       //   kercambre: {
       //     "primary":    "#1d583f",
@@ -80,4 +69,4 @@ module.exports = {
     prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
   },
-}
+};

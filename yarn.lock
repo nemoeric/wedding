@@ -2657,6 +2657,21 @@ clone@^1.0.2:
   resolved "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
+cloudinary-core@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.13.0.tgz#b59f90871b6c708c3d0735b9be47ac08181c57fb"
+  integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
+
+cloudinary@^1.41.1:
+  version "1.41.1"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.41.1.tgz#356610d763ba1d4d6e4c10b4db28db34fb5e153f"
+  integrity sha512-EBNEmhSNtES8d9dAd1tg9mKJk2jB5LvRxDcgNk7JiMDWNeHkSpwroJwnHZN4XdxKvjLnj9a9pbOgdPW90GkG1g==
+  dependencies:
+    cloudinary-core "^2.13.0"
+    core-js "^3.30.1"
+    lodash "^4.17.21"
+    q "^1.5.1"
+
 code-block-writer@^12.0.0:
   version "12.0.0"
   resolved "https://registry.npmjs.org/code-block-writer/-/code-block-writer-12.0.0.tgz"
@@ -2744,6 +2759,11 @@ convert-source-map@^1.5.0, convert-source-map@^1.7.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz"
   integrity sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==
+
+core-js@^3.30.1:
+  version "3.35.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.35.0.tgz#58e651688484f83c34196ca13f099574ee53d6b4"
+  integrity sha512-ntakECeqg81KqMueeGJ79Q5ZgQNR+6eaE8sxGCx62zMbAIj65q+uYvatToew3m6eAGdU4gNZwpZ34NMe4GYswg==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -3571,6 +3591,11 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
+
+fs@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+  integrity sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w==
 
 fsevents@~2.3.2:
   version "2.3.2"
@@ -5150,6 +5175,11 @@ punycode@^2.1.0:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
+q@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+  integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
@@ -5213,10 +5243,25 @@ react-is@^18.2.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+react-layout-masonry@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-layout-masonry/-/react-layout-masonry-1.1.0.tgz#261ffd151035296ddedcaf13e4a3f74c7fe21d8d"
+  integrity sha512-EVDj8ICCKiZIYAfdZZyuIHzYTTXcwWdLr9B6IB+vKBa39tpIjoTIhpgcLsxurrYy3+le6JXTsQIduS2/8MpmFQ==
+
+react-masonry-css@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/react-masonry-css/-/react-masonry-css-1.0.16.tgz#72b28b4ae3484e250534700860597553a10f1a2c"
+  integrity sha512-KSW0hR2VQmltt/qAa3eXOctQDyOu7+ZBevtKgpNDSzT7k5LA/0XntNa9z9HKCdz3QlxmJHglTZ18e4sX4V8zZQ==
+
 react-property@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/react-property/-/react-property-2.0.0.tgz"
   integrity sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==
+
+react-responsive-masonry@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/react-responsive-masonry/-/react-responsive-masonry-2.1.7.tgz#9b4a8d63b296a6265bea720c9d7da89754548346"
+  integrity sha512-/jOqnTVNtO8zRJMTl6ZXBex7EFYEIFBLVlkIFjiCT7omfm0CgNF2z4ST8RIr0v2ut15NWAQs7Q3kJJPhMoe3Ew==
 
 react@18.2.0:
   version "18.2.0"
@@ -5772,6 +5817,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+swiper@^11.0.5:
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.5.tgz#6ed1ad06e6906ba42fd4b93d4988f0626a49046e"
+  integrity sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==
+
 synckit@^0.8.5:
   version "0.8.5"
   resolved "https://registry.npmjs.org/synckit/-/synckit-0.8.5.tgz"
@@ -6214,6 +6264,11 @@ yaml@^2.1.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/yaml/-/yaml-2.3.1.tgz"
   integrity sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==
+
+yet-another-react-lightbox@^3.15.6:
+  version "3.15.6"
+  resolved "https://registry.yarnpkg.com/yet-another-react-lightbox/-/yet-another-react-lightbox-3.15.6.tgz#43e26a351ed85771863afee883e0f05334d16770"
+  integrity sha512-he+WqKL5ZPk393oZQyadD347QqEPPr4fjqUVZKjIOeaIpbe9PHtwV4m8PjUzkbx3BISXasOqv0C/+cE1gBboXg==
 
 yocto-queue@^0.1.0:
   version "0.1.0"

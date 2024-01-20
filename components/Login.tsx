@@ -3,7 +3,13 @@ import { handleFormLogin } from "@/serverActions";
 import { useState, useTransition } from "react";
 import MyButton from "@/components/daisyui/MyButton";
 import Card from "./daisyui/card";
-const Login = ({ expired = false }: { expired?: boolean }) => {
+const Login = ({
+  expired = false,
+  title,
+}: {
+  expired?: boolean;
+  title?: string;
+}) => {
   const [showError, setShowError] = useState(false);
   const errorMessage = showError && (
     <div className="text-sm text-error">{`L'email n'existe pas. Demandez votre email à Eric.`}</div>
@@ -18,7 +24,9 @@ const Login = ({ expired = false }: { expired?: boolean }) => {
 
   return (
     <Card>
-      <h2 className="font-serif text-3xl md:text-6xl">Espace invité</h2>
+      <h2 className="font-serif text-3xl md:text-6xl">
+        {title || "Espace invité"}
+      </h2>
       {expired && (
         <div className="alert alert-error my-4 text-sm italic">
           <svg
