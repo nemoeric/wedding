@@ -5,7 +5,7 @@ var jwt = require("jsonwebtoken");
 import { ImagesAreOnline } from "@/emails/imagesAreOnline";
 import { NextApiResponse } from "next";
 
-export async function GET(request: Request, NextApiResponse: NextApiResponse) {
+export async function GET(request: Request, response: NextApiResponse) {
   const users = await prisma.user.findMany({});
   const attended = users.filter((user) => {
     return (
@@ -43,7 +43,5 @@ export async function GET(request: Request, NextApiResponse: NextApiResponse) {
   };
   if (eric) await sendEmail(eric);
 
-  return NextApiResponse.json({
-    eric,
-  });
+  return Response.json({ eric });
 }
