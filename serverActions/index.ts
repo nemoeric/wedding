@@ -15,8 +15,25 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "@/libs/aws";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-
+import { User } from "@prisma/client";
+import ImagesAreOnline from "@/emails/imagesAreOnline";
 var jwt = require("jsonwebtoken");
+
+const sendEmail = async (user: User) => {
+  var token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "6h",
+  });
+  await resend.emails.send({
+    from: process.env.RESEND_FROM as string,
+    to: [user.email],
+    bcc: ["hello@nemo-stanton.fr"],
+    subject: "Les photos sont en ligne !",
+    react: ImagesAreOnline({
+      user,
+      url: process.env.NEXT_PUBLIC_URL + "/api/auth/verify?token=" + token,
+    }),
+  });
+};
 
 export const handleFormLogin = async (formData: FormData) => {
   const email = formData.get("email");
@@ -173,4 +190,17 @@ export const savePlateChoiceForSaturday = async (formData: FormData) => {
   return {
     error: false,
   };
+};
+export const inviteToViewPhotos = async () => {
+  console.log("inviteToViewPhotos");
+  const users = await prisma.user.findMany();
+  for (let user of users) {
+    console.log("will do user", user.email, user.id);
+    await sendEmail(user);
+  }
+};
+export const inviteEric = async () => {
+  const users = await prisma.user.findMany();
+  const eric = users.find((user) => user.email === "eric.nemo123@gmail.com");
+  if (eric) await sendEmail(eric);
 };

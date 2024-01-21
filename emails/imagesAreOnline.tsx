@@ -31,7 +31,7 @@ export const ImagesAreOnline = ({
   return (
     <Html>
       <Head />
-      <Preview>{`Les photos sont en ligne!`}</Preview>
+      <Preview>{`Accédez directement à votre espace en ligne.`}</Preview>
       <Tailwind>
         <Body className=" bg-slate-50 my-auto mx-auto font-sans">
           <Container className="bg-[#f4f0ec] border border-solid border-[#eaeaea] bg-red rounded my-[40px] mx-auto p-[20px] w-[465px]">
@@ -51,17 +51,17 @@ export const ImagesAreOnline = ({
               Bonjour {user.firstName},
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              Les photos sont enfin en ligne, et quel plaisir de les partager
-              avec vous.
+              {`On profite de ce dimanche soir bien froid pour vous partager les photos de ces jours passés ensemble au soleil !`}
             </Text>
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              On en profite pour vous souhaiter à tous une belle année 2024, et
-              on espère {`qu'une petite dose de soleil par image`} vous fera
-              autant de bien {`qu'à`} nous !
+              {`Nous espérons que vous prendrez autant de plaisir à les visionner que nous en avons eu en les regardant .`}
             </Text>
-
             <Text className="text-black font-sans text-[14px] leading-[24px]">
-              {`On espère vous revoir très vite`}
+              Nous en profitons pour vous souhaiter à tous nos voeux de bonheur
+              pour 2024, et on espère vous revoir très vite !
+            </Text>
+            <Text className="text-black font-sans text-[14px] leading-[24px]">
+              Eric & Elizabeth
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
@@ -71,9 +71,10 @@ export const ImagesAreOnline = ({
                 className="rounded-sm bg-slate-300 font-sans uppercase text-sm text-black"
                 href={url}
               >
-                Accéder
+                Accéder aux photos
               </Button>
             </Section>
+
             <Text className="text-black text-center font-sans text-xs leading-[24px]">
               Coded with ❤️ by Nemo
             </Text>

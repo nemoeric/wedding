@@ -29,7 +29,6 @@ export default function FolderNavigation({ folders }: { folders: Folder[] }) {
               {folder.title}
             </option>
           ))}
-          <option>Greedo</option>
         </select>
       </div>
       <div className="hidden md:block">
